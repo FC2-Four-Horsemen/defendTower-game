@@ -152,8 +152,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>458</x>
-                        <y>555</y>
+                        <x>231</x>
+                        <y>559</y>
                         <z>0</z>
                         <width>33</width>
                         <height>63</height>
@@ -537,15 +537,15 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>92</x>
-                        <y>560</y>
+                        <x>108</x>
+                        <y>563</y>
                         <z>0</z>
                         <width>50</width>
                         <height>50</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
+                        <angle>0.004454594</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>
@@ -876,6 +876,30 @@
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="resetBtn" uid="27">
+                    <properties>
+                        <type>Button</type>
+                        <text>Reset</text>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <auto-font-size>Yes</auto-font-size>
+                        <id-optional></id-optional>
+                        <checked>No</checked>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>42</x>
+                        <y>41</y>
+                        <z>0</z>
+                        <width>72</width>
+                        <height>24</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                     </world>
                 </instance>
             </instances>
