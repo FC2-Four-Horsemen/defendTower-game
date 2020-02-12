@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Map1Sheet</name>
+    <events>
+        <event-block sid="945052852829212">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="423222928015370" type="System" />
+            </conditions>
+            <actions>
+                <action id="-17" name="Set layer scale" sid="358860499905748" type="System">
+                    <param id="0" name="Layer">1</param>
+                    <param id="1" name="Scale">0.5</param>
+                </action>
+            </actions>
+        </event-block>
+        <include>PlayerSheet</include>
+        <include>EnemySheet</include>
+        <event-block sid="542969929703424">
+            <conditions>
+                <condition id="0" name="On clicked" sid="694542462030919" type="resetBtn" />
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="713736250608973" type="System" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

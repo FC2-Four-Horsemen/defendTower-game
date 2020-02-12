@@ -8,11 +8,12 @@
     <author-website></author-website>
     <app-id></app-id>
     <unique-id>3k8y8jenijj4j</unique-id>
-    <saved-with-version>27500</saved-with-version>
+    <saved-with-version>26900</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
@@ -168,13 +169,31 @@
         <object-type name="resetBtn" sid="939719704250160">
             <plugin id="Button" />
         </object-type>
+        <object-type name="laser" sid="811016295500251">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="length" sid="353164243829126" type="number" />
+                <instance-variable name="isFired" sid="356362432351744" type="boolean" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="535179082585664" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="BlinkOut" sid="864150428338533">
+            <plugin id="Particles" />
+            <texture />
+        </object-type>
     </object-folder>
     <families />
     <layout-folder>
         <layout>Layout 1.xml</layout>
     </layout-folder>
     <event-folder>
-        <event-sheet>Event sheet 1.xml</event-sheet>
+        <event-sheet>PlayerSheet.xml</event-sheet>
+        <event-sheet>EnemySheet.xml</event-sheet>
+        <event-sheet>Map1Sheet.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" uid="16" />

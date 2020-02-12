@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>EnemySheet</name>
+    <events>
+        <event-block sid="753823967556561">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="699933680488225" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="0" name="Find path" sid="840967590392278" type="Enemy">
+                    <param id="0" name="X">Tower.X</param>
+                    <param id="1" name="Y">Tower.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If a bullet hits an enemy, subtract 10 from its health.  When an enemy runs out of health, destroy it.</comment>
+        <event-block sid="570833342804563">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="233270600887301" type="Bullet">
+                    <param id="0" name="Object">Enemy</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="583938637989036" type="Enemy">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+                <action id="-9" name="Destroy" sid="399032738015228" type="Bullet" />
+            </actions>
+        </event-block>
+        <event-block sid="460041522413984">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="630554019052431" type="Enemy">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="378933019982343" type="Enemy" />
+            </actions>
+        </event-block>
+        <event-block sid="855915714984793">
+            <conditions>
+                <condition id="1" name="Is overlapping another object" sid="421837707670920" type="Enemy">
+                    <param id="0" name="Object">Tower</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="902355658015494" type="Player" />
+            </actions>
+        </event-block>
+        <event-block sid="656377936713146">
+            <conditions>
+                <condition behavior="Pathfinding" id="0" name="On path found" sid="730022095720580" type="Enemy" />
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="1" name="Move along path" sid="396212619617092" type="Enemy" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
