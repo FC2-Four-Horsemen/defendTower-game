@@ -24,5 +24,31 @@
                 <action id="-26" name="Restart layout" sid="713736250608973" type="System" />
             </actions>
         </event-block>
+        <event-block sid="135642403161943">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="800424845785789" type="System">
+                    <param id="0" name="Interval (seconds)">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="296653848021339" type="Spawner">
+                    <param id="0" name="Object">Enemy</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="979400839239874">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="664053743643179" type="System">
+                    <param id="0" name="Interval (seconds)">0.1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="935387857893927" type="scoreValue">
+                    <param id="0" name="Text">&quot;Score:&quot; &amp; Player.score</param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>

@@ -5,40 +5,45 @@
     <events>
         <event-block sid="753823967556561">
             <conditions>
-                <condition id="-2" name="On start of layout" sid="699933680488225" type="System" />
+                <condition disabled="1" id="-2" name="On start of layout" sid="699933680488225" type="System" />
             </conditions>
             <actions>
-                <action behavior="Pathfinding" id="0" name="Find path" sid="840967590392278" type="Enemy">
+                <action behavior="Pathfinding" disabled="1" id="0" name="Find path" sid="840967590392278" type="Enemy">
                     <param id="0" name="X">Tower.X</param>
                     <param id="1" name="Y">Tower.Y</param>
                 </action>
             </actions>
         </event-block>
-        <comment>If a bullet hits an enemy, subtract 10 from its health.  When an enemy runs out of health, destroy it.</comment>
-        <event-block sid="570833342804563">
+        <event-block sid="252559707537878">
             <conditions>
-                <condition id="0" name="On collision with another object" sid="233270600887301" type="Bullet">
-                    <param id="0" name="Object">Enemy</param>
-                </condition>
+                <condition id="-18" name="On created" sid="354149451049023" type="Enemy" />
             </conditions>
             <actions>
-                <action id="-12" name="Subtract from" sid="583938637989036" type="Enemy">
-                    <param id="0" name="Instance variable">Health</param>
-                    <param id="1" name="Value">10</param>
+                <action behavior="Pathfinding" id="0" name="Find path" sid="795970457954455" type="Enemy">
+                    <param id="0" name="X">Tower.X</param>
+                    <param id="1" name="Y">Tower.Y</param>
                 </action>
-                <action id="-9" name="Destroy" sid="399032738015228" type="Bullet" />
             </actions>
         </event-block>
-        <event-block sid="460041522413984">
+        <event-block sid="711418816262619">
             <conditions>
-                <condition id="-7" name="Compare instance variable" sid="630554019052431" type="Enemy">
-                    <param id="0" name="Instance variable">Health</param>
-                    <param id="1" name="Comparison">3</param>
-                    <param id="2" name="Value">0</param>
+                <condition id="-6" name="Every X seconds" sid="725579331265073" type="System">
+                    <param id="0" name="Interval (seconds)">0.1</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-9" name="Destroy" sid="378933019982343" type="Enemy" />
+                <action behavior="Pathfinding" id="0" name="Find path" sid="619188463348625" type="Enemy">
+                    <param id="0" name="X">Tower.X</param>
+                    <param id="1" name="Y">Tower.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="656377936713146">
+            <conditions>
+                <condition behavior="Pathfinding" id="0" name="On path found" sid="730022095720580" type="Enemy" />
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="1" name="Move along path" sid="396212619617092" type="Enemy" />
             </actions>
         </event-block>
         <event-block sid="855915714984793">
@@ -51,12 +56,64 @@
                 <action id="-9" name="Destroy" sid="902355658015494" type="Player" />
             </actions>
         </event-block>
-        <event-block sid="656377936713146">
+        <comment>When an enemy runs out of health, destroy it.</comment>
+        <event-block sid="460041522413984">
             <conditions>
-                <condition behavior="Pathfinding" id="0" name="On path found" sid="730022095720580" type="Enemy" />
+                <condition id="-7" name="Compare instance variable" sid="630554019052431" type="Enemy">
+                    <param id="0" name="Instance variable">Health</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
             </conditions>
             <actions>
-                <action behavior="Pathfinding" id="1" name="Move along path" sid="396212619617092" type="Enemy" />
+                <action id="-9" name="Destroy" sid="378933019982343" type="Enemy" />
+                <action id="0" name="Spawn another object" sid="644724691260123" type="Enemy">
+                    <param id="0" name="Object">hitEffect</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action id="-11" name="Add to" sid="720736379750894" type="Player">
+                    <param id="0" name="Instance variable">score</param>
+                    <param id="1" name="Value">5</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Status Effects</comment>
+        <comment>Stun</comment>
+        <event-block sid="977221976505478">
+            <conditions>
+                <condition id="-8" name="Is boolean instance variable set" sid="851991037590591" type="Enemy">
+                    <param id="0" name="Instance variable">isStunned</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Pathfinding" id="3" name="Set enabled" sid="708487687460545" type="Enemy">
+                    <param id="0" name="Set">0</param>
+                </action>
+                <action id="-27" name="Set effect enabled" sid="991389244767655" type="Enemy">
+                    <param id="0" name="Mode">1</param>
+                    <param id="1" name="Effect">&quot;Pixellate&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="163660516030528">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="184094313827358" type="Enemy">
+                    <param id="0" name="Tag">&quot;stunDuration&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="693073525698236" type="Enemy">
+                    <param id="0" name="Instance variable">isStunned</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-27" name="Set effect enabled" sid="872364724693528" type="Enemy">
+                    <param id="0" name="Mode">0</param>
+                    <param id="1" name="Effect">&quot;Pixellate&quot;</param>
+                </action>
+                <action behavior="Pathfinding" id="3" name="Set enabled" sid="575764861244676" type="Enemy">
+                    <param id="0" name="Set">1</param>
+                </action>
             </actions>
         </event-block>
     </events>
