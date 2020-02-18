@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2layout>
-    <name>AssetsLayout</name>
+    <name>AssetsMap</name>
     <sid>540159109932191</sid>
     <event-sheet></event-sheet>
     <size>
@@ -29,7 +29,7 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
-                <instance type="Bullet" uid="2">
+                <instance type="manaBullet" uid="2">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -74,6 +74,7 @@
                     <instance-variables>
                         <length>0</length>
                         <isFired>false</isFired>
+                        <isPiercing>1</isPiercing>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -103,29 +104,29 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="BlinkOut" uid="10">
+                <instance type="blinkOut" uid="10">
                     <properties>
                         <rate>50</rate>
-                        <spray-cone>360</spray-cone>
+                        <spray-cone>180</spray-cone>
                         <type>One-shot</type>
                         <initial-particle-properties></initial-particle-properties>
-                        <speed>500</speed>
+                        <speed>200</speed>
                         <size>32</size>
                         <opacity>100</opacity>
-                        <grow-rate>0</grow-rate>
-                        <x-randomiser>0</x-randomiser>
-                        <y-randomiser>0</y-randomiser>
+                        <grow-rate>-50</grow-rate>
+                        <x-randomiser>15</x-randomiser>
+                        <y-randomiser>15</y-randomiser>
                         <speed-randomiser->0</speed-randomiser->
-                        <size-randomiser>2</size-randomiser>
+                        <size-randomiser>0</size-randomiser>
                         <grow-rate-randomiser>0</grow-rate-randomiser>
                         <particle-lifetime-properties></particle-lifetime-properties>
                         <acceleration>-150</acceleration>
                         <gravity>0</gravity>
                         <angle-randomiser>0</angle-randomiser>
                         <speed-randomiser>800</speed-randomiser>
-                        <opacity-randomiser>5</opacity-randomiser>
+                        <opacity-randomiser>10</opacity-randomiser>
                         <destroy-mode>Fade to invisible</destroy-mode>
-                        <timeout>0.3</timeout>
+                        <timeout>0.5</timeout>
                     </properties>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -138,7 +139,7 @@
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
+                        <angle>-1.570796371</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>
@@ -191,6 +192,7 @@
                     <instance-variables>
                         <isFired>false</isFired>
                         <isExploded>false</isExploded>
+                        <distToTarget>0</distToTarget>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Bullet">
@@ -201,6 +203,19 @@
                                 <bounce-off-solids>No</bounce-off-solids>
                                 <set-angle>Yes</set-angle>
                                 <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Sine">
+                            <properties>
+                                <active-on-start>Yes</active-on-start>
+                                <movement>Vertical</movement>
+                                <wave>Sine</wave>
+                                <period>2</period>
+                                <period-random>0</period-random>
+                                <period-offset>1</period-offset>
+                                <period-offset-random>0</period-offset-random>
+                                <magnitude>200</magnitude>
+                                <magnitude-random>0</magnitude-random>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>
@@ -475,13 +490,47 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>472</x>
-                        <y>192</y>
+                        <x>247</x>
+                        <y>135</y>
                         <z>0</z>
                         <width>16</width>
                         <height>16</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="fireballShadow" uid="43">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Bullet">
+                            <properties>
+                                <speed>400</speed>
+                                <acceleration>0</acceleration>
+                                <gravity>0</gravity>
+                                <bounce-off-solids>No</bounce-off-solids>
+                                <set-angle>Yes</set-angle>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>486</x>
+                        <y>138</y>
+                        <z>0</z>
+                        <width>16</width>
+                        <height>16</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>

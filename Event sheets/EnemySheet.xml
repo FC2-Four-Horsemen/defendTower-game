@@ -3,17 +3,6 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>EnemySheet</name>
     <events>
-        <event-block sid="753823967556561">
-            <conditions>
-                <condition disabled="1" id="-2" name="On start of layout" sid="699933680488225" type="System" />
-            </conditions>
-            <actions>
-                <action behavior="Pathfinding" disabled="1" id="0" name="Find path" sid="840967590392278" type="Enemy">
-                    <param id="0" name="X">Tower.X</param>
-                    <param id="1" name="Y">Tower.Y</param>
-                </action>
-            </actions>
-        </event-block>
         <event-block sid="252559707537878">
             <conditions>
                 <condition id="-18" name="On created" sid="354149451049023" type="Enemy" />
@@ -53,7 +42,7 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="-9" name="Destroy" sid="902355658015494" type="Player" />
+                <action id="-9" name="Destroy" sid="902355658015494" type="Mage" />
             </actions>
         </event-block>
         <comment>When an enemy runs out of health, destroy it.</comment>
@@ -72,7 +61,7 @@
                     <param id="1" name="Layer">1</param>
                     <param id="2" name="Image point">0</param>
                 </action>
-                <action id="-11" name="Add to" sid="720736379750894" type="Player">
+                <action id="-11" name="Add to" sid="720736379750894" type="Mage">
                     <param id="0" name="Instance variable">score</param>
                     <param id="1" name="Value">5</param>
                 </action>

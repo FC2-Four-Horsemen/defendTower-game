@@ -46,7 +46,7 @@
             </conditions>
             <actions>
                 <action id="0" name="Set text" sid="935387857893927" type="scoreValue">
-                    <param id="0" name="Text">&quot;Score:&quot; &amp; Player.score</param>
+                    <param id="0" name="Text">&quot;Score:&quot; &amp; Mage.score</param>
                 </action>
             </actions>
         </event-block>

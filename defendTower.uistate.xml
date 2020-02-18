@@ -10,11 +10,10 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout order="1">TestMap</layout>
-        <layout order="0">AssetsLayout</layout>
-        <event-sheet active="1" order="2">PlayerSheet</event-sheet>
-        <event-sheet order="3">EnemySheet</event-sheet>
-        <event-sheet order="4">Map1Sheet</event-sheet>
+        <layout active="1" order="0">TestMap</layout>
+        <layout order="3">AssetsMap</layout>
+        <event-sheet order="1">PlayerSheet</event-sheet>
+        <event-sheet order="2">Map1Sheet</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -22,18 +21,24 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <property expanded="0" name="Window Size" />
         <property expanded="1" name="Configuration Settings" />
     </properties>
-    <families-expanded root="1" />
+    <families-expanded root="0">
+        <family expanded="0" name="stunBulletEffects" />
+    </families-expanded>
     <folders-expanded>
         <folder expanded="1" path="object-folder/" />
-        <folder expanded="1" path="layout-folder/" />
+        <folder expanded="0" path="object-folder/Bars/" />
+        <folder expanded="0" path="object-folder/Text/" />
+        <folder expanded="0" path="object-folder/Enemies/" />
+        <folder expanded="1" path="object-folder/ParticleEffects/" />
+        <folder expanded="0" path="layout-folder/" />
         <folder expanded="0" path="event-folder/" />
         <folder expanded="0" path="file-folder/" />
         <folder expanded="1" path="sound-folder/" />
         <folder expanded="1" path="music-folder/" />
         <folder expanded="0" path="file-folder/Icons/" />
-        <folder expanded="1" path="animation-folder/Player/" />
-        <folder expanded="1" path="animation-folder/Bullet/" />
         <folder expanded="1" path="animation-folder/Enemy/" />
+        <folder expanded="1" path="animation-folder/Mage/" />
+        <folder expanded="1" path="animation-folder/manaBullet/" />
         <folder expanded="1" path="animation-folder/Tower/" />
         <folder expanded="1" path="animation-folder/Obstacle/" />
         <folder expanded="1" path="animation-folder/laser/" />
@@ -42,5 +47,6 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/fireBallArea/" />
         <folder expanded="1" path="animation-folder/stunBullet/" />
         <folder expanded="1" path="animation-folder/Spawner/" />
+        <folder expanded="1" path="animation-folder/fireballShadow/" />
     </folders-expanded>
 </c2uistate>

@@ -10,6 +10,8 @@
     <unique-id>3k8y8jenijj4j</unique-id>
     <saved-with-version>27500</saved-with-version>
     <used-plugins>
+        <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
+        <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
@@ -17,7 +19,7 @@
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
-        <plugin author="Scirra" id="Tilemap" version="1">Tilemap</plugin>
+        <plugin author="Scirra" id="XML" version="1">XML</plugin>
         <plugin author="Scirra" id="progressbar" version="1">Progress bar</plugin>
     </used-plugins>
     <used-behaviors>
@@ -44,6 +46,7 @@
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>1</preview-effects>
+    <first-layout>StartMap</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">No</prop>
@@ -56,10 +59,109 @@
         <prop name="Use iOS retina display">Yes</prop>
     </configuration-settings>
     <object-folder>
-        <object-type name="Player" sid="321524992379798">
+        <object-folder name="Bars">
+            <object-type name="1Bar" sid="268399148928601">
+                <plugin id="progressbar" />
+            </object-type>
+            <object-type name="2Bar" sid="769063619105956">
+                <plugin id="progressbar" />
+            </object-type>
+            <object-type name="3Bar" sid="172317398439110">
+                <plugin id="progressbar" />
+            </object-type>
+            <object-type name="4Bar" sid="849834402002202">
+                <plugin id="progressbar" />
+            </object-type>
+        </object-folder>
+        <object-folder name="Text">
+            <object-type name="Controls" sid="609089099193732">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="scoreValue" sid="242989090152986">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="Skills" sid="937034697253287">
+                <plugin id="Text" />
+            </object-type>
+            <object-type name="SkillsLabel" sid="386109056414375">
+                <plugin id="Text" />
+            </object-type>
+        </object-folder>
+        <object-folder name="Enemies">
+            <object-type name="Enemy" sid="132040855393727">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="Health" sid="708444714654017" type="number" />
+                    <instance-variable name="isStunned" sid="224352983882932" type="boolean" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="Pathfinding" sid="753427594223415">
+                        <behavior id="Pathfinding" />
+                    </behavior-type>
+                    <behavior-type name="Timer" sid="625321366336538">
+                        <behavior id="Timer" />
+                    </behavior-type>
+                    <behavior-type name="Flash" sid="759529866111788">
+                        <behavior id="Flash" />
+                    </behavior-type>
+                    <behavior-type name="Solid" sid="612126303042559">
+                        <behavior id="solid" />
+                    </behavior-type>
+                </behaviors>
+                <effects>
+                    <effect-type name="Pixellate">
+                        <effect id="pixellate" />
+                    </effect-type>
+                </effects>
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="706826059520441" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.510204" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="ParticleEffects">
+            <object-type name="LaserPath" sid="761415309763074">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+            <object-type name="stunPath1" sid="465937071327276">
+                <plugin id="Particles" />
+                <behaviors>
+                    <behavior-type name="Sine" sid="231418355504738">
+                        <behavior id="Sin" />
+                    </behavior-type>
+                </behaviors>
+                <texture />
+            </object-type>
+            <object-type name="stunPath2" sid="518282395475725">
+                <plugin id="Particles" />
+                <behaviors>
+                    <behavior-type name="Sine" sid="225790777292128">
+                        <behavior id="Sin" />
+                    </behavior-type>
+                </behaviors>
+                <texture />
+            </object-type>
+            <object-type name="hitEffect" sid="403224967714343">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+            <object-type name="fireballExplosion" sid="795434238616245">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+            <object-type name="blinkOut" sid="864150428338533">
+                <plugin id="Particles" />
+                <texture />
+            </object-type>
+        </object-folder>
+        <object-type name="Mage" sid="321524992379798">
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="score" sid="178660212678474" type="number" />
+                <instance-variable name="autoAttackDamage" sid="417943107384163" type="number" />
+                <instance-variable name="isBlinkFinished" sid="835361828567214" type="boolean" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="8Direction" sid="835229528315922">
@@ -99,7 +201,7 @@
         <object-type name="Mouse" sid="387042141381203">
             <plugin id="Mouse" />
         </object-type>
-        <object-type name="Bullet" sid="332847690856670">
+        <object-type name="manaBullet" sid="332847690856670">
             <plugin id="Sprite" />
             <behaviors>
                 <behavior-type name="Bullet" sid="663929157004408">
@@ -112,40 +214,6 @@
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="805954754248299" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Controls" sid="609089099193732">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Enemy" sid="132040855393727">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="Health" sid="708444714654017" type="number" />
-                <instance-variable name="isStunned" sid="224352983882932" type="boolean" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="Pathfinding" sid="753427594223415">
-                    <behavior id="Pathfinding" />
-                </behavior-type>
-                <behavior-type name="Timer" sid="625321366336538">
-                    <behavior id="Timer" />
-                </behavior-type>
-                <behavior-type name="Flash" sid="759529866111788">
-                    <behavior id="Flash" />
-                </behavior-type>
-                <behavior-type name="Solid" sid="612126303042559">
-                    <behavior id="solid" />
-                </behavior-type>
-            </behaviors>
-            <effects>
-                <effect-type name="Pixellate">
-                    <effect id="pixellate" />
-                </effect-type>
-            </effects>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="706826059520441" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.510204" />
                 </animation>
             </animation-folder>
         </object-type>
@@ -173,29 +241,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="SkillsLabel" sid="386109056414375">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="1Bar" sid="268399148928601">
-            <plugin id="progressbar" />
-        </object-type>
-        <object-type name="2Bar" sid="769063619105956">
-            <plugin id="progressbar" />
-        </object-type>
-        <object-type name="3Bar" sid="172317398439110">
-            <plugin id="progressbar" />
-        </object-type>
-        <object-type name="4Bar" sid="849834402002202">
-            <plugin id="progressbar" />
-        </object-type>
-        <object-type name="Skills" sid="937034697253287">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="Tilemap" sid="808626560830889">
-            <plugin id="Tilemap" />
-            <texture />
-            <tiles />
-        </object-type>
         <object-type name="resetBtn" sid="939719704250160">
             <plugin id="Button" />
         </object-type>
@@ -204,6 +249,7 @@
             <instance-variables>
                 <instance-variable name="length" sid="353164243829126" type="number" />
                 <instance-variable name="isFired" sid="356362432351744" type="boolean" />
+                <instance-variable name="isPiercing" sid="704882173988251" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="719838308317590">
@@ -219,27 +265,19 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="BlinkOut" sid="864150428338533">
-            <plugin id="Particles" />
-            <texture />
-        </object-type>
-        <object-type name="LaserPath" sid="761415309763074">
-            <plugin id="Particles" />
-            <texture />
-        </object-type>
-        <object-type name="fireballExplosion" sid="795434238616245">
-            <plugin id="Particles" />
-            <texture />
-        </object-type>
         <object-type name="fireBall" sid="137432182036177">
             <plugin id="Sprite" />
             <instance-variables>
                 <instance-variable name="isFired" sid="963735198892566" type="boolean" />
                 <instance-variable name="isExploded" sid="382939873887019" type="boolean" />
+                <instance-variable name="distToTarget" sid="487127532045253" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Bullet" sid="559681684054701">
                     <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="Sine" sid="276211290091525">
+                    <behavior id="Sin" />
                 </behavior-type>
             </behaviors>
             <animation-folder>
@@ -275,24 +313,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="stunPath1" sid="465937071327276">
-            <plugin id="Particles" />
-            <behaviors>
-                <behavior-type name="Sine" sid="231418355504738">
-                    <behavior id="Sin" />
-                </behavior-type>
-            </behaviors>
-            <texture />
-        </object-type>
-        <object-type name="stunPath2" sid="518282395475725">
-            <plugin id="Particles" />
-            <behaviors>
-                <behavior-type name="Sine" sid="225790777292128">
-                    <behavior id="Sin" />
-                </behavior-type>
-            </behaviors>
-            <texture />
-        </object-type>
         <object-type name="stunBullet" sid="602171044686338">
             <plugin id="Sprite" />
             <instance-variables>
@@ -320,32 +340,59 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="hitEffect" sid="403224967714343">
-            <plugin id="Particles" />
-            <texture />
+        <object-type global="1" name="XML" sid="368658486712764">
+            <plugin id="XML" />
         </object-type>
-        <object-type name="scoreValue" sid="242989090152986">
-            <plugin id="Text" />
+        <object-type name="AJAX" sid="414378555055994">
+            <plugin id="AJAX" />
         </object-type>
-        <object-type name="Tilemap2" sid="780255275018726">
-            <plugin id="Tilemap" />
-            <texture />
-            <tiles />
+        <object-type name="startBtn" sid="479353030669505">
+            <plugin id="Button" />
+        </object-type>
+        <object-type name="closeBtn" sid="126857551431208">
+            <plugin id="Button" />
+        </object-type>
+        <object-type name="Browser" sid="336574045868811">
+            <plugin id="Browser" />
+        </object-type>
+        <object-type name="fireballShadow" sid="325014675310337">
+            <plugin id="Sprite" />
+            <behaviors>
+                <behavior-type name="Bullet" sid="652635239280528">
+                    <behavior id="Bullet" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="456859210331948" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
-    <families />
+    <families>
+        <family name="stunBulletEffects" plugin-id="Particles" sid="446995096276891">
+            <members>
+                <member>stunPath1</member>
+                <member>stunPath2</member>
+            </members>
+        </family>
+    </families>
     <layout-folder>
         <layout>TestMap.xml</layout>
-        <layout>AssetsLayout.xml</layout>
+        <layout>AssetsMap.xml</layout>
+        <layout>StartMap.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>PlayerSheet.xml</event-sheet>
         <event-sheet>EnemySheet.xml</event-sheet>
         <event-sheet>Map1Sheet.xml</event-sheet>
+        <event-sheet>StartSheet.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" uid="16" />
         <global-instance type="Keyboard" uid="17" />
+        <global-instance type="AJAX" uid="41" />
+        <global-instance type="Browser" uid="42" />
     </global-instances>
     <sounds-folder />
     <music-folder />
@@ -358,5 +405,6 @@
             <file name="icon-256.png" />
             <file name="loading-logo.png" />
         </file-folder>
+        <file name="Mage.xml" />
     </files-folder>
 </c2project>
