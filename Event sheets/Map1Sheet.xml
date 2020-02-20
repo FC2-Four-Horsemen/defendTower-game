@@ -32,7 +32,7 @@
             </conditions>
             <actions>
                 <action id="0" name="Spawn another object" sid="296653848021339" type="Spawner">
-                    <param id="0" name="Object">Enemy</param>
+                    <param id="0" name="Object">enemyMelee</param>
                     <param id="1" name="Layer">1</param>
                     <param id="2" name="Image point">0</param>
                 </action>
@@ -45,8 +45,22 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="0" name="Set text" sid="935387857893927" type="scoreValue">
-                    <param id="0" name="Text">&quot;Score:&quot; &amp; Mage.score</param>
+                <action id="0" name="Set text" sid="617314126566867" type="scoreValue">
+                    <param id="0" name="Text">&quot;Score:&quot; &amp; playableCharacters.totalScore</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="759875603916569">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="958319718241510" type="System">
+                    <param id="0" name="Interval (seconds)">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="973235241501175" type="Spawner">
+                    <param id="0" name="Object">enemyRanged</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
                 </action>
             </actions>
         </event-block>

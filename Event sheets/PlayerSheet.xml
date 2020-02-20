@@ -71,12 +71,12 @@
                 <event-block sid="196060225350299">
                     <conditions>
                         <condition id="0" name="On collision with another object" sid="984739773092556" type="manaBullet">
-                            <param id="0" name="Object">Enemy</param>
+                            <param id="0" name="Object">enemyMinions</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-12" name="Subtract from" sid="784796152641437" type="Enemy">
-                            <param id="0" name="Instance variable">Health</param>
+                        <action id="-12" name="Subtract from" sid="234482827402122" type="enemyMinions">
+                            <param id="0" name="Instance variable">health</param>
                             <param id="1" name="Value">Mage.autoAttackDamage</param>
                         </action>
                         <action id="-9" name="Destroy" sid="335265007871930" type="manaBullet" />
@@ -243,12 +243,12 @@
                         <event-block sid="623494460637898">
                             <conditions>
                                 <condition id="0" name="On collision with another object" sid="339999213542930" type="laser">
-                                    <param id="0" name="Object">Enemy</param>
+                                    <param id="0" name="Object">enemyMinions</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-12" name="Subtract from" sid="843754466869134" type="Enemy">
-                                    <param id="0" name="Instance variable">Health</param>
+                                <action id="-12" name="Subtract from" sid="147995425199242" type="enemyMinions">
+                                    <param id="0" name="Instance variable">health</param>
                                     <param id="1" name="Value">XML.NumberValue(&quot;/Mage/laser[@id=&apos;damage&apos;]&quot;)</param>
                                 </action>
                             </actions>
@@ -358,21 +358,21 @@
                             <sub-events>
                                 <event-block sid="720691646742338">
                                     <conditions>
-                                        <condition id="0" name="On collision with another object" sid="683309630410753" type="Enemy">
+                                        <condition id="0" name="On collision with another object" sid="683309630410753" type="enemyMinions">
                                             <param id="0" name="Object">stunBullet</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-13" name="Set boolean" sid="281174658114118" type="Enemy">
+                                        <action id="-9" name="Destroy" sid="182377120989301" type="stunBullet" />
+                                        <action id="-13" name="Set boolean" sid="285087570192133" type="enemyMinions">
                                             <param id="0" name="Instance variable">isStunned</param>
                                             <param id="1" name="Value">1</param>
                                         </action>
-                                        <action behavior="Timer" id="0" name="Start timer" sid="560583553720761" type="Enemy">
-                                            <param id="0" name="Duration">1</param>
+                                        <action behavior="Timer" id="0" name="Start timer" sid="259170006398736" type="enemyMinions">
+                                            <param id="0" name="Duration">1.0</param>
                                             <param id="1" name="Type">0</param>
                                             <param id="2" name="Tag">&quot;stunDuration&quot;</param>
                                         </action>
-                                        <action id="-9" name="Destroy" sid="182377120989301" type="stunBullet" />
                                     </actions>
                                 </event-block>
                             </sub-events>
@@ -510,7 +510,7 @@
                             <sub-events>
                                 <event-block sid="155153046822932">
                                     <conditions>
-                                        <condition id="0" name="On collision with another object" sid="262228814480104" type="Enemy">
+                                        <condition id="0" name="On collision with another object" sid="262228814480104" type="enemyMinions">
                                             <param id="0" name="Object">fireBall</param>
                                         </condition>
                                         <condition id="-8" name="Is boolean instance variable set" sid="632591530888443" type="fireBall">
@@ -518,8 +518,8 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-12" name="Subtract from" sid="950432306275182" type="Enemy">
-                                            <param id="0" name="Instance variable">Health</param>
+                                        <action id="-12" name="Subtract from" sid="991931314204934" type="enemyMinions">
+                                            <param id="0" name="Instance variable">health</param>
                                             <param id="1" name="Value">40</param>
                                         </action>
                                     </actions>
@@ -559,10 +559,6 @@
                                 <condition id="0" name="On key pressed" sid="611930206570575" type="Keyboard">
                                     <param id="0" name="Key">52</param>
                                 </condition>
-                                <condition id="1" name="Compare progress" sid="269966424840091" type="4Bar">
-                                    <param id="0" name="Comparison">5</param>
-                                    <param id="1" name="Value">100</param>
-                                </condition>
                             </conditions>
                             <actions>
                                 <action disabled="1" id="-22" name="Set angle toward position" sid="261631901488167" type="Mage">
@@ -600,7 +596,7 @@
                                     <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
                                 </action>
                                 <action id="-17" name="Move forward" sid="316876733834615" type="Mage">
-                                    <param id="0" name="Distance">200</param>
+                                    <param id="0" name="Distance">XML.NumberValue(&quot;/Mage/blink[@id=&apos;range&apos;]&quot;)</param>
                                 </action>
                                 <action id="-8" name="Set angle" sid="833303712278279" type="Mage">
                                     <param id="0" name="Angle">0</param>
@@ -614,30 +610,30 @@
                                 </action>
                             </actions>
                         </event-block>
+                        <event-block sid="582140358242538">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="403297253611493" type="Mage">
+                                    <param id="0" name="Instance variable">isBlinkFinished</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="391829173673893" type="Mage">
+                                    <param id="0" name="Object">blinkOut</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="547239925338317" type="blinkOut">
+                                    <param id="0" name="Angle">270</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="778604279984744" type="Mage">
+                                    <param id="0" name="Instance variable">isBlinkFinished</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
                     </sub-events>
                 </event-group>
             </sub-events>
         </event-group>
-        <event-block sid="582140358242538">
-            <conditions>
-                <condition id="-8" name="Is boolean instance variable set" sid="403297253611493" type="Mage">
-                    <param id="0" name="Instance variable">isBlinkFinished</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Spawn another object" sid="391829173673893" type="Mage">
-                    <param id="0" name="Object">blinkOut</param>
-                    <param id="1" name="Layer">1</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-                <action id="-8" name="Set angle" sid="547239925338317" type="blinkOut">
-                    <param id="0" name="Angle">270</param>
-                </action>
-                <action id="-13" name="Set boolean" sid="778604279984744" type="Mage">
-                    <param id="0" name="Instance variable">isBlinkFinished</param>
-                    <param id="1" name="Value">0</param>
-                </action>
-            </actions>
-        </event-block>
     </events>
 </c2eventsheet>

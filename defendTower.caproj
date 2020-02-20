@@ -25,7 +25,6 @@
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
         <behavior author="Scirra" id="EightDir" version="1">8 Direction</behavior>
-        <behavior author="Scirra" id="Flash" version="1">Flash</behavior>
         <behavior author="Scirra" id="Pathfinding" version="1">Pathfinding</behavior>
         <behavior author="Scirra" id="Sin" version="1">Sine</behavior>
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
@@ -44,18 +43,19 @@
         <width>640</width>
         <height>480</height>
     </window-size>
-    <pixel-rounding>0</pixel-rounding>
-    <preview-effects>1</preview-effects>
+    <pixel-rounding>1</pixel-rounding>
+    <preview-effects>0</preview-effects>
     <first-layout>StartMap</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">No</prop>
+        <prop name="Downscaling">High quality</prop>
         <prop name="Enable WebGL">On</prop>
         <prop name="Fullscreen in browser">Letterbox scale</prop>
         <prop name="Hide address bar">No</prop>
         <prop name="Loader style">Progress bar &amp; logo</prop>
         <prop name="Preview browser">(default)</prop>
-        <prop name="Sampling">Linear</prop>
+        <prop name="Sampling">Point</prop>
         <prop name="Use iOS retina display">Yes</prop>
     </configuration-settings>
     <object-folder>
@@ -88,33 +88,18 @@
             </object-type>
         </object-folder>
         <object-folder name="Enemies">
-            <object-type name="Enemy" sid="132040855393727">
+            <object-type name="enemyMelee" sid="132040855393727">
                 <plugin id="Sprite" />
-                <instance-variables>
-                    <instance-variable name="Health" sid="708444714654017" type="number" />
-                    <instance-variable name="isStunned" sid="224352983882932" type="boolean" />
-                </instance-variables>
-                <behaviors>
-                    <behavior-type name="Pathfinding" sid="753427594223415">
-                        <behavior id="Pathfinding" />
-                    </behavior-type>
-                    <behavior-type name="Timer" sid="625321366336538">
-                        <behavior id="Timer" />
-                    </behavior-type>
-                    <behavior-type name="Flash" sid="759529866111788">
-                        <behavior id="Flash" />
-                    </behavior-type>
-                    <behavior-type name="Solid" sid="612126303042559">
-                        <behavior id="solid" />
-                    </behavior-type>
-                </behaviors>
-                <effects>
-                    <effect-type name="Pixellate">
-                        <effect id="pixellate" />
-                    </effect-type>
-                </effects>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="706826059520441" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.510204" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="enemyRanged" sid="290724615555615">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="784612045755730" speed="5">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.510204" />
                     </animation>
                 </animation-folder>
@@ -156,44 +141,86 @@
                 <texture />
             </object-type>
         </object-folder>
-        <object-type name="Mage" sid="321524992379798">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="score" sid="178660212678474" type="number" />
-                <instance-variable name="autoAttackDamage" sid="417943107384163" type="number" />
-                <instance-variable name="isBlinkFinished" sid="835361828567214" type="boolean" />
-            </instance-variables>
-            <behaviors>
-                <behavior-type name="8Direction" sid="835229528315922">
-                    <behavior id="EightDir" />
-                </behavior-type>
-                <behavior-type name="BoundToLayout" sid="930228764841749">
-                    <behavior id="bound" />
-                </behavior-type>
-                <behavior-type name="ScrollTo" sid="788764076043243">
-                    <behavior id="scrollto" />
-                </behavior-type>
-            </behaviors>
-            <animation-folder>
-                <animation framecount="5" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="700071568037339" speed="5">
-                    <frame duration="1" hotspotX="0.515625" hotspotY="0.515625">
-                        <image-point name="ShootPoint" x="1.15625" y="0.515625" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.515625" hotspotY="0.515625">
-                        <image-point name="ShootPoint" x="1.15625" y="0.515625" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.484375" hotspotY="0.484375">
-                        <image-point name="ShootPoint" x="-0.15625" y="0.484375" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.515625" hotspotY="0.484375">
-                        <image-point name="ShootPoint" x="0.515625" y="-0.15625" />
-                    </frame>
-                    <frame duration="1" hotspotX="0.484375" hotspotY="0.515625">
-                        <image-point name="ShootPoint" x="0.484375" y="1.15625" />
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
+        <object-folder name="Players">
+            <object-type name="Mage" sid="321524992379798">
+                <plugin id="Sprite" />
+                <instance-variables>
+                    <instance-variable name="autoAttackDamage" sid="417943107384163" type="number" />
+                    <instance-variable name="isBlinkFinished" sid="835361828567214" type="boolean" />
+                    <instance-variable name="distanceToBlink" sid="729958217279834" type="number" />
+                </instance-variables>
+                <behaviors>
+                    <behavior-type name="8Direction" sid="835229528315922">
+                        <behavior id="EightDir" />
+                    </behavior-type>
+                    <behavior-type name="BoundToLayout" sid="930228764841749">
+                        <behavior id="bound" />
+                    </behavior-type>
+                    <behavior-type name="ScrollTo" sid="788764076043243">
+                        <behavior id="scrollto" />
+                    </behavior-type>
+                </behaviors>
+                <animation-folder>
+                    <animation framecount="5" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="700071568037339" speed="5">
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
+                            <image-point name="ShootPoint" x="1.15625" y="0.53125" />
+                            <collision-poly>
+                                <point x="0.21875" y="0.21875" />
+                                <point x="0.5" y="0.03125" />
+                                <point x="0.6875" y="0.3125" />
+                                <point x="0.96875" y="0.5" />
+                                <point x="0.75" y="0.75" />
+                                <point x="0.5" y="1" />
+                                <point x="0.15625" y="0.84375" />
+                                <point x="0.09375" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
+                            <image-point name="ShootPoint" x="1.15625" y="0.53125" />
+                            <collision-poly>
+                                <point x="0.21875" y="0.21875" />
+                                <point x="0.5" y="0.03125" />
+                                <point x="0.6875" y="0.3125" />
+                                <point x="0.96875" y="0.5" />
+                                <point x="0.71875" y="0.71875" />
+                                <point x="0.5" y="1" />
+                                <point x="0.15625" y="0.84375" />
+                                <point x="0.09375" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.46875" hotspotY="0.46875" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
+                            <image-point name="ShootPoint" x="-0.15625" y="0.46875" />
+                            <collision-poly>
+                                <point x="0.90625" y="0.5" />
+                                <point x="0.84375" y="0.84375" />
+                                <point x="0.5" y="1" />
+                                <point x="0.28125" y="0.71875" />
+                                <point x="0.03125" y="0.5" />
+                                <point x="0.3125" y="0.3125" />
+                                <point x="0.5" y="0.03125" />
+                                <point x="0.78125" y="0.21875" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
+                            <image-point name="ShootPoint" x="1.15625" y="0.53125" />
+                        </frame>
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
+                            <image-point name="ShootPoint" x="1.15625" y="0.53125" />
+                            <collision-poly>
+                                <point x="0.21875" y="0.21875" />
+                                <point x="0.5" y="0.03125" />
+                                <point x="0.6875" y="0.3125" />
+                                <point x="0.96875" y="0.5" />
+                                <point x="0.71875" y="0.71875" />
+                                <point x="0.5" y="1" />
+                                <point x="0.15625" y="0.84375" />
+                                <point x="0.09375" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
         <object-type name="TiledBackground" sid="772836820341607">
             <plugin id="TiledBg" />
             <texture />
@@ -224,7 +251,18 @@
             <plugin id="Sprite" />
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="688040408964790" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Downloads\87050454_2974299595969486_7463545853454581760_n.png">
+                        <collision-poly>
+                            <point x="0.234375" y="0.234375" />
+                            <point x="0.5" y="0.015625" />
+                            <point x="0.734375" y="0.265625" />
+                            <point x="0.890625" y="0.5" />
+                            <point x="0.90625" y="0.90625" />
+                            <point x="0.5" y="1" />
+                            <point x="0.140625" y="0.859375" />
+                            <point x="0.046875" y="0.5" />
+                        </collision-poly>
+                    </frame>
                 </animation>
             </animation-folder>
         </object-type>
@@ -368,6 +406,25 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="enemyArrow" sid="666871895429728">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="isFired" sid="648933948558593" type="boolean" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Bullet" sid="726600929313141">
+                    <behavior id="Bullet" />
+                </behavior-type>
+                <behavior-type name="DestroyOutsideLayout" sid="466934827305752">
+                    <behavior id="destroy" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="210021661632790" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
     </object-folder>
     <families>
         <family name="stunBulletEffects" plugin-id="Particles" sid="446995096276891">
@@ -375,6 +432,43 @@
                 <member>stunPath1</member>
                 <member>stunPath2</member>
             </members>
+        </family>
+        <family name="enemyMinions" plugin-id="Sprite" sid="481465505949804">
+            <members>
+                <member>enemyMelee</member>
+                <member>enemyRanged</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="health" sid="243417613143421" type="number" />
+                <instance-variable name="isStunned" sid="301163740822040" type="boolean" />
+                <instance-variable name="isRanged" sid="694574192740859" type="boolean" />
+                <instance-variable name="attackCoolDown" sid="950014824277994" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Pathfinding" sid="259648820217586">
+                    <behavior id="Pathfinding" />
+                </behavior-type>
+                <behavior-type name="Timer" sid="550799604033065">
+                    <behavior id="Timer" />
+                </behavior-type>
+                <behavior-type name="Solid" sid="121581879968055">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <effects>
+                <effect-type name="Pixellate">
+                    <effect id="pixellate" />
+                </effect-type>
+            </effects>
+        </family>
+        <family name="playableCharacters" plugin-id="Sprite" sid="888650310795104">
+            <members>
+                <member>Mage</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="health" sid="310226730767808" type="number" />
+                <instance-variable name="totalScore" sid="988202616579625" type="number" />
+            </instance-variables>
         </family>
     </families>
     <layout-folder>

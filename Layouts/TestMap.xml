@@ -76,9 +76,11 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <score>0</score>
+                        <health>3</health>
+                        <totalScore>0</totalScore>
                         <autoAttackDamage>10</autoAttackDamage>
                         <isBlinkFinished>false</isBlinkFinished>
+                        <distanceToBlink>0</distanceToBlink>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="8Direction">
@@ -106,19 +108,19 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>228.235351563</x>
-                        <y>544.254760742</y>
+                        <x>233.383926392</x>
+                        <y>547.017456055</y>
                         <z>0</z>
                         <width>64</width>
                         <height>64</height>
                         <depth>0</depth>
-                        <hotspotX>0.515625</hotspotX>
-                        <hotspotY>0.515625</hotspotY>
+                        <hotspotX>0.53125</hotspotX>
+                        <hotspotY>0.53125</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Enemy" uid="5">
+                <instance type="enemyMelee" uid="5">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -126,8 +128,10 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Health>30</Health>
+                        <health>30</health>
                         <isStunned>false</isStunned>
+                        <isRanged>false</isRanged>
+                        <attackCoolDown>0</attackCoolDown>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pathfinding">
@@ -135,17 +139,16 @@
                                 <cell-size>50</cell-size>
                                 <cell-border>-1</cell-border>
                                 <obstacles>Solids</obstacles>
-                                <max-speed>100</max-speed>
+                                <max-speed>200</max-speed>
                                 <acceleration>1000</acceleration>
                                 <deceleration>2000</deceleration>
                                 <rotate-speed>135</rotate-speed>
-                                <rotate-object>Yes</rotate-object>
+                                <rotate-object>No</rotate-object>
                                 <diagonals>Enabled</diagonals>
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
                         <behavior-instance type="Timer" />
-                        <behavior-instance type="Flash" />
                         <behavior-instance type="Solid">
                             <properties>
                                 <initial-state>Enabled</initial-state>
@@ -174,7 +177,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Enemy" uid="6">
+                <instance type="enemyMelee" uid="6">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -182,8 +185,10 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Health>30</Health>
+                        <health>30</health>
                         <isStunned>false</isStunned>
+                        <isRanged>false</isRanged>
+                        <attackCoolDown>0</attackCoolDown>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pathfinding">
@@ -191,17 +196,16 @@
                                 <cell-size>50</cell-size>
                                 <cell-border>-1</cell-border>
                                 <obstacles>Solids</obstacles>
-                                <max-speed>100</max-speed>
+                                <max-speed>200</max-speed>
                                 <acceleration>1000</acceleration>
                                 <deceleration>2000</deceleration>
                                 <rotate-speed>135</rotate-speed>
-                                <rotate-object>Yes</rotate-object>
+                                <rotate-object>No</rotate-object>
                                 <diagonals>Enabled</diagonals>
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
                         <behavior-instance type="Timer" />
-                        <behavior-instance type="Flash" />
                         <behavior-instance type="Solid">
                             <properties>
                                 <initial-state>Enabled</initial-state>
@@ -230,7 +234,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Enemy" uid="8">
+                <instance type="enemyMelee" uid="8">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -238,8 +242,10 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Health>30</Health>
+                        <health>30</health>
                         <isStunned>false</isStunned>
+                        <isRanged>false</isRanged>
+                        <attackCoolDown>0</attackCoolDown>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pathfinding">
@@ -247,17 +253,16 @@
                                 <cell-size>50</cell-size>
                                 <cell-border>-1</cell-border>
                                 <obstacles>Solids</obstacles>
-                                <max-speed>100</max-speed>
+                                <max-speed>200</max-speed>
                                 <acceleration>1000</acceleration>
                                 <deceleration>2000</deceleration>
                                 <rotate-speed>135</rotate-speed>
-                                <rotate-object>Yes</rotate-object>
+                                <rotate-object>No</rotate-object>
                                 <diagonals>Enabled</diagonals>
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
                         <behavior-instance type="Timer" />
-                        <behavior-instance type="Flash" />
                         <behavior-instance type="Solid">
                             <properties>
                                 <initial-state>Enabled</initial-state>
@@ -286,7 +291,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="Enemy" uid="11">
+                <instance type="enemyMelee" uid="11">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -294,8 +299,10 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <Health>30</Health>
+                        <health>30</health>
                         <isStunned>false</isStunned>
+                        <isRanged>false</isRanged>
+                        <attackCoolDown>0</attackCoolDown>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pathfinding">
@@ -303,17 +310,16 @@
                                 <cell-size>50</cell-size>
                                 <cell-border>-1</cell-border>
                                 <obstacles>Solids</obstacles>
-                                <max-speed>100</max-speed>
+                                <max-speed>200</max-speed>
                                 <acceleration>1000</acceleration>
                                 <deceleration>2000</deceleration>
                                 <rotate-speed>135</rotate-speed>
-                                <rotate-object>Yes</rotate-object>
+                                <rotate-object>No</rotate-object>
                                 <diagonals>Enabled</diagonals>
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
                         <behavior-instance type="Timer" />
-                        <behavior-instance type="Flash" />
                         <behavior-instance type="Solid">
                             <properties>
                                 <initial-state>Enabled</initial-state>
@@ -355,8 +361,8 @@
                         <x>108</x>
                         <y>563</y>
                         <z>0</z>
-                        <width>50</width>
-                        <height>50</height>
+                        <width>64</width>
+                        <height>64</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>

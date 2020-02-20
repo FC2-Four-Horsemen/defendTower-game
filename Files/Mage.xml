@@ -19,6 +19,6 @@
 		<fireBall id='speed'>900</fireBall>
 		<fireBall id='coolDown'>600</fireBall>
 		
-		<blink id='speed'>900</blink>
+		<blink id='range'>300</blink>
 		<blink id='coolDown'>50</blink>
     </Mage>
