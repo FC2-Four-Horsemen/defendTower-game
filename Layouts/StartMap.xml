@@ -2,7 +2,7 @@
 <c2layout>
     <name>StartMap</name>
     <sid>717286392099474</sid>
-    <event-sheet>StartSheet</event-sheet>
+    <event-sheet>sht_StartMap</event-sheet>
     <size>
         <width>1708</width>
         <height>960</height>
@@ -47,7 +47,7 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
-                <instance type="startBtn" uid="36">
+                <instance type="btn_start" uid="36">
                     <properties>
                         <type>Button</type>
                         <text>Start</text>
@@ -71,7 +71,7 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="closeBtn" uid="40">
+                <instance type="btn_close" uid="40">
                     <properties>
                         <type>Button</type>
                         <text>Close</text>

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>StartSheet</name>
+    <name>sht_StartMap</name>
     <events>
         <event-block sid="848244404166799">
             <conditions>
-                <condition id="0" name="On clicked" sid="973024182058223" type="startBtn" />
+                <condition id="0" name="On clicked" sid="973024182058223" type="btn_start" />
             </conditions>
             <actions>
                 <action id="-2" name="Go to layout" sid="813138112600424" type="System">
@@ -15,7 +15,7 @@
         </event-block>
         <event-block sid="103067191806437">
             <conditions>
-                <condition id="0" name="On clicked" sid="501461494926838" type="closeBtn" />
+                <condition id="0" name="On clicked" sid="501461494926838" type="btn_close" />
             </conditions>
             <actions>
                 <action id="1" name="Close" sid="812713294373906" type="Browser" />

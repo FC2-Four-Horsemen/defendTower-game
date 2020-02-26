@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2eventsheet>
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
-    <name>EnemySheet</name>
+    <name>sht_Enemy</name>
     <events>
         <event-block sid="665895938905509">
             <conditions>
@@ -9,8 +9,8 @@
             </conditions>
             <actions>
                 <action behavior="Pathfinding" id="0" name="Find path" sid="662630549155107" type="enemyMinions">
-                    <param id="0" name="X">Tower.X</param>
-                    <param id="1" name="Y">Tower.Y</param>
+                    <param id="0" name="X">obj_toweMage.X</param>
+                    <param id="1" name="Y">obj_toweMage.Y</param>
                 </action>
                 <action id="-27" name="Set effect enabled" sid="654239700570233" type="enemyMinions">
                     <param id="0" name="Mode">0</param>
@@ -29,15 +29,87 @@
         <event-block sid="860417654396402">
             <conditions>
                 <condition id="1" name="Is overlapping another object" sid="716695144535823" type="enemyMinions">
-                    <param id="0" name="Object">Tower</param>
+                    <param id="0" name="Object">obj_toweMage</param>
                 </condition>
             </conditions>
             <actions>
-                <action disabled="1" id="-9" name="Destroy" sid="902355658015494" type="Mage" />
+                <action disabled="1" id="-9" name="Destroy" sid="902355658015494" type="obj_playerMage" />
                 <action id="-9" name="Destroy" sid="823774260447091" type="enemyMinions" />
             </actions>
+            <sub-events>
+                <event-block sid="478057328760271">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="581061704648423" type="enemyMinions">
+                            <param id="0" name="Instance variable">isHealthShown</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="657356051429776" type="healthBar" />
+                        <action id="-9" name="Destroy" sid="278774224291628" type="heath" />
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
-        <comment>When an enemy runs out of health, destroy it.</comment>
+        <comment>Destroy if less than 0 health</comment>
+        <event-block sid="171991070559309">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="876270995706680" type="enemyMinions">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">30</param>
+                </condition>
+                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="278380929035842" type="enemyMinions">
+                    <param id="0" name="Instance variable">isHealthShown</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set boolean" sid="548384809240582" type="enemyMinions">
+                    <param id="0" name="Instance variable">isHealthShown</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-3" name="Create object" sid="246117510885357" type="System">
+                    <param id="0" name="Object to create">healthBar</param>
+                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                    <param id="2" name="X">enemyMinions.X</param>
+                    <param id="3" name="Y">enemyMinions.Y</param>
+                </action>
+                <action id="-5" name="Set width" sid="657946930497652" type="healthBar">
+                    <param id="0" name="Width">enemyMinions.health  * 2</param>
+                </action>
+                <action id="-3" name="Create object" sid="794447767225492" type="System">
+                    <param id="0" name="Object to create">heath</param>
+                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                    <param id="2" name="X">enemyMinions.X</param>
+                    <param id="3" name="Y">enemyMinions.Y</param>
+                </action>
+                <action id="-5" name="Set width" sid="343285179912577" type="heath">
+                    <param id="0" name="Width">enemyMinions.health * 2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="608336715087473">
+            <conditions>
+                <condition id="-11" name="For Each" sid="296411179991787" type="System">
+                    <param id="0" name="Object">enemyMinions</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="230432799592173" type="enemyMinions">
+                    <param id="0" name="Instance variable">isHealthShown</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="489149796424421" type="healthBar">
+                    <param id="0" name="X">enemyMinions.X</param>
+                    <param id="1" name="Y">enemyMinions.Y - (enemyMinions.Height/2) - 20</param>
+                </action>
+                <action id="-3" name="Set position" sid="586554804066670" type="heath">
+                    <param id="0" name="X">enemyMinions.X</param>
+                    <param id="1" name="Y">enemyMinions.Y - (enemyMinions.Height/2) - 20</param>
+                </action>
+                <action id="-5" name="Set width" sid="285771137412411" type="heath">
+                    <param id="0" name="Width">enemyMinions.health * 2</param>
+                </action>
+            </actions>
+        </event-block>
         <event-block sid="142753221007475">
             <conditions>
                 <condition id="-7" name="Compare instance variable" sid="959862544853780" type="enemyMinions">
@@ -49,7 +121,7 @@
             <actions>
                 <action id="-9" name="Destroy" sid="270345125914534" type="enemyMinions" />
                 <action id="0" name="Spawn another object" sid="447858833716970" type="enemyMinions">
-                    <param id="0" name="Object">hitEffect</param>
+                    <param id="0" name="Object">par_hitEffect</param>
                     <param id="1" name="Layer">1</param>
                     <param id="2" name="Image point">0</param>
                 </action>
@@ -58,6 +130,19 @@
                     <param id="1" name="Value">5</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="994637568094864">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="616530646761356" type="enemyMinions">
+                            <param id="0" name="Instance variable">isHealthShown</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="844855296382659" type="healthBar" />
+                        <action id="-9" name="Destroy" sid="715740320674426" type="heath" />
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <comment>Go over each enemy, get distance from player, get if near, check if ranged, check if allowed to shoot</comment>
         <event-block sid="572619908916744">
@@ -86,11 +171,11 @@
                     </conditions>
                     <actions>
                         <action id="0" name="Spawn another object" sid="621769572595377" type="enemyMinions">
-                            <param id="0" name="Object">enemyArrow</param>
+                            <param id="0" name="Object">proj_enemyArrows</param>
                             <param id="1" name="Layer">1</param>
                             <param id="2" name="Image point">0</param>
                         </action>
-                        <action id="-22" name="Set angle toward position" sid="934852121459577" type="enemyArrow">
+                        <action id="-22" name="Set angle toward position" sid="934852121459577" type="proj_enemyArrows">
                             <param id="0" name="X">playableCharacters.X</param>
                             <param id="1" name="Y">playableCharacters.Y</param>
                         </action>
@@ -119,14 +204,14 @@
         </event-block>
         <event-block sid="423728133306695">
             <conditions>
-                <condition id="0" name="On collision with another object" sid="458068842662589" type="enemyArrow">
+                <condition id="0" name="On collision with another object" sid="458068842662589" type="proj_enemyArrows">
                     <param id="0" name="Object">playableCharacters</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-9" name="Destroy" sid="131517469234804" type="enemyArrow" />
+                <action id="-9" name="Destroy" sid="131517469234804" type="proj_enemyArrows" />
                 <action id="0" name="Spawn another object" sid="178636053577217" type="playableCharacters">
-                    <param id="0" name="Object">hitEffect</param>
+                    <param id="0" name="Object">par_hitEffect</param>
                     <param id="1" name="Layer">1</param>
                     <param id="2" name="Image point">0</param>
                 </action>

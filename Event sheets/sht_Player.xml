@@ -1,0 +1,751 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>sht_Player</name>
+    <events>
+        <event-group description="Dictionary Mage.json" sid="926729626211004" title="Load JSON Values">
+            <sub-events>
+                <event-block sid="326741241332894">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="126430906359728" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Request project file" sid="168774238481784" type="AJAX">
+                            <param id="0" name="Tag">&quot;Mage&quot;</param>
+                            <param id="1" name="File">Mage.json</param>
+                        </action>
+                        <action id="-5" name="Set width" sid="214182892773123" type="healthBar">
+                            <param id="0" name="Width">playableCharacters.health</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="930516963615613">
+                    <conditions>
+                        <condition id="0" name="On completed" sid="198790891607140" type="AJAX">
+                            <param id="0" name="Tag">&quot;Mage&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Load" sid="678167642690467" type="Dictionary">
+                            <param id="0" name="JSON">AJAX.LastData</param>
+                        </action>
+                        <action behavior="8Direction" id="4" name="Set max speed" sid="574470134322879" type="obj_playerMage">
+                            <param id="0" name="Max Speed">Dictionary.Get(&quot;moveSpeed&quot;)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <comment>Skill Cooldowns and Control</comment>
+        <event-group description="" sid="459688411246597" title="Mage Attack">
+            <sub-events>
+                <comment>AutoAttack</comment>
+                <event-block sid="979347367905257">
+                    <conditions>
+                        <condition id="2" name="Mouse button is down" sid="449915891977438" type="Mouse">
+                            <param id="0" name="Mouse button">0</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="316139997803445" type="obj_playerMage">
+                            <param id="0" name="Instance variable">autoAttackCooldown</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="252643744155259" type="System">
+                            <param id="0" name="Object to create">proj_manaBullet</param>
+                            <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                            <param id="2" name="X">playableCharacters.X</param>
+                            <param id="3" name="Y">playableCharacters.Y</param>
+                        </action>
+                        <action id="-22" name="Set angle toward position" sid="927718312429527" type="proj_manaBullet">
+                            <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
+                            <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="783581119714789" type="obj_playerMage">
+                            <param id="0" name="Instance variable">autoAttackCooldown</param>
+                            <param id="1" name="Value">Dictionary.Get(&quot;autoCooldown&quot;)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="184029211682040">
+                    <conditions>
+                        <condition id="-18" name="On created" sid="507389170777035" type="proj_manaBullet" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="424106477876194" type="proj_manaBullet">
+                            <param id="0" name="Instance variable">damage</param>
+                            <param id="1" name="Value">10</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="719468344690195">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="926296851687281" type="obj_playerMage">
+                            <param id="0" name="Instance variable">autoAttackCooldown</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="881946859010930" type="obj_playerMage">
+                            <param id="0" name="Instance variable">autoAttackCooldown</param>
+                            <param id="1" name="Value">100 * dt</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="196060225350299">
+                    <conditions>
+                        <condition id="0" name="On collision with another object" sid="984739773092556" type="proj_manaBullet">
+                            <param id="0" name="Object">enemyMinions</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="400853363365900" type="enemyMinions">
+                            <param id="0" name="Instance variable">health</param>
+                            <param id="1" name="Value">10</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="335265007871930" type="proj_manaBullet" />
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="757036493176098" title="Mage Movement">
+            <sub-events>
+                <comment>Allow WASD as alternate controls to the default arrow keys and frames</comment>
+                <event-block any="1" sid="984447616939124">
+                    <conditions>
+                        <condition behavior="8Direction" id="0" inverted="1" name="Is moving" sid="861279099838709" type="obj_playerMage" />
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="726291956137130" type="obj_playerMage">
+                            <param id="0" name="Frame number">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="206524928273015">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="922662465301148" type="Keyboard">
+                            <param id="0" name="Key">87</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="517192748300163" type="obj_playerMage">
+                            <param id="0" name="Control">2</param>
+                        </action>
+                        <action id="5" name="Set frame" sid="225211944715748" type="obj_playerMage">
+                            <param id="0" name="Frame number">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="501913872102279">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="935967464783270" type="Keyboard">
+                            <param id="0" name="Key">65</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="109817474607429" type="obj_playerMage">
+                            <param id="0" name="Control">0</param>
+                        </action>
+                        <action id="5" name="Set frame" sid="608570169576281" type="obj_playerMage">
+                            <param id="0" name="Frame number">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="721075218050827">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="428225345598824" type="Keyboard">
+                            <param id="0" name="Key">83</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="870525775546989" type="obj_playerMage">
+                            <param id="0" name="Control">3</param>
+                        </action>
+                        <action id="5" name="Set frame" sid="653272041117917" type="obj_playerMage">
+                            <param id="0" name="Frame number">4</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="441911485737147">
+                    <conditions>
+                        <condition id="2" name="Key is down" sid="583401507911742" type="Keyboard">
+                            <param id="0" name="Key">68</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="8Direction" id="7" name="Simulate control" sid="752191821365978" type="obj_playerMage">
+                            <param id="0" name="Control">1</param>
+                        </action>
+                        <action id="5" name="Set frame" sid="909724996301614" type="obj_playerMage">
+                            <param id="0" name="Frame number">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="529159819983491" title="Mage Skills">
+            <sub-events>
+                <event-block sid="268349114538161">
+                    <conditions>
+                        <condition id="0" name="On function" sid="269125038670271" type="Function">
+                            <param id="0" name="Name">&quot;skillUi&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Set return value" sid="603387750051233" type="Function">
+                            <param id="0" name="Value">Function.Param(0) + ((100 * ( 100 / Function.Param(1)) * dt))</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-group description="" sid="986332771044728" title="Laser">
+                    <sub-events>
+                        <comment>When skill is in cooldown</comment>
+                        <event-block sid="604983729891461">
+                            <conditions>
+                                <condition id="1" name="Compare progress" sid="228580466840728" type="ui_1skillbar">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="Value">100</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set progress" sid="790039874374030" type="ui_1skillbar">
+                                    <param id="0" name="Value">Function.Call(&quot;skillUI&quot;, ui_1skillbar.Progress, Dictionary.Get(&quot;laserCooldown&quot;))</param>
+                                </action>
+                                <action id="-6" name="Set height" sid="855904003967378" type="Sprite3">
+                                    <param id="0" name="Height">65.24 * (ui_1skillbar.Progress/100)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>when button is held, show a targetting line</comment>
+                        <event-block sid="176176965620322">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="800482900364275" type="Keyboard">
+                                    <param id="0" name="Key">49</param>
+                                </condition>
+                                <condition id="1" name="Compare progress" sid="748749311546331" type="ui_1skillbar">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Value">100</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="454743117249956" type="obj_playerMage">
+                                    <param id="0" name="Object">proj_laser</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-22" name="Set angle toward position" sid="677627853567992" type="proj_laser">
+                                    <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                    <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="740234447367907" type="System">
+                                    <param id="0" name="Object to create">par_laserPath</param>
+                                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                                    <param id="2" name="X">proj_laser.X</param>
+                                    <param id="3" name="Y">proj_laser.Y</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="473918217137762" type="par_laserPath">
+                                    <param id="0" name="Angle">proj_laser.Angle - 180</param>
+                                </action>
+                                <action id="3" name="Set progress" sid="596086787975872" type="ui_1skillbar">
+                                    <param id="0" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>when button is released</comment>
+                        <event-block sid="902059733958512">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="934585112863333" type="proj_laser" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="677737005759490" type="proj_laser">
+                                    <param id="0" name="Speed">Dictionary.Get(&quot;laserSpeed&quot;)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="796100821707537" type="proj_laser">
+                                    <param id="0" name="Instance variable">isPiercing</param>
+                                    <param id="1" name="Value">Dictionary.Get(&quot;laserPiercing&quot;)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="711673874862886" type="proj_laser">
+                                    <param id="0" name="Instance variable">damage</param>
+                                    <param id="1" name="Value">Dictionary.Get(&quot;laserDamage&quot;)</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="726011571591514" type="proj_laser">
+                                    <param id="0" name="Instance variable">isFired</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="934091332211843">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="184112985049768" type="proj_laser">
+                                    <param id="0" name="Instance variable">isFired</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-4" name="Set position to another object" sid="847743645416351" type="par_laserPath">
+                                    <param id="0" name="Object">proj_laser</param>
+                                    <param id="1" name="Image point (optional)">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="623494460637898">
+                                    <conditions>
+                                        <condition id="0" name="On collision with another object" sid="339999213542930" type="proj_laser">
+                                            <param id="0" name="Object">enemyMinions</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="963362209009960" type="proj_laser">
+                                            <param id="0" name="Instance variable">isPiercing</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" sid="240884122928320" type="proj_laser" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="261054540605575">
+                            <conditions>
+                                <condition id="-19" name="On destroyed" sid="575448431097615" type="proj_laser" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set spraying" sid="744735041624713" type="par_laserPath">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="731190515956892" title="Stun">
+                    <sub-events>
+                        <event-block sid="307830200330403">
+                            <conditions>
+                                <condition id="1" name="Compare progress" sid="582151566321613" type="ui_2skillbar">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="Value">100</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set progress" sid="296693839834328" type="ui_2skillbar">
+                                    <param id="0" name="Value">Function.Call(&quot;skillUI&quot;, ui_2skillbar.Progress, Dictionary.Get(&quot;stunCooldown&quot;))</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="104184133853585">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="693386806483804" type="Keyboard">
+                                    <param id="0" name="Key">50</param>
+                                </condition>
+                                <condition id="1" name="Compare progress" sid="401536551379163" type="ui_2skillbar">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Value">100</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="665391361500703" type="System">
+                                    <param id="0" name="Object to create">proj_stunBullet</param>
+                                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                                    <param id="2" name="X">playableCharacters.X</param>
+                                    <param id="3" name="Y">playableCharacters.Y</param>
+                                </action>
+                                <action id="-22" name="Set angle toward position" sid="117850700546418" type="proj_stunBullet">
+                                    <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                    <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="200437206993244" type="System">
+                                    <param id="0" name="Object to create">par_stunPath1</param>
+                                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                                    <param id="2" name="X">proj_stunBullet.X</param>
+                                    <param id="3" name="Y">proj_stunBullet.Y</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="233505740507404" type="System">
+                                    <param id="0" name="Object to create">par_stunPath2</param>
+                                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                                    <param id="2" name="X">proj_stunBullet.X</param>
+                                    <param id="3" name="Y">proj_stunBullet.Y</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="176968025763797" type="stunBulletEffects">
+                                    <param id="0" name="Angle">proj_stunBullet.Angle * -1</param>
+                                </action>
+                                <action id="3" name="Set progress" sid="817680760954162" type="ui_2skillbar">
+                                    <param id="0" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="736585766451405">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="953837522430731" type="proj_stunBullet" />
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="570277827700106" type="proj_stunBullet">
+                                    <param id="0" name="Instance variable">isFired</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="612884429722989">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="778797959143507" type="proj_stunBullet">
+                                    <param id="0" name="Instance variable">isFired</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-4" name="Set position to another object" sid="361621509964701" type="stunBulletEffects">
+                                    <param id="0" name="Object">proj_stunBullet</param>
+                                    <param id="1" name="Image point (optional)">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="720691646742338">
+                                    <conditions>
+                                        <condition id="0" name="On collision with another object" sid="683309630410753" type="enemyMinions">
+                                            <param id="0" name="Object">proj_stunBullet</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" sid="182377120989301" type="proj_stunBullet" />
+                                        <action id="-13" name="Set boolean" sid="285087570192133" type="enemyMinions">
+                                            <param id="0" name="Instance variable">isStunned</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action behavior="Timer" id="0" name="Start timer" sid="259170006398736" type="enemyMinions">
+                                            <param id="0" name="Duration">1.0</param>
+                                            <param id="1" name="Type">0</param>
+                                            <param id="2" name="Tag">Dictionary.Get(&quot;stunDuration&quot;)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="578687843459433">
+                            <conditions>
+                                <condition id="-19" name="On destroyed" sid="237508257958910" type="proj_stunBullet" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set spraying" sid="464555020631836" type="stunBulletEffects">
+                                    <param id="0" name="State">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="983548966437753" title="Fireball">
+                    <sub-events>
+                        <event-block sid="873671641283398">
+                            <conditions>
+                                <condition id="1" name="Compare progress" sid="511578685610971" type="ui_3skillbar">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="Value">100</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set progress" sid="529451985021429" type="ui_3skillbar">
+                                    <param id="0" name="Value">Function.Call(&quot;skillUI&quot;, ui_3skillbar.Progress, Dictionary.Get(&quot;fireballCooldown&quot;))</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>when button is held, show a targetting line</comment>
+                        <event-block sid="337559273668253">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="409237320660764" type="Keyboard">
+                                    <param id="0" name="Key">51</param>
+                                </condition>
+                                <condition id="1" name="Compare progress" sid="877462984692404" type="ui_3skillbar">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Value">100</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="237177262615198" type="obj_playerMage">
+                                    <param id="0" name="Object">proj_fireball</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-22" name="Set angle toward position" sid="100076157455051" type="proj_fireball">
+                                    <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                    <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="332859738806412" type="proj_fireball">
+                                    <param id="0" name="Instance variable">distToTarget</param>
+                                    <param id="1" name="Value">distance(Mouse.X(&quot;Game&quot;),Mouse.Y(&quot;Game&quot;),Self.X,Self.Y)</param>
+                                </action>
+                                <action behavior="Sine" id="1" name="Set period" sid="614054431124938" type="proj_fireball">
+                                    <param id="0" name="Period">(Self.distToTarget / Self.Bullet.Speed) * 2</param>
+                                </action>
+                                <action behavior="Sine" id="2" name="Set magnitude" sid="110736239863260" type="proj_fireball">
+                                    <param id="0" name="Magnitude">100 /  (1/Self.Sine.Period)</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="449777258418701" type="proj_fireball">
+                                    <param id="0" name="Object">vfx_fireballShadow</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-22" name="Set angle toward position" sid="467518752429899" type="vfx_fireballShadow">
+                                    <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                    <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="726175520963659" type="vfx_fireballShadow">
+                                    <param id="0" name="Speed">proj_fireball.Bullet.Speed</param>
+                                </action>
+                                <action id="3" name="Set progress" sid="245509590066617" type="ui_3skillbar">
+                                    <param id="0" name="Value">0</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="474211520296136">
+                                    <conditions>
+                                        <condition behavior="Sine" id="3" name="Compare magnitude" sid="334777429149300" type="proj_fireball">
+                                            <param id="0" name="Comparison">4</param>
+                                            <param id="1" name="Value">300</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Sine" id="2" name="Set magnitude" sid="324502860598040" type="proj_fireball">
+                                            <param id="0" name="Magnitude">300</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>when button is released</comment>
+                        <event-block sid="456848271633872">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="525675505098340" type="proj_fireball" />
+                            </conditions>
+                            <actions>
+                                <action id="-13" name="Set boolean" sid="524306846263853" type="proj_fireball">
+                                    <param id="0" name="Instance variable">isFired</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="301423201300615">
+                            <conditions>
+                                <condition behavior="Bullet" id="1" name="Compare distance travelled" sid="227621212202868" type="proj_fireball">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Distance">Self.distToTarget</param>
+                                </condition>
+                                <condition id="-8" name="Is boolean instance variable set" sid="309091967467238" type="proj_fireball">
+                                    <param id="0" name="Instance variable">isFired</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="391508008668353" type="proj_fireball">
+                                    <param id="0" name="Object">par_fireballExplo</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action behavior="Bullet" id="0" name="Set speed" sid="290809225349295" type="proj_fireball">
+                                    <param id="0" name="Speed">0</param>
+                                </action>
+                                <action id="-16" name="Set opacity" sid="554770363546917" type="proj_fireball">
+                                    <param id="0" name="Opacity">0</param>
+                                </action>
+                                <action id="9" name="Set scale" sid="212250555228402" type="proj_fireball">
+                                    <param id="0" name="Scale">10</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="595069883983819" type="proj_fireball">
+                                    <param id="0" name="Instance variable">isExploded</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="155153046822932">
+                                    <conditions>
+                                        <condition id="0" name="On collision with another object" sid="262228814480104" type="enemyMinions">
+                                            <param id="0" name="Object">proj_fireball</param>
+                                        </condition>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="632591530888443" type="proj_fireball">
+                                            <param id="0" name="Instance variable">isExploded</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-12" name="Subtract from" sid="991931314204934" type="enemyMinions">
+                                            <param id="0" name="Instance variable">health</param>
+                                            <param id="1" name="Value">Dictionary.Get(&quot;fireballDamage&quot;)</param>
+                                        </action>
+                                        <action id="-9" name="Destroy" sid="369093256718797" type="proj_fireball" />
+                                        <action id="-9" name="Destroy" sid="541389926661666" type="vfx_fireballShadow" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="622239753525240" title="Blink">
+                    <sub-events>
+                        <variable constant="0" name="blinkStatus" sid="610920008050029" static="1" type="number">0</variable>
+                        <comment>When skill is in cooldown</comment>
+                        <event-block sid="834224363764174">
+                            <conditions>
+                                <condition id="1" name="Compare progress" sid="145761198666549" type="ui_4skillbar">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="Value">100</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Set progress" sid="397089655997123" type="ui_4skillbar">
+                                    <param id="0" name="Value">Function.Call(&quot;skillUI&quot;, ui_4skillbar.Progress, Dictionary.Get(&quot;blinkCooldown&quot;))</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <variable constant="0" name="blinkDistance" sid="970098222752669" static="1" type="number">0</variable>
+                        <comment>when button is held, show blink target</comment>
+                        <event-block sid="462120461361432">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="611930206570575" type="Keyboard">
+                                    <param id="0" name="Key">52</param>
+                                </condition>
+                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="278975414309298" type="obj_playerMage">
+                                    <param id="0" name="Instance variable">isBlinkFinished</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="461338779044417" type="System">
+                                    <param id="0" name="Object to create">par_blinkTarget</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                    <param id="3" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                                </action>
+                                <action disabled="1" id="0" name="Spawn another object" sid="782250836074105" type="obj_playerMage">
+                                    <param id="0" name="Object">par_blinkTarget</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="281654314027041" type="System">
+                                    <param id="0" name="Variable">blinkStatus</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action disabled="1" id="-3" name="Create object" sid="417975607213471" type="System">
+                                    <param id="0" name="Object to create">par_blinkCharging</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="X">obj_playerMage.X</param>
+                                    <param id="3" name="Y">obj_playerMage.Y</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="142920773711816">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="812255066671877" type="System">
+                                    <param id="0" name="Variable">blinkStatus</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="910001720033327" type="System">
+                                    <param id="0" name="Variable">blinkDistance</param>
+                                    <param id="1" name="Value">distance(obj_playerMage.X,obj_playerMage.Y,Mouse.X(&quot;Game&quot;), Mouse.Y(&quot;Game&quot;))</param>
+                                </action>
+                                <action id="-3" name="Set position" sid="513139755804647" type="par_blinkTarget">
+                                    <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                    <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>when button released blink with delat</comment>
+                        <event-block sid="817354173524220">
+                            <conditions>
+                                <condition id="3" name="On key released" sid="407991694336991" type="Keyboard">
+                                    <param id="0" name="Key">52</param>
+                                </condition>
+                                <condition id="1" name="Compare progress" sid="459942222825017" type="ui_4skillbar">
+                                    <param id="0" name="Comparison">5</param>
+                                    <param id="1" name="Value">100</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="Timer" id="0" name="Start timer" sid="640090053747895" type="obj_playerMage">
+                                    <param id="0" name="Duration">0.2</param>
+                                    <param id="1" name="Type">0</param>
+                                    <param id="2" name="Tag">&quot;blinking&quot;</param>
+                                </action>
+                                <action id="3" name="Set progress" sid="407678927314323" type="ui_4skillbar">
+                                    <param id="0" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="137396430150776" type="System">
+                                    <param id="0" name="Variable">blinkStatus</param>
+                                    <param id="1" name="Value">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="507658594700858">
+                            <conditions>
+                                <condition behavior="Timer" id="0" name="On timer" sid="739453380468632" type="obj_playerMage">
+                                    <param id="0" name="Tag">&quot;blinking&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-22" name="Set angle toward position" sid="812871583119455" type="obj_playerMage">
+                                    <param id="0" name="X">par_blinkTarget.X</param>
+                                    <param id="1" name="Y">par_blinkTarget.Y</param>
+                                </action>
+                                <action id="-17" name="Move forward" sid="135471547199359" type="obj_playerMage">
+                                    <param id="0" name="Distance">blinkDistance</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="822696390444221" type="par_blinkTarget" />
+                                <action id="-8" name="Set angle" sid="833303712278279" type="obj_playerMage">
+                                    <param id="0" name="Angle">0</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="760989840657858" type="obj_playerMage">
+                                    <param id="0" name="Instance variable">isBlinkFinished</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="673686235176952" type="System">
+                                    <param id="0" name="Variable">blinkStatus</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="582140358242538">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="403297253611493" type="obj_playerMage">
+                                    <param id="0" name="Instance variable">isBlinkFinished</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="391829173673893" type="obj_playerMage">
+                                    <param id="0" name="Object">par_blinkOut</param>
+                                    <param id="1" name="Layer">1</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="547239925338317" type="par_blinkOut">
+                                    <param id="0" name="Angle">270</param>
+                                </action>
+                                <action id="-13" name="Set boolean" sid="778604279984744" type="obj_playerMage">
+                                    <param id="0" name="Instance variable">isBlinkFinished</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-block sid="933498832055108">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="595683719878387" type="playableCharacters">
+                    <param id="0" name="Object">proj_enemyArrows</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-12" name="Subtract from" sid="444282329528501" type="playableCharacters">
+                    <param id="0" name="Instance variable">health</param>
+                    <param id="1" name="Value">10</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="461083953781064">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="169204879702187" type="System" />
+            </conditions>
+            <actions>
+                <action id="-5" name="Set width" sid="910058312119070" type="heath">
+                    <param id="0" name="Width">playableCharacters.health</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

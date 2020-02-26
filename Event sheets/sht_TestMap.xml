@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>sht_TestMap</name>
+    <events>
+        <event-block sid="945052852829212">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="423222928015370" type="System" />
+            </conditions>
+            <actions>
+                <action id="-17" name="Set layer scale" sid="358860499905748" type="System">
+                    <param id="0" name="Layer">1</param>
+                    <param id="1" name="Scale">0.5</param>
+                </action>
+            </actions>
+        </event-block>
+        <include>sht_Player</include>
+        <include>sht_Enemy</include>
+        <event-block sid="542969929703424">
+            <conditions>
+                <condition id="0" name="On clicked" sid="694542462030919" type="btn_reset" />
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="713736250608973" type="System" />
+            </actions>
+        </event-block>
+        <event-block sid="135642403161943">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="800424845785789" type="System">
+                    <param id="0" name="Interval (seconds)">2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="296653848021339" type="obj_spawner">
+                    <param id="0" name="Object">obj_enemyMelee</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="979400839239874">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="664053743643179" type="System">
+                    <param id="0" name="Interval (seconds)">0.1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="617314126566867" type="scoreValue">
+                    <param id="0" name="Text">&quot;Score:&quot; &amp; playableCharacters.totalScore</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="759875603916569">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="958319718241510" type="System">
+                    <param id="0" name="Interval (seconds)">3</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="973235241501175" type="obj_spawner">
+                    <param id="0" name="Object">obj_enemyRanged</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="261978751844463">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="331634790342859" type="bouncingProjectiles">
+                    <param id="0" name="Object">obj_wall</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Bullet" id="4" name="Bounce off object" sid="870811930681568" type="bouncingProjectiles">
+                    <param id="0" name="Object">obj_wall</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

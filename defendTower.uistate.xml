@@ -11,10 +11,11 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </configurations>
     <open-tabs>
         <layout order="2">AssetsMap</layout>
-        <layout order="4">TestMap</layout>
-        <event-sheet active="1" order="0">PlayerSheet</event-sheet>
-        <event-sheet order="1">Map1Sheet</event-sheet>
-        <event-sheet order="3">EnemySheet</event-sheet>
+        <layout order="5">TestMap</layout>
+        <event-sheet order="0">sht_Player</event-sheet>
+        <event-sheet order="1">sht_TestMap</event-sheet>
+        <event-sheet active="1" order="3">sht_Enemy</event-sheet>
+        <event-sheet order="4">sht_DarkMap</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -24,11 +25,13 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     </properties>
     <families-expanded root="1">
         <family expanded="0" name="stunBulletEffects" />
-        <family expanded="0" name="enemyMinions" />
+        <family expanded="1" name="enemyMinions" />
         <family expanded="0" name="playableCharacters" />
+        <family expanded="0" name="bouncingProjectiles" />
+        <family expanded="0" name="playerBulletProjectiles" />
     </families-expanded>
     <folders-expanded>
-        <folder expanded="0" path="object-folder/" />
+        <folder expanded="1" path="object-folder/" />
         <folder expanded="0" path="object-folder/Bars/" />
         <folder expanded="0" path="object-folder/Text/" />
         <folder expanded="0" path="object-folder/Enemies/" />
@@ -36,25 +39,31 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="0" path="object-folder/Players/" />
         <folder expanded="0" path="object-folder/Projectiles/" />
         <folder expanded="0" path="object-folder/Tower/" />
-        <folder expanded="0" path="layout-folder/" />
+        <folder expanded="0" path="object-folder/Effects/" />
+        <folder expanded="0" path="object-folder/Environment/" />
+        <folder expanded="0" path="object-folder/Buttons/" />
+        <folder expanded="1" path="layout-folder/" />
         <folder expanded="0" path="event-folder/" />
         <folder expanded="0" path="file-folder/" />
         <folder expanded="1" path="sound-folder/" />
         <folder expanded="1" path="music-folder/" />
         <folder expanded="0" path="file-folder/Icons/" />
-        <folder expanded="1" path="animation-folder/enemyMelee/" />
-        <folder expanded="1" path="animation-folder/enemyRanged/" />
-        <folder expanded="1" path="animation-folder/Mage/" />
-        <folder expanded="1" path="animation-folder/enemyArrow/" />
-        <folder expanded="1" path="animation-folder/laser/" />
-        <folder expanded="1" path="animation-folder/manaBullet/" />
-        <folder expanded="1" path="animation-folder/fireBall/" />
-        <folder expanded="1" path="animation-folder/stunBullet/" />
-        <folder expanded="1" path="animation-folder/Tower/" />
-        <folder expanded="1" path="animation-folder/Obstacle/" />
-        <folder expanded="1" path="animation-folder/fireballTarget/" />
-        <folder expanded="1" path="animation-folder/fireBallArea/" />
-        <folder expanded="1" path="animation-folder/Spawner/" />
-        <folder expanded="1" path="animation-folder/fireballShadow/" />
+        <folder expanded="1" path="animation-folder/obj_enemyMelee/" />
+        <folder expanded="1" path="animation-folder/obj_enemyRanged/" />
+        <folder expanded="1" path="animation-folder/obj_playerMage/" />
+        <folder expanded="1" path="animation-folder/proj_enemyArrows/" />
+        <folder expanded="1" path="animation-folder/proj_laser/" />
+        <folder expanded="1" path="animation-folder/proj_manaBullet/" />
+        <folder expanded="1" path="animation-folder/proj_fireball/" />
+        <folder expanded="1" path="animation-folder/proj_stunBullet/" />
+        <folder expanded="1" path="animation-folder/obj_toweMage/" />
+        <folder expanded="1" path="animation-folder/vfx_fireballShadow/" />
+        <folder expanded="1" path="animation-folder/obj_spawner/" />
+        <folder expanded="1" path="animation-folder/obj_hole/" />
+        <folder expanded="1" path="animation-folder/obj_wall/" />
+        <folder expanded="1" path="animation-folder/Sprite/" />
+        <folder expanded="1" path="animation-folder/Sprite2/" />
+        <folder expanded="1" path="animation-folder/Sprite3/" />
+        <folder expanded="1" path="animation-folder/Sprite4/" />
     </folders-expanded>
 </c2uistate>

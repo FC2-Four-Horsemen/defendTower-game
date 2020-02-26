@@ -1,0 +1,29 @@
+{
+	"c2dictionary": true,
+	"data": {
+		"name": "Mage",
+		"defHeath": 10, 
+		"moveSpeed": 400,
+
+		"autoDamage": 30,
+		"autoSpeed": 900,
+		"autoCooldown": 30,
+
+		"laserDamage": 30,
+		"laserSpeed": 900,
+		"laserPiercing": 1,
+		"laserCooldown": 500,
+		
+		"stunDamage": 30,
+		"stunSpeed": 900,
+		"stunDuration": 2,
+		"stunCooldown": 300,
+
+		"fireballDamage": 30,
+		"fireballSpeed": 900,
+		"fireballCooldown": 600,
+		
+		"blinkRange": 300,
+		"blinkCooldown": 50
+	}
+}
