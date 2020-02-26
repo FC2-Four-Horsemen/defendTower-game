@@ -15,6 +15,7 @@
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
         <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Yann Granjon" id="JSON" version="1">JSON</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="NinePatch" version="1">9-patch</plugin>
@@ -409,6 +410,46 @@
                 <plugin id="Button" />
             </object-type>
         </object-folder>
+        <object-folder name="UI">
+            <object-type name="ui_healthBar" sid="565821462946055">
+                <plugin id="NinePatch" />
+                <instance-variables>
+                    <instance-variable name="id" sid="809783338491183" type="number" />
+                </instance-variables>
+                <texture />
+            </object-type>
+            <object-type name="ui_heath" sid="312117338026690">
+                <plugin id="NinePatch" />
+                <instance-variables>
+                    <instance-variable name="id" sid="574720052905513" type="number" />
+                </instance-variables>
+                <texture />
+            </object-type>
+            <object-type name="ui_iconProgress" sid="764586219523171">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="651936229639012" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="1" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ui_laserIcon" sid="207675702715275">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="954036266903278" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="ui_stunIcon" sid="606091040026232">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="404783877711081" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
         <object-type name="Mouse" sid="387042141381203">
             <plugin id="Mouse" />
         </object-type>
@@ -427,48 +468,26 @@
         <object-type name="Function" sid="486039354273799">
             <plugin id="Function" />
         </object-type>
-        <object-type name="Sprite" sid="780165797930818">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="558390293646044" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Sprite2" sid="207675702715275">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="954036266903278" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Sprite3" sid="764586219523171">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="651936229639012" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="1" />
-                </animation>
-            </animation-folder>
-        </object-type>
         <object-type global="1" name="Dictionary" sid="205716771670651">
             <plugin id="Dictionary" />
         </object-type>
-        <object-type name="healthBar" sid="565821462946055">
-            <plugin id="NinePatch" />
-            <texture />
+        <object-type global="1" name="JSON" sid="734830339253292">
+            <plugin id="JSON" />
         </object-type>
-        <object-type name="Sprite4" sid="926303289754198">
+        <object-type name="storeTitle" sid="560712186189234">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="storePanel" sid="586645770594655">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="keyTPressed" sid="582057797500670" type="boolean" />
+                <instance-variable name="showStore" sid="741961650796813" type="boolean" />
+            </instance-variables>
             <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="918058381274822" speed="5">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="985730287008840" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
-        </object-type>
-        <object-type name="heath" sid="312117338026690">
-            <plugin id="NinePatch" />
-            <texture />
         </object-type>
     </object-folder>
     <families>
@@ -484,11 +503,14 @@
                 <member>obj_enemyRanged</member>
             </members>
             <instance-variables>
-                <instance-variable name="health" sid="243417613143421" type="number" />
+                <instance-variable name="name" sid="834433115974547" type="string" />
+                <instance-variable name="curHealth" sid="243417613143421" type="number" />
+                <instance-variable name="maxHealth" sid="727689250653635" type="number" />
                 <instance-variable name="isStunned" sid="301163740822040" type="boolean" />
                 <instance-variable name="isRanged" sid="694574192740859" type="boolean" />
                 <instance-variable name="attackCoolDown" sid="950014824277994" type="number" />
                 <instance-variable name="isHealthShown" sid="925924693099836" type="boolean" />
+                <instance-variable name="suicideDamage" sid="398712028149265" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Pathfinding" sid="259648820217586">
@@ -512,8 +534,10 @@
                 <member>obj_playerMage</member>
             </members>
             <instance-variables>
-                <instance-variable name="health" sid="310226730767808" type="number" />
+                <instance-variable name="curHealth" sid="310226730767808" type="number" />
+                <instance-variable name="maxHealth" sid="285557598325728" type="number" />
                 <instance-variable name="totalScore" sid="988202616579625" type="number" />
+                <instance-variable name="curLevel" sid="214137382198855" type="number" />
             </instance-variables>
         </family>
         <family name="bouncingProjectiles" plugin-id="Sprite" sid="749633539684510">
@@ -541,9 +565,18 @@
                 <instance-variable name="isFire" sid="274731185917959" type="boolean" />
             </instance-variables>
         </family>
+        <family name="playableTowers" plugin-id="Sprite" sid="656702669783686">
+            <members>
+                <member>obj_toweMage</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="health" sid="323399217072313" type="number" />
+            </instance-variables>
+        </family>
     </families>
     <layout-folder>
         <layout>TestMap.xml</layout>
+        <layout>TestMapSpawn.xml</layout>
         <layout>SampleDarkMap.xml</layout>
         <layout>AssetsMap.xml</layout>
         <layout>StartMap.xml</layout>
@@ -574,5 +607,6 @@
             <file name="loading-logo.png" />
         </file-folder>
         <file name="Mage.json" />
+        <file name="Map1.json" />
     </files-folder>
 </c2project>

@@ -1,0 +1,22 @@
+{
+  "TotalWaves": 10,
+  "TimeBetweenWaves": 3, 
+  "Spawner1_UID": 38,
+  "Spawner2_UID": 3,
+  "mapData" :{
+    "wave1":{
+     "spawnsIn": 38 {
+     "1": {
+      "TimeBetweenSpawning": 1,
+      "spawns": "enemyMelee",
+      "amount": 5
+     },
+      "2": {
+      "TimeBetweenSpawning": 1,
+      "spawns": "enemyMelee",
+      "amount": 5
+     },
+    }
+    
+  }
+}

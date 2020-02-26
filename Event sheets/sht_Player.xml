@@ -14,8 +14,8 @@
                             <param id="0" name="Tag">&quot;Mage&quot;</param>
                             <param id="1" name="File">Mage.json</param>
                         </action>
-                        <action id="-5" name="Set width" sid="214182892773123" type="healthBar">
-                            <param id="0" name="Width">playableCharacters.health</param>
+                        <action id="-5" name="Set width" sid="214182892773123" type="ui_healthBar">
+                            <param id="0" name="Width">playableCharacters.maxHealth</param>
                         </action>
                     </actions>
                 </event-block>
@@ -102,7 +102,7 @@
                     </conditions>
                     <actions>
                         <action id="-12" name="Subtract from" sid="400853363365900" type="enemyMinions">
-                            <param id="0" name="Instance variable">health</param>
+                            <param id="0" name="Instance variable">curHealth</param>
                             <param id="1" name="Value">10</param>
                         </action>
                         <action id="-9" name="Destroy" sid="335265007871930" type="proj_manaBullet" />
@@ -208,12 +208,15 @@
                                     <param id="0" name="Comparison">2</param>
                                     <param id="1" name="Value">100</param>
                                 </condition>
+                                <condition id="-14" name="Pick by unique ID" sid="847740268924374" type="ui_iconProgress">
+                                    <param id="0" name="Unique ID">52</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="3" name="Set progress" sid="790039874374030" type="ui_1skillbar">
                                     <param id="0" name="Value">Function.Call(&quot;skillUI&quot;, ui_1skillbar.Progress, Dictionary.Get(&quot;laserCooldown&quot;))</param>
                                 </action>
-                                <action id="-6" name="Set height" sid="855904003967378" type="Sprite3">
+                                <action id="-6" name="Set height" sid="855904003967378" type="ui_iconProgress">
                                     <param id="0" name="Height">65.24 * (ui_1skillbar.Progress/100)</param>
                                 </action>
                             </actions>
@@ -294,15 +297,27 @@
                                         <condition id="0" name="On collision with another object" sid="339999213542930" type="proj_laser">
                                             <param id="0" name="Object">enemyMinions</param>
                                         </condition>
-                                        <condition id="-7" name="Compare instance variable" sid="963362209009960" type="proj_laser">
-                                            <param id="0" name="Instance variable">isPiercing</param>
-                                            <param id="1" name="Comparison">3</param>
-                                            <param id="2" name="Value">0</param>
-                                        </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="-9" name="Destroy" sid="240884122928320" type="proj_laser" />
+                                        <action id="-12" name="Subtract from" sid="879124760676671" type="enemyMinions">
+                                            <param id="0" name="Instance variable">curHealth</param>
+                                            <param id="1" name="Value">Dictionary.Get(&quot;laserDamage&quot;)</param>
+                                        </action>
                                     </actions>
+                                    <sub-events>
+                                        <event-block sid="964839525970033">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="963362209009960" type="proj_laser">
+                                                    <param id="0" name="Instance variable">isPiercing</param>
+                                                    <param id="1" name="Comparison">3</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Destroy" sid="240884122928320" type="proj_laser" />
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
@@ -326,10 +341,16 @@
                                     <param id="0" name="Comparison">2</param>
                                     <param id="1" name="Value">100</param>
                                 </condition>
+                                <condition id="-14" name="Pick by unique ID" sid="150754304329266" type="ui_iconProgress">
+                                    <param id="0" name="Unique ID">8</param>
+                                </condition>
                             </conditions>
                             <actions>
                                 <action id="3" name="Set progress" sid="296693839834328" type="ui_2skillbar">
                                     <param id="0" name="Value">Function.Call(&quot;skillUI&quot;, ui_2skillbar.Progress, Dictionary.Get(&quot;stunCooldown&quot;))</param>
+                                </action>
+                                <action id="-6" name="Set height" sid="710073074965689" type="ui_iconProgress">
+                                    <param id="0" name="Height">65.24 * (ui_2skillbar.Progress/100)</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -563,7 +584,7 @@
                                     </conditions>
                                     <actions>
                                         <action id="-12" name="Subtract from" sid="991931314204934" type="enemyMinions">
-                                            <param id="0" name="Instance variable">health</param>
+                                            <param id="0" name="Instance variable">curHealth</param>
                                             <param id="1" name="Value">Dictionary.Get(&quot;fireballDamage&quot;)</param>
                                         </action>
                                         <action id="-9" name="Destroy" sid="369093256718797" type="proj_fireball" />
@@ -732,18 +753,23 @@
             </conditions>
             <actions>
                 <action id="-12" name="Subtract from" sid="444282329528501" type="playableCharacters">
-                    <param id="0" name="Instance variable">health</param>
+                    <param id="0" name="Instance variable">curHealth</param>
                     <param id="1" name="Value">10</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="461083953781064">
+        <event-block sid="121393502071388">
             <conditions>
-                <condition id="-1" name="Every tick" sid="169204879702187" type="System" />
+                <condition id="-14" name="Pick by unique ID" sid="416921811753622" type="ui_healthBar">
+                    <param id="0" name="Unique ID">74</param>
+                </condition>
+                <condition id="-14" name="Pick by unique ID" sid="339376159197006" type="ui_heath">
+                    <param id="0" name="Unique ID">76</param>
+                </condition>
             </conditions>
             <actions>
-                <action id="-5" name="Set width" sid="910058312119070" type="heath">
-                    <param id="0" name="Width">playableCharacters.health</param>
+                <action id="-5" name="Set width" sid="746992284306976" type="ui_heath">
+                    <param id="0" name="Width">playableCharacters.maxHealth * (PlayableCharacters.curHealth / playableCharacters.maxHealth)</param>
                 </action>
             </actions>
         </event-block>

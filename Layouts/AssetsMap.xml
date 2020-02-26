@@ -546,11 +546,14 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <health>30</health>
+                        <name>enemyRanged</name>
+                        <curHealth>20</curHealth>
+                        <maxHealth>20</maxHealth>
                         <isStunned>false</isStunned>
                         <isRanged>true</isRanged>
                         <attackCoolDown>0</attackCoolDown>
                         <isHealthShown>false</isHealthShown>
+                        <suicideDamage>10</suicideDamage>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Pathfinding">
@@ -671,6 +674,67 @@
                         <hotspotX>0</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>-1.570796371</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_enemyMelee" uid="4">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>enemyMelee</name>
+                        <curHealth>30</curHealth>
+                        <maxHealth>30</maxHealth>
+                        <isStunned>false</isStunned>
+                        <isRanged>false</isRanged>
+                        <attackCoolDown>0</attackCoolDown>
+                        <isHealthShown>false</isHealthShown>
+                        <suicideDamage>10</suicideDamage>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Pathfinding">
+                            <properties>
+                                <cell-size>50</cell-size>
+                                <cell-border>-1</cell-border>
+                                <obstacles>Solids</obstacles>
+                                <max-speed>200</max-speed>
+                                <acceleration>1000</acceleration>
+                                <deceleration>2000</deceleration>
+                                <rotate-speed>135</rotate-speed>
+                                <rotate-object>No</rotate-object>
+                                <diagonals>Enabled</diagonals>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Timer" />
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <effect-instances>
+                        <effect-instance type="Pixellate">
+                            <parameters>
+                                <size>16</size>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>267</x>
+                        <y>-49</y>
+                        <z>0</z>
+                        <width>50</width>
+                        <height>49</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.510204077</hotspotY>
+                        <angle>3.141592741</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>

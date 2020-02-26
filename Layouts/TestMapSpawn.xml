@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2layout>
-    <name>SampleDarkMap</name>
-    <sid>108884470980823</sid>
-    <event-sheet>sht_DarkMap</event-sheet>
+    <name>TestMapSpawn</name>
+    <sid>849926010262646</sid>
+    <event-sheet>sht_TestMap</event-sheet>
     <size>
         <width>1280</width>
         <height>1024</height>
@@ -13,7 +13,7 @@
     </margins>
     <unbounded-scrolling>0</unbounded-scrolling>
     <layers>
-        <layer name="Background" sid="156836090987739">
+        <layer name="Background" sid="565950452176439">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
             <transparent>0</transparent>
@@ -29,7 +29,7 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
-                <instance type="tex_tiledBackground" uid="47">
+                <instance type="tex_tiledBackground" uid="77">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <hotspot>Top-left</hotspot>
@@ -52,7 +52,7 @@
             </instances>
             <effects />
         </layer>
-        <layer name="Game" sid="559813162223172">
+        <layer name="Game" sid="856629555920720">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
             <transparent>1</transparent>
@@ -68,7 +68,7 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
-                <instance type="obj_playerMage" uid="48">
+                <instance type="obj_playerMage" uid="78">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -123,7 +123,68 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_enemyMelee" uid="50">
+                <instance type="obj_enemyMelee" uid="79">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>enemyMelee</name>
+                        <curHealth>30</curHealth>
+                        <maxHealth>30</maxHealth>
+                        <isStunned>false</isStunned>
+                        <isRanged>false</isRanged>
+                        <attackCoolDown>0</attackCoolDown>
+                        <isHealthShown>false</isHealthShown>
+                        <suicideDamage>10</suicideDamage>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Pathfinding">
+                            <properties>
+                                <cell-size>50</cell-size>
+                                <cell-border>-1</cell-border>
+                                <obstacles>Solids</obstacles>
+                                <max-speed>200</max-speed>
+                                <acceleration>1000</acceleration>
+                                <deceleration>2000</deceleration>
+                                <rotate-speed>135</rotate-speed>
+                                <rotate-object>No</rotate-object>
+                                <diagonals>Enabled</diagonals>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Timer" />
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <effect-instances>
+                        <effect-instance type="Pixellate">
+                            <parameters>
+                                <size>16</size>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1017</x>
+                        <y>228</y>
+                        <z>0</z>
+                        <width>50</width>
+                        <height>49</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.510204077</hotspotY>
+                        <angle>3.141592741</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_enemyMelee" uid="80">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -184,7 +245,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_enemyMelee" uid="51">
+                <instance type="obj_enemyMelee" uid="81">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -245,7 +306,68 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_toweMage" uid="53">
+                <instance type="obj_enemyMelee" uid="82">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>enemyMelee</name>
+                        <curHealth>30</curHealth>
+                        <maxHealth>30</maxHealth>
+                        <isStunned>false</isStunned>
+                        <isRanged>false</isRanged>
+                        <attackCoolDown>0</attackCoolDown>
+                        <isHealthShown>false</isHealthShown>
+                        <suicideDamage>10</suicideDamage>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Pathfinding">
+                            <properties>
+                                <cell-size>50</cell-size>
+                                <cell-border>-1</cell-border>
+                                <obstacles>Solids</obstacles>
+                                <max-speed>200</max-speed>
+                                <acceleration>1000</acceleration>
+                                <deceleration>2000</deceleration>
+                                <rotate-speed>135</rotate-speed>
+                                <rotate-object>No</rotate-object>
+                                <diagonals>Enabled</diagonals>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="Timer" />
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <effect-instances>
+                        <effect-instance type="Pixellate">
+                            <parameters>
+                                <size>16</size>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1027</x>
+                        <y>811</y>
+                        <z>0</z>
+                        <width>50</width>
+                        <height>49</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.510204077</hotspotY>
+                        <angle>3.141592741</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_toweMage" uid="83">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -270,7 +392,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_hole" uid="54">
+                <instance type="obj_hole" uid="84">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -299,7 +421,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_hole" uid="55">
+                <instance type="obj_hole" uid="85">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -328,7 +450,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_hole" uid="56">
+                <instance type="obj_hole" uid="86">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -357,7 +479,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_hole" uid="57">
+                <instance type="obj_hole" uid="87">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -386,7 +508,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_hole" uid="58">
+                <instance type="obj_hole" uid="88">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -415,7 +537,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_hole" uid="59">
+                <instance type="obj_hole" uid="89">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -444,7 +566,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_spawner" uid="60">
+                <instance type="obj_spawner" uid="90">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -466,7 +588,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="obj_spawner" uid="61">
+                <instance type="obj_spawner" uid="91">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -476,8 +598,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>1240</x>
-                        <y>976</y>
+                        <x>995</x>
+                        <y>582</y>
                         <z>0</z>
                         <width>32</width>
                         <height>32</height>
@@ -488,20 +610,78 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="obj_wall" uid="92">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>478</x>
+                        <y>233</y>
+                        <z>0</z>
+                        <width>41</width>
+                        <height>250</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_wall" uid="93">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="Solid">
+                            <properties>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>337</x>
+                        <y>146</y>
+                        <z>0</z>
+                        <width>44</width>
+                        <height>250</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
-        <layer name="Lighting" sid="182780968338999">
+        <layer name="HeroStats" sid="153047541398605">
             <initially-visible>1</initially-visible>
-            <background-color>0,0,0</background-color>
-            <transparent>0</transparent>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
             <parallax>
-                <x>1</x>
-                <y>1</y>
+                <x>0</x>
+                <y>0</y>
             </parallax>
             <zoom-rate>1</zoom-rate>
             <opacity>1</opacity>
-            <force-own-texture>1</force-own-texture>
+            <force-own-texture>0</force-own-texture>
             <global>0</global>
             <use-render-cells>0</use-render-cells>
             <blend-mode>0</blend-mode>
@@ -509,7 +689,25 @@
             <instances />
             <effects />
         </layer>
-        <layer name="UI" sid="595132710863831">
+        <layer name="Layer 0" sid="607524684875082">
+            <initially-visible>1</initially-visible>
+            <background-color>255,255,255</background-color>
+            <transparent>1</transparent>
+            <parallax>
+                <x>1</x>
+                <y>1</y>
+            </parallax>
+            <zoom-rate>1</zoom-rate>
+            <opacity>1</opacity>
+            <force-own-texture>0</force-own-texture>
+            <global>0</global>
+            <use-render-cells>0</use-render-cells>
+            <blend-mode>0</blend-mode>
+            <effect-fallback>0</effect-fallback>
+            <instances />
+            <effects />
+        </layer>
+        <layer name="UI" sid="587200668883941">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
             <transparent>1</transparent>
@@ -525,34 +723,7 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
-                <instance type="Controls" uid="62">
-                    <properties>
-                        <text>Arrow keys or WASD to move, mouse to aim and shoot, </text>
-                        <initial-visibility>Visible</initial-visibility>
-                        <font>Arial,-16</font>
-                        <color>255,255,255</color>
-                        <horizontal-alignment>Left</horizontal-alignment>
-                        <vertical-alignment>Top</vertical-alignment>
-                        <hotspot>Top-left</hotspot>
-                        <wrapping>Word</wrapping>
-                        <line-height>0</line-height>
-                    </properties>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>4</x>
-                        <y>4</y>
-                        <z>0</z>
-                        <width>516</width>
-                        <height>29</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="SkillsLabel" uid="63">
+                <instance type="SkillsLabel" uid="95">
                     <properties>
                         <text>1 2 3 4</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -567,8 +738,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>8</x>
-                        <y>363</y>
+                        <x>-358</x>
+                        <y>435</y>
                         <z>0</z>
                         <width>21.865737915</width>
                         <height>149</height>
@@ -579,7 +750,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ui_1skillbar" uid="64">
+                <instance type="ui_1skillbar" uid="96">
                     <properties>
                         <value>100</value>
                         <maximum>100</maximum>
@@ -590,8 +761,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>31.104034424</x>
-                        <y>365.379364014</y>
+                        <x>-309</x>
+                        <y>433</y>
                         <z>0</z>
                         <width>146.560562134</width>
                         <height>18.320070267</height>
@@ -600,7 +771,7 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="ui_2skillbar" uid="65">
+                <instance type="ui_2skillbar" uid="97">
                     <properties>
                         <value>100</value>
                         <maximum>100</maximum>
@@ -611,8 +782,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>31.828689575</x>
-                        <y>395.10369873</y>
+                        <x>-312</x>
+                        <y>470</y>
                         <z>0</z>
                         <width>144.680847168</width>
                         <height>19.412406921</height>
@@ -621,7 +792,7 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="ui_3skillbar" uid="66">
+                <instance type="ui_3skillbar" uid="98">
                     <properties>
                         <value>100</value>
                         <maximum>100</maximum>
@@ -632,8 +803,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>32.449905396</x>
-                        <y>424.137573242</y>
+                        <x>-311</x>
+                        <y>510</y>
                         <z>0</z>
                         <width>142.890853882</width>
                         <height>18.240282059</height>
@@ -642,7 +813,7 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="ui_4skillbar" uid="67">
+                <instance type="ui_4skillbar" uid="99">
                     <properties>
                         <value>100</value>
                         <maximum>100</maximum>
@@ -653,8 +824,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>33.104034424</x>
-                        <y>451.907470703</y>
+                        <x>-307</x>
+                        <y>543</y>
                         <z>0</z>
                         <width>142.771606445</width>
                         <height>17.846450806</height>
@@ -663,7 +834,7 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="Skills" uid="68">
+                <instance type="Skills" uid="100">
                     <properties>
                         <text>SKILLS</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -678,8 +849,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>4</x>
-                        <y>335</y>
+                        <x>-302</x>
+                        <y>339</y>
                         <z>0</z>
                         <width>217</width>
                         <height>42</height>
@@ -690,7 +861,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="btn_reset" uid="69">
+                <instance type="btn_reset" uid="101">
                     <properties>
                         <type>Button</type>
                         <text>Reset</text>
@@ -714,9 +885,9 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="scoreValue" uid="70">
+                <instance type="scoreValue" uid="102">
                     <properties>
-                        <text></text>
+                        <text>Score: </text>
                         <initial-visibility>Visible</initial-visibility>
                         <font>Arial,-16</font>
                         <color>255,255,255</color>
@@ -738,6 +909,108 @@
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
                         <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_iconProgress" uid="103">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>64.506729126</x>
+                        <y>459</y>
+                        <z>0</z>
+                        <width>66.245582581</width>
+                        <height>65.740226746</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>1</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_laserIcon" uid="104">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>63.506729126</x>
+                        <y>426.634094238</y>
+                        <z>0</z>
+                        <width>73.013450623</width>
+                        <height>73.432907104</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_healthBar" uid="105">
+                    <properties>
+                        <left-margin>4</left-margin>
+                        <right-margin>4</right-margin>
+                        <top-margin>4</top-margin>
+                        <bottom-margin>4</bottom-margin>
+                        <edges>Stretch</edges>
+                        <fill>Stretch</fill>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                        <seams>Overlap</seams>
+                    </properties>
+                    <instance-variables>
+                        <id>0</id>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>42</x>
+                        <y>360</y>
+                        <z>0</z>
+                        <width>100</width>
+                        <height>16</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_heath" uid="107">
+                    <properties>
+                        <left-margin>4</left-margin>
+                        <right-margin>4</right-margin>
+                        <top-margin>4</top-margin>
+                        <bottom-margin>4</bottom-margin>
+                        <edges>Stretch</edges>
+                        <fill>Stretch</fill>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                        <seams>Overlap</seams>
+                    </properties>
+                    <instance-variables>
+                        <id>0</id>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>42</x>
+                        <y>360</y>
+                        <z>0</z>
+                        <width>100</width>
+                        <height>16</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                         <opacity>1</opacity>
                     </world>
                 </instance>

@@ -14,8 +14,72 @@
                 </action>
             </actions>
         </event-block>
-        <include>sht_Player</include>
-        <include>sht_Enemy</include>
+        <event-group description="" sid="308097373078802" title="Store">
+            <sub-events>
+                <event-block sid="211052787914996">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="960461514938110" type="Keyboard">
+                            <param id="0" name="Key">84</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="549521015293116" type="storePanel">
+                            <param id="0" name="Instance variable">keyTPressed</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="874873499893215" type="storePanel">
+                            <param id="0" name="Instance variable">keyTPressed</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="657703734209739">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="763105719595565" type="storePanel">
+                            <param id="0" name="Instance variable">keyTPressed</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-14" name="Toggle boolean" sid="453719486568278" type="storePanel">
+                            <param id="0" name="Instance variable">showStore</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="436196733196739" type="storePanel">
+                            <param id="0" name="Instance variable">keyTPressed</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="221630884219616">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="454083897377716" type="storePanel">
+                            <param id="0" name="Instance variable">showStore</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set layer visible" sid="987090218936124" type="System">
+                            <param id="0" name="Layer">(&quot;Store&quot;)</param>
+                            <param id="1" name="Visibility">1</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="140648634059981" type="System">
+                            <param id="0" name="Time scale">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="546465664380178">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="401257394163123" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set layer visible" sid="250254547040769" type="System">
+                            <param id="0" name="Layer">(&quot;Store&quot;)</param>
+                            <param id="1" name="Visibility">0</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="517082716279291" type="System">
+                            <param id="0" name="Time scale">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-block sid="542969929703424">
             <conditions>
                 <condition id="0" name="On clicked" sid="694542462030919" type="btn_reset" />
@@ -24,16 +88,18 @@
                 <action id="-26" name="Restart layout" sid="713736250608973" type="System" />
             </actions>
         </event-block>
-        <event-block sid="135642403161943">
+        <include>sht_Player</include>
+        <include>sht_Enemy</include>
+        <event-block any="1" sid="117809299506368">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="800424845785789" type="System">
                     <param id="0" name="Interval (seconds)">2</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="0" name="Spawn another object" sid="296653848021339" type="obj_spawner">
+                <action id="0" name="Spawn another object" sid="978667458833358" type="obj_spawner">
                     <param id="0" name="Object">obj_enemyMelee</param>
-                    <param id="1" name="Layer">1</param>
+                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
                     <param id="2" name="Image point">0</param>
                 </action>
             </actions>
@@ -50,20 +116,6 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="759875603916569">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="958319718241510" type="System">
-                    <param id="0" name="Interval (seconds)">3</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Spawn another object" sid="973235241501175" type="obj_spawner">
-                    <param id="0" name="Object">obj_enemyRanged</param>
-                    <param id="1" name="Layer">1</param>
-                    <param id="2" name="Image point">0</param>
-                </action>
-            </actions>
-        </event-block>
         <event-block sid="261978751844463">
             <conditions>
                 <condition id="0" name="On collision with another object" sid="331634790342859" type="bouncingProjectiles">
@@ -75,6 +127,22 @@
                     <param id="0" name="Object">obj_wall</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="759875603916569">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="958319718241510" type="System">
+                            <param id="0" name="Interval (seconds)">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Spawn another object" sid="973235241501175" type="obj_spawner">
+                            <param id="0" name="Object">obj_enemyRanged</param>
+                            <param id="1" name="Layer">1</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
     </events>
 </c2eventsheet>
