@@ -45,11 +45,6 @@
                         <condition id="2" name="Mouse button is down" sid="449915891977438" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" sid="316139997803445" type="obj_playerMage">
-                            <param id="0" name="Instance variable">autoAttackCooldown</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" sid="252643744155259" type="System">
@@ -63,7 +58,7 @@
                             <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
                         </action>
                         <action id="-10" name="Set value" sid="783581119714789" type="obj_playerMage">
-                            <param id="0" name="Instance variable">autoAttackCooldown</param>
+                            <param id="0" name="Instance variable">autoAttackSpeed</param>
                             <param id="1" name="Value">Dictionary.Get(&quot;autoCooldown&quot;)</param>
                         </action>
                     </actions>
@@ -80,16 +75,10 @@
                     </actions>
                 </event-block>
                 <event-block sid="719468344690195">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="926296851687281" type="obj_playerMage">
-                            <param id="0" name="Instance variable">autoAttackCooldown</param>
-                            <param id="1" name="Comparison">4</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
+                    <conditions />
                     <actions>
                         <action id="-12" name="Subtract from" sid="881946859010930" type="obj_playerMage">
-                            <param id="0" name="Instance variable">autoAttackCooldown</param>
+                            <param id="0" name="Instance variable">autoAttackSpeed</param>
                             <param id="1" name="Value">100 * dt</param>
                         </action>
                     </actions>

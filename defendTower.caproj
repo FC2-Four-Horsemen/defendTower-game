@@ -17,6 +17,7 @@
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Yann Granjon" id="JSON" version="1">JSON</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="List" version="1">List</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
         <plugin author="Scirra" id="NinePatch" version="1">9-patch</plugin>
         <plugin author="Scirra" id="Particles" version="1">Particles</plugin>
@@ -25,6 +26,7 @@
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
         <plugin author="Scirra" id="XML" version="1">XML</plugin>
         <plugin author="Scirra" id="progressbar" version="1">Progress bar</plugin>
+        <plugin author="Scirra" id="sliderbar" version="1">Slider bar</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
@@ -96,8 +98,18 @@
                 <plugin id="Sprite" />
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="706826059520441" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.510204">
-                            <image-point name="healthBar" x="0.5" y="-0.163265" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Downloads\88217500_304353433870935_3136430151718404096_n.png">
+                            <image-point name="healthBar" x="0.5" y="-0.15625" />
+                            <collision-poly>
+                                <point x="0.25" y="0.25" />
+                                <point x="0.5" y="0.0625" />
+                                <point x="0.90625" y="0.09375" />
+                                <point x="0.9375" y="0.5" />
+                                <point x="0.90625" y="0.90625" />
+                                <point x="0.5" y="1" />
+                                <point x="0.25" y="0.75" />
+                                <point x="0.03125" y="0.5" />
+                            </collision-poly>
                         </frame>
                     </animation>
                 </animation-folder>
@@ -106,7 +118,18 @@
                 <plugin id="Sprite" />
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="784612045755730" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.510204" />
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
+                            <collision-poly>
+                                <point x="0.21875" y="0.21875" />
+                                <point x="0.5" y="0.03125" />
+                                <point x="0.6875" y="0.3125" />
+                                <point x="0.96875" y="0.5" />
+                                <point x="0.71875" y="0.71875" />
+                                <point x="0.5" y="1" />
+                                <point x="0.15625" y="0.84375" />
+                                <point x="0.09375" y="0.5" />
+                            </collision-poly>
+                        </frame>
                     </animation>
                 </animation-folder>
             </object-type>
@@ -161,7 +184,6 @@
                 <instance-variables>
                     <instance-variable name="isBlinkFinished" sid="835361828567214" type="boolean" />
                     <instance-variable name="distanceToBlink" sid="729958217279834" type="number" />
-                    <instance-variable name="autoAttackCooldown" sid="852197269345283" type="number" />
                 </instance-variables>
                 <behaviors>
                     <behavior-type name="8Direction" sid="835229528315922">
@@ -179,7 +201,7 @@
                 </behaviors>
                 <animation-folder>
                     <animation framecount="5" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="700071568037339" speed="5">
-                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87638109_184563659625836_7382338746420559872_n.png">
                             <image-point name="ShootPoint" x="1.15625" y="0.53125" />
                             <collision-poly>
                                 <point x="0.21875" y="0.21875" />
@@ -192,7 +214,7 @@
                                 <point x="0.09375" y="0.5" />
                             </collision-poly>
                         </frame>
-                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87638109_184563659625836_7382338746420559872_n.png">
                             <image-point name="ShootPoint" x="1.15625" y="0.53125" />
                             <collision-poly>
                                 <point x="0.21875" y="0.21875" />
@@ -205,23 +227,32 @@
                                 <point x="0.09375" y="0.5" />
                             </collision-poly>
                         </frame>
-                        <frame duration="1" hotspotX="0.46875" hotspotY="0.46875" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
-                            <image-point name="ShootPoint" x="-0.15625" y="0.46875" />
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.46875" original-source="C:\Users\11400314\Downloads\87638109_184563659625836_7382338746420559872_n.png">
+                            <image-point name="ShootPoint" x="1.15625" y="0.46875" />
                             <collision-poly>
-                                <point x="0.90625" y="0.5" />
+                                <point x="0.21875" y="0.21875" />
+                                <point x="0.5" y="0.03125" />
+                                <point x="0.6875" y="0.3125" />
+                                <point x="0.96875" y="0.5" />
+                                <point x="0.71875" y="0.71875" />
+                                <point x="0.5" y="1" />
+                                <point x="0.15625" y="0.84375" />
+                                <point x="0.09375" y="0.5" />
+                            </collision-poly>
+                        </frame>
+                        <frame duration="1" hotspotX="0.46875" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87638109_184563659625836_7382338746420559872_n.png">
+                            <image-point name="ShootPoint" x="-0.15625" y="0.53125" />
+                            <collision-poly>
+                                <point x="0.875" y="0.5" />
                                 <point x="0.84375" y="0.84375" />
                                 <point x="0.5" y="1" />
-                                <point x="0.28125" y="0.71875" />
-                                <point x="0.03125" y="0.5" />
-                                <point x="0.3125" y="0.3125" />
-                                <point x="0.5" y="0.03125" />
+                                <point x="0.25" y="0.75" />
+                                <point x="0.125" y="0.5" />
+                                <point x="0.5" y="0.125" />
                                 <point x="0.78125" y="0.21875" />
                             </collision-poly>
                         </frame>
-                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
-                            <image-point name="ShootPoint" x="1.15625" y="0.53125" />
-                        </frame>
-                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87040899_515805229352373_666734238946557952_n.png">
+                        <frame duration="1" hotspotX="0.53125" hotspotY="0.53125" original-source="C:\Users\11400314\Downloads\87638109_184563659625836_7382338746420559872_n.png">
                             <image-point name="ShootPoint" x="1.15625" y="0.53125" />
                             <collision-poly>
                                 <point x="0.21875" y="0.21875" />
@@ -398,6 +429,10 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="tex_path" sid="931284241225147">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\11400314\Downloads\88034254_193806995302259_2603528107327488000_n.png" />
+            </object-type>
         </object-folder>
         <object-folder name="Buttons">
             <object-type name="btn_reset" sid="939719704250160">
@@ -489,6 +524,97 @@
                 </animation>
             </animation-folder>
         </object-type>
+        <object-type name="storeScrollBar" sid="664249171951838">
+            <plugin id="sliderbar" />
+        </object-type>
+        <object-type name="item_wand" sid="901293592553338">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="580236340389376" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="item_shield" sid="533575161028772">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="999795501781032" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="TiledBackground" sid="636964157412659">
+            <plugin id="TiledBg" />
+            <texture original-source="C:\Users\11400314\Downloads\87777776_132555271445963_3179809385832513536_n.png" />
+        </object-type>
+        <object-type name="TiledBackground2" sid="117901396835583">
+            <plugin id="TiledBg" />
+            <texture original-source="C:\Users\11400314\Downloads\87385190_930898240674977_7088550137126977536_n.png" />
+        </object-type>
+        <object-type name="TiledBackground3" sid="694882399241295">
+            <plugin id="TiledBg" />
+            <behaviors>
+                <behavior-type name="Solid" sid="410836316711278">
+                    <behavior id="solid" />
+                </behavior-type>
+            </behaviors>
+            <texture original-source="C:\Users\11400314\Downloads\87545946_1430518270442956_476392871914635264_n.png" />
+        </object-type>
+        <object-type name="shopPanelScroll" sid="587406690751793">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="145060720539031" speed="5">
+                    <frame duration="1" hotspotX="0.508" hotspotY="0.004" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="TiledBackground4" sid="688649400470266">
+            <plugin id="TiledBg" />
+            <texture original-source="C:\Users\11400314\Downloads\87524935_807337539787900_8327548773530075136_n.png" />
+        </object-type>
+        <object-type name="Sprite" sid="196201955308480">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="397545087921148" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sprite2" sid="202019109400273">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="992627967201558" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sprite3" sid="784681954911380">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="624988062606995" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Sprite4" sid="480058559090083">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="747012307770861" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="TiledBackground5" sid="946788376426267">
+            <plugin id="TiledBg" />
+            <texture />
+        </object-type>
+        <object-type name="TiledBackground6" sid="287282029198525">
+            <plugin id="TiledBg" />
+            <texture original-source="C:\Users\11400314\Downloads\87575365_224360825361717_6427479864827183104_n.png" />
+        </object-type>
+        <object-type name="List" sid="805042235930503">
+            <plugin id="List" />
+        </object-type>
     </object-folder>
     <families>
         <family name="stunBulletEffects" plugin-id="Particles" sid="446995096276891">
@@ -522,6 +648,9 @@
                 <behavior-type name="Solid" sid="121581879968055">
                     <behavior id="solid" />
                 </behavior-type>
+                <behavior-type name="8Direction" sid="278658067228158">
+                    <behavior id="EightDir" />
+                </behavior-type>
             </behaviors>
             <effects>
                 <effect-type name="Pixellate">
@@ -534,10 +663,20 @@
                 <member>obj_playerMage</member>
             </members>
             <instance-variables>
+                <instance-variable name="name" sid="342854373911485" type="string" />
+                <instance-variable name="curLevel" sid="214137382198855" type="number" />
                 <instance-variable name="curHealth" sid="310226730767808" type="number" />
                 <instance-variable name="maxHealth" sid="285557598325728" type="number" />
                 <instance-variable name="totalScore" sid="988202616579625" type="number" />
-                <instance-variable name="curLevel" sid="214137382198855" type="number" />
+                <instance-variable name="autoAttackSpeed" sid="247943525237922" type="number" />
+                <instance-variable name="skill_1_level" sid="882597254514887" type="number" />
+                <instance-variable name="skill_2_level" sid="795217063457725" type="number" />
+                <instance-variable name="skill_3_level" sid="825098547388441" type="number" />
+                <instance-variable name="skill_4_level" sid="745830180881583" type="number" />
+                <instance-variable name="inventory_1_slot" sid="743993359069652" type="string" />
+                <instance-variable name="inventory_2_slot" sid="814368090699764" type="string" />
+                <instance-variable name="inventory_3_slot" sid="791657054543503" type="string" />
+                <instance-variable name="inventory_4_slot" sid="931066349689260" type="string" />
             </instance-variables>
         </family>
         <family name="bouncingProjectiles" plugin-id="Sprite" sid="749633539684510">
@@ -573,6 +712,17 @@
                 <instance-variable name="health" sid="323399217072313" type="number" />
             </instance-variables>
         </family>
+        <family name="playableItems" plugin-id="Sprite" sid="580216549207888">
+            <members>
+                <member>item_shield</member>
+                <member>item_wand</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="name" sid="621967594712241" type="string" />
+                <instance-variable comment="who can have/get the item" name="forWho" sid="266016944895287" type="string" />
+                <instance-variable name="index" sid="539609404064584" type="number" />
+            </instance-variables>
+        </family>
     </families>
     <layout-folder>
         <layout>TestMap.xml</layout>
@@ -587,6 +737,7 @@
         <event-sheet>sht_TestMap.xml</event-sheet>
         <event-sheet>sht_StartMap.xml</event-sheet>
         <event-sheet>sht_DarkMap.xml</event-sheet>
+        <event-sheet>sht_Shop.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" uid="16" />

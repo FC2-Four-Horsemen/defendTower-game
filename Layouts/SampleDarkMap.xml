@@ -76,13 +76,22 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
+                        <name>&quot;Mage&quot;</name>
+                        <curLevel>1</curLevel>
                         <curHealth>100</curHealth>
                         <maxHealth>100</maxHealth>
                         <totalScore>0</totalScore>
-                        <curLevel>1</curLevel>
+                        <autoAttackSpeed>0</autoAttackSpeed>
+                        <skill_1_level>1</skill_1_level>
+                        <skill_2_level>1</skill_2_level>
+                        <skill_3_level>1</skill_3_level>
+                        <skill_4_level>1</skill_4_level>
+                        <inventory_1_slot>&quot;empty&quot;</inventory_1_slot>
+                        <inventory_2_slot>&quot;empty&quot;</inventory_2_slot>
+                        <inventory_3_slot>&quot;empty&quot;</inventory_3_slot>
+                        <inventory_4_slot>&quot;empty&quot;</inventory_4_slot>
                         <isBlinkFinished>false</isBlinkFinished>
                         <distanceToBlink>0</distanceToBlink>
-                        <autoAttackCooldown>0</autoAttackCooldown>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="8Direction">
@@ -149,7 +158,7 @@
                                 <max-speed>200</max-speed>
                                 <acceleration>1000</acceleration>
                                 <deceleration>2000</deceleration>
-                                <rotate-speed>135</rotate-speed>
+                                <rotate-speed>360</rotate-speed>
                                 <rotate-object>No</rotate-object>
                                 <diagonals>Enabled</diagonals>
                                 <initial-state>Enabled</initial-state>
@@ -158,6 +167,17 @@
                         <behavior-instance type="Timer" />
                         <behavior-instance type="Solid">
                             <properties>
+                                <initial-state>Disabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="8Direction">
+                            <properties>
+                                <max-speed>200</max-speed>
+                                <acceleration>600</acceleration>
+                                <deceleration>500</deceleration>
+                                <directions>8 directions</directions>
+                                <set-angle>360 degree (smooth)</set-angle>
+                                <default-controls>Yes</default-controls>
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
@@ -175,11 +195,11 @@
                         <x>1137</x>
                         <y>718</y>
                         <z>0</z>
-                        <width>50</width>
-                        <height>49</height>
+                        <width>64</width>
+                        <height>64</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.510204077</hotspotY>
+                        <hotspotY>0.5</hotspotY>
                         <angle>3.141592741</angle>
                         <opacity>1</opacity>
                     </world>
@@ -210,7 +230,7 @@
                                 <max-speed>200</max-speed>
                                 <acceleration>1000</acceleration>
                                 <deceleration>2000</deceleration>
-                                <rotate-speed>135</rotate-speed>
+                                <rotate-speed>360</rotate-speed>
                                 <rotate-object>No</rotate-object>
                                 <diagonals>Enabled</diagonals>
                                 <initial-state>Enabled</initial-state>
@@ -219,6 +239,17 @@
                         <behavior-instance type="Timer" />
                         <behavior-instance type="Solid">
                             <properties>
+                                <initial-state>Disabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="8Direction">
+                            <properties>
+                                <max-speed>200</max-speed>
+                                <acceleration>600</acceleration>
+                                <deceleration>500</deceleration>
+                                <directions>8 directions</directions>
+                                <set-angle>360 degree (smooth)</set-angle>
+                                <default-controls>Yes</default-controls>
                                 <initial-state>Enabled</initial-state>
                             </properties>
                         </behavior-instance>
@@ -236,11 +267,11 @@
                         <x>1135</x>
                         <y>160</y>
                         <z>0</z>
-                        <width>50</width>
-                        <height>49</height>
+                        <width>64</width>
+                        <height>64</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.510204077</hotspotY>
+                        <hotspotY>0.5</hotspotY>
                         <angle>3.141592741</angle>
                         <opacity>1</opacity>
                     </world>

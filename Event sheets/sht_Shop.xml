@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>sht_Shop</name>
+    <events>
+        <event-group description="" sid="656160428172656" title="Store">
+            <sub-events>
+                <event-block sid="826247325602946">
+                    <conditions>
+                        <condition id="0" name="On key pressed" sid="932432755149267" type="Keyboard">
+                            <param id="0" name="Key">84</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="993592998235155" type="storePanel">
+                            <param id="0" name="Instance variable">keyTPressed</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-13" name="Set boolean" sid="839984474181699" type="storePanel">
+                            <param id="0" name="Instance variable">keyTPressed</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="603155456559039">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="427307604605094" type="storePanel">
+                            <param id="0" name="Instance variable">keyTPressed</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-14" name="Toggle boolean" sid="583359101054920" type="storePanel">
+                            <param id="0" name="Instance variable">showStore</param>
+                        </action>
+                        <action id="-13" name="Set boolean" sid="653114979794138" type="storePanel">
+                            <param id="0" name="Instance variable">keyTPressed</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="148473694796813">
+                    <conditions>
+                        <condition id="-8" name="Is boolean instance variable set" sid="429309883520870" type="storePanel">
+                            <param id="0" name="Instance variable">showStore</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set layer visible" sid="221605220905411" type="System">
+                            <param id="0" name="Layer">(&quot;Store&quot;)</param>
+                            <param id="1" name="Visibility">1</param>
+                        </action>
+                        <action id="-4" name="Set layer visible" sid="381150513283436" type="System">
+                            <param id="0" name="Layer">(&quot;StoreScroll&quot;)</param>
+                            <param id="1" name="Visibility">1</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="416600109870763" type="System">
+                            <param id="0" name="Time scale">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="520809670044162">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="708150782351923" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set layer visible" sid="711968059392591" type="System">
+                            <param id="0" name="Layer">(&quot;Store&quot;)</param>
+                            <param id="1" name="Visibility">0</param>
+                        </action>
+                        <action id="-4" name="Set layer visible" sid="831887515740019" type="System">
+                            <param id="0" name="Layer">(&quot;StoreScroll&quot;)</param>
+                            <param id="1" name="Visibility">0</param>
+                        </action>
+                        <action id="-13" name="Set time scale" sid="792249314491601" type="System">
+                            <param id="0" name="Time scale">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="528222692252673">
+            <conditions>
+                <condition id="-9" name="Layer is visible" sid="114829744609437" type="System">
+                    <param id="0" name="Layer">(&quot;Store&quot;)</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="2" name="Set CSS style" sid="426431178584229" type="storeScrollBar">
+                    <param id="0" name="Property name">&quot;transform&quot;</param>
+                    <param id="1" name="Value">&quot;rotate(90deg)&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="964892743622193">
+            <conditions>
+                <condition id="-18" name="On created" sid="538908037024586" type="shopPanelScroll" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="156483914872110" type="System">
+                    <param id="0" name="Object to create">item_wand</param>
+                    <param id="1" name="Layer">(&quot;Store&quot;)</param>
+                    <param id="2" name="X">shopPanelScroll.X</param>
+                    <param id="3" name="Y">shopPanelScroll.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="951765003003184">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="750357052464799" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Set position" sid="716862241139988" type="shopPanelScroll">
+                    <param id="0" name="X">shopPanelScroll.X</param>
+                    <param id="1" name="Y">storeScrollBar.Value + 120</param>
+                </action>
+                <action id="-4" name="Set position to another object" sid="960603605369959" type="item_wand">
+                    <param id="0" name="Object">shopPanelScroll</param>
+                    <param id="1" name="Image point (optional)">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
