@@ -11,6 +11,7 @@
     <saved-with-version>27500</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
+        <plugin author="Scirra" id="Arr" version="1">Array</plugin>
         <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
@@ -435,6 +436,35 @@
                 <plugin id="TiledBg" />
                 <texture original-source="C:\Users\11400314\Downloads\88034254_193806995302259_2603528107327488000_n.png" />
             </object-type>
+            <object-type name="TiledBackground" sid="636964157412659">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\11400314\Downloads\87777776_132555271445963_3179809385832513536_n.png" />
+            </object-type>
+            <object-type name="TiledBackground4" sid="688649400470266">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\11400314\Downloads\87524935_807337539787900_8327548773530075136_n.png" />
+            </object-type>
+            <object-type name="TiledBackground6" sid="287282029198525">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\11400314\Downloads\87575365_224360825361717_6427479864827183104_n.png" />
+            </object-type>
+            <object-type name="TiledBackground5" sid="946788376426267">
+                <plugin id="TiledBg" />
+                <texture />
+            </object-type>
+            <object-type name="TiledBackground2" sid="117901396835583">
+                <plugin id="TiledBg" />
+                <texture original-source="C:\Users\11400314\Downloads\87385190_930898240674977_7088550137126977536_n.png" />
+            </object-type>
+            <object-type name="TiledBackground3" sid="694882399241295">
+                <plugin id="TiledBg" />
+                <behaviors>
+                    <behavior-type name="Solid" sid="410836316711278">
+                        <behavior id="solid" />
+                    </behavior-type>
+                </behaviors>
+                <texture original-source="C:\Users\11400314\Downloads\87545946_1430518270442956_476392871914635264_n.png" />
+            </object-type>
         </object-folder>
         <object-folder name="Buttons">
             <object-type name="btn_reset" sid="939719704250160">
@@ -548,23 +578,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="TiledBackground" sid="636964157412659">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\11400314\Downloads\87777776_132555271445963_3179809385832513536_n.png" />
-        </object-type>
-        <object-type name="TiledBackground2" sid="117901396835583">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\11400314\Downloads\87385190_930898240674977_7088550137126977536_n.png" />
-        </object-type>
-        <object-type name="TiledBackground3" sid="694882399241295">
-            <plugin id="TiledBg" />
-            <behaviors>
-                <behavior-type name="Solid" sid="410836316711278">
-                    <behavior id="solid" />
-                </behavior-type>
-            </behaviors>
-            <texture original-source="C:\Users\11400314\Downloads\87545946_1430518270442956_476392871914635264_n.png" />
-        </object-type>
         <object-type name="shopPanelScroll" sid="587406690751793">
             <plugin id="Sprite" />
             <instance-variables>
@@ -576,10 +589,6 @@
                     <frame duration="1" hotspotX="0.508" hotspotY="0.004" />
                 </animation>
             </animation-folder>
-        </object-type>
-        <object-type name="TiledBackground4" sid="688649400470266">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\11400314\Downloads\87524935_807337539787900_8327548773530075136_n.png" />
         </object-type>
         <object-type name="Sprite" sid="196201955308480">
             <plugin id="Sprite" />
@@ -613,14 +622,6 @@
                 </animation>
             </animation-folder>
         </object-type>
-        <object-type name="TiledBackground5" sid="946788376426267">
-            <plugin id="TiledBg" />
-            <texture />
-        </object-type>
-        <object-type name="TiledBackground6" sid="287282029198525">
-            <plugin id="TiledBg" />
-            <texture original-source="C:\Users\11400314\Downloads\87575365_224360825361717_6427479864827183104_n.png" />
-        </object-type>
         <object-type name="List" sid="805042235930503">
             <plugin id="List" />
         </object-type>
@@ -639,6 +640,20 @@
         </object-type>
         <object-type name="Touch" sid="995347659947304">
             <plugin id="Touch" />
+        </object-type>
+        <object-type global="1" name="Array" sid="694897658144115">
+            <plugin id="Arr" />
+        </object-type>
+        <object-type name="Download" sid="832373726192589">
+            <plugin id="Button" />
+        </object-type>
+        <object-type name="item_three" sid="893543609851368">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="117205040214921" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
     <families>
@@ -740,12 +755,12 @@
         <family name="playableItems" plugin-id="Sprite" sid="580216549207888">
             <members>
                 <member>item_shield</member>
+                <member>item_three</member>
                 <member>item_wand</member>
             </members>
             <instance-variables>
                 <instance-variable name="name" sid="621967594712241" type="string" />
-                <instance-variable comment="who can have/get the item" name="forWho" sid="266016944895287" type="string" />
-                <instance-variable name="index" sid="539609404064584" type="number" />
+                <instance-variable name="index" sid="920035883585244" type="number" />
             </instance-variables>
         </family>
     </families>
@@ -814,5 +829,6 @@
         </file-folder>
         <file name="Mage.json" />
         <file name="Map1.json" />
+        <file name="Items.json" />
     </files-folder>
 </c2project>
