@@ -95,26 +95,59 @@
                 <condition id="-18" name="On created" sid="538908037024586" type="shopPanelScroll" />
             </conditions>
             <actions>
-                <action id="-3" name="Create object" sid="156483914872110" type="System">
-                    <param id="0" name="Object to create">item_wand</param>
+                <action id="-10" name="Set value" sid="547911896587995" type="shopPanelScroll">
+                    <param id="0" name="Instance variable">oldY</param>
+                    <param id="1" name="Value">Self.Y</param>
+                </action>
+                <action id="-3" name="Create object" sid="767143371347099" type="System">
+                    <param id="0" name="Object to create">ItemPanel</param>
                     <param id="1" name="Layer">(&quot;Store&quot;)</param>
                     <param id="2" name="X">shopPanelScroll.X</param>
                     <param id="3" name="Y">shopPanelScroll.Y</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="146553173677645" type="ItemPanel">
+                    <param id="0" name="Object">item_wand</param>
+                    <param id="1" name="Layer">(&quot;Store&quot;)</param>
+                    <param id="2" name="Image point">&quot;ItemIcon&quot;</param>
                 </action>
             </actions>
         </event-block>
         <event-block sid="951765003003184">
             <conditions>
+                <condition id="2" name="On changed" sid="241729721481513" type="storeScrollBar" />
                 <condition id="-1" name="Every tick" sid="750357052464799" type="System" />
             </conditions>
             <actions>
-                <action id="-3" name="Set position" sid="716862241139988" type="shopPanelScroll">
+                <action id="-11" name="Add to" sid="247053674854270" type="shopPanelScroll">
+                    <param id="0" name="Instance variable">newY</param>
+                    <param id="1" name="Value">storeScrollBar.Value + shopPanelScroll.oldY</param>
+                </action>
+                <action id="-2" name="Set Y" sid="672880461025186" type="shopPanelScroll">
+                    <param id="0" name="Y">Self.newY</param>
+                </action>
+                <action id="-3" name="Set position" sid="546003633198990" type="ItemPanel">
                     <param id="0" name="X">shopPanelScroll.X</param>
-                    <param id="1" name="Y">storeScrollBar.Value + 120</param>
+                    <param id="1" name="Y">shopPanelScroll.Y</param>
                 </action>
                 <action id="-4" name="Set position to another object" sid="960603605369959" type="item_wand">
-                    <param id="0" name="Object">shopPanelScroll</param>
-                    <param id="1" name="Image point (optional)">0</param>
+                    <param id="0" name="Object">ItemPanel</param>
+                    <param id="1" name="Image point (optional)">&quot;itemIcon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>click and drag</comment>
+        <event-block sid="877798349305818">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="884113047980167" type="Mouse">
+                    <param id="0" name="Object">storePanel</param>
+                </condition>
+                <condition id="2" name="Mouse button is down" sid="774332664538066" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-2" name="Set Y" sid="667924443150758" type="storePanel">
+                    <param id="0" name="Y">Mouse.Y</param>
                 </action>
             </actions>
         </event-block>

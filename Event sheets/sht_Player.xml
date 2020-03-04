@@ -45,6 +45,11 @@
                         <condition id="2" name="Mouse button is down" sid="449915891977438" type="Mouse">
                             <param id="0" name="Mouse button">0</param>
                         </condition>
+                        <condition id="-7" name="Compare instance variable" sid="208667458589986" type="obj_playerMage">
+                            <param id="0" name="Instance variable">autoAttackSpeed</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" sid="252643744155259" type="System">
@@ -75,7 +80,13 @@
                     </actions>
                 </event-block>
                 <event-block sid="719468344690195">
-                    <conditions />
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="160082890501022" type="obj_playerMage">
+                            <param id="0" name="Instance variable">autoAttackSpeed</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
                     <actions>
                         <action id="-12" name="Subtract from" sid="881946859010930" type="obj_playerMage">
                             <param id="0" name="Instance variable">autoAttackSpeed</param>
@@ -95,6 +106,10 @@
                             <param id="1" name="Value">10</param>
                         </action>
                         <action id="-9" name="Destroy" sid="335265007871930" type="proj_manaBullet" />
+                        <action id="0" name="Call function" sid="163283271746146" type="Function">
+                            <param id="0" name="Name">&quot;enemyHit&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -266,6 +281,16 @@
                                     <param id="0" name="Instance variable">isFired</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="25" name="Play at object" sid="846982258724003" type="Audio">
+                                    <param id="0" name="Audio file">Laser Beam</param>
+                                    <param id="1" name="Loop">0</param>
+                                    <param id="2" name="Volume">0</param>
+                                    <param id="3" name="Object">playableCharacters</param>
+                                    <param id="4" name="Inner angle">360</param>
+                                    <param id="5" name="Outer angle">360</param>
+                                    <param id="6" name="Outer gain">0</param>
+                                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block sid="934091332211843">
@@ -290,14 +315,27 @@
                                     <actions>
                                         <action id="-12" name="Subtract from" sid="879124760676671" type="enemyMinions">
                                             <param id="0" name="Instance variable">curHealth</param>
-                                            <param id="1" name="Value">Dictionary.Get(&quot;laserDamage&quot;)</param>
+                                            <param id="1" name="Value">proj_laser.damage</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="990138536063461" type="proj_laser">
+                                            <param id="0" name="Instance variable">damage</param>
+                                            <param id="1" name="Value">(proj_laser.damage / 1.5) - 1</param>
+                                        </action>
+                                        <action id="0" name="Call function" sid="319926433894587" type="Function">
+                                            <param id="0" name="Name">&quot;enemyHit&quot;</param>
+                                            <param id="1" name="Parameter {n}"></param>
                                         </action>
                                     </actions>
                                     <sub-events>
-                                        <event-block sid="964839525970033">
+                                        <event-block any="1" sid="964839525970033">
                                             <conditions>
                                                 <condition id="-7" name="Compare instance variable" sid="963362209009960" type="proj_laser">
                                                     <param id="0" name="Instance variable">isPiercing</param>
+                                                    <param id="1" name="Comparison">3</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="517357612715407" type="proj_laser">
+                                                    <param id="0" name="Instance variable">damage</param>
                                                     <param id="1" name="Comparison">3</param>
                                                     <param id="2" name="Value">0</param>
                                                 </condition>
@@ -416,14 +454,14 @@
                                     </conditions>
                                     <actions>
                                         <action id="-9" name="Destroy" sid="182377120989301" type="proj_stunBullet" />
+                                        <action behavior="Timer" id="0" name="Start timer" sid="915089971909758" type="enemyMinions">
+                                            <param id="0" name="Duration">1.0</param>
+                                            <param id="1" name="Type">0</param>
+                                            <param id="2" name="Tag">&quot;stunDuration&quot;</param>
+                                        </action>
                                         <action id="-13" name="Set boolean" sid="285087570192133" type="enemyMinions">
                                             <param id="0" name="Instance variable">isStunned</param>
                                             <param id="1" name="Value">1</param>
-                                        </action>
-                                        <action behavior="Timer" id="0" name="Start timer" sid="259170006398736" type="enemyMinions">
-                                            <param id="0" name="Duration">1.0</param>
-                                            <param id="1" name="Type">0</param>
-                                            <param id="2" name="Tag">Dictionary.Get(&quot;stunDuration&quot;)</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -576,8 +614,17 @@
                                             <param id="0" name="Instance variable">curHealth</param>
                                             <param id="1" name="Value">Dictionary.Get(&quot;fireballDamage&quot;)</param>
                                         </action>
-                                        <action id="-9" name="Destroy" sid="369093256718797" type="proj_fireball" />
-                                        <action id="-9" name="Destroy" sid="541389926661666" type="vfx_fireballShadow" />
+                                    </actions>
+                                </event-block>
+                                <event-block sid="675650239804877">
+                                    <conditions>
+                                        <condition id="-8" name="Is boolean instance variable set" sid="976175935931537" type="proj_fireball">
+                                            <param id="0" name="Instance variable">isExploded</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" sid="235750461615315" type="proj_fireball" />
+                                        <action id="-9" name="Destroy" sid="969536455842494" type="vfx_fireballShadow" />
                                     </actions>
                                 </event-block>
                             </sub-events>

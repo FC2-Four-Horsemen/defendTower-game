@@ -339,11 +339,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>128</x>
-                        <y>512</y>
+                        <x>120.412246704</x>
+                        <y>519.520385742</y>
                         <z>0</z>
-                        <width>143.108352661</width>
-                        <height>143.108352661</height>
+                        <width>128</width>
+                        <height>128</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -812,6 +812,32 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="shopPanelScroll" uid="108">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <newY>0</newY>
+                        <oldY>0</oldY>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>224</x>
+                        <y>0</y>
+                        <z>0</z>
+                        <width>250</width>
+                        <height>480</height>
+                        <depth>0</depth>
+                        <hotspotX>0.508000016</hotspotX>
+                        <hotspotY>0.004</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
                 <instance type="storeTitle" uid="11">
                     <properties>
                         <text>STORE</text>
@@ -850,6 +876,9 @@
                         <enabled>Yes</enabled>
                         <id-optional></id-optional>
                     </properties>
+                    <instance-variables>
+                        <IconID>0</IconID>
+                    </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -935,30 +964,7 @@
             <use-render-cells>0</use-render-cells>
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
-            <instances>
-                <instance type="shopPanelScroll" uid="108">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <initial-animation>Default</initial-animation>
-                        <initial-frame>0</initial-frame>
-                        <collisions>Enabled</collisions>
-                    </properties>
-                    <blend-mode>8</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>224</x>
-                        <y>96</y>
-                        <z>0</z>
-                        <width>250</width>
-                        <height>288</height>
-                        <depth>0</depth>
-                        <hotspotX>0.508000016</hotspotX>
-                        <hotspotY>0.004</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-            </instances>
+            <instances />
             <effects />
         </layer>
     </layers>

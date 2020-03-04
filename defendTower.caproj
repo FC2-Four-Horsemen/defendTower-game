@@ -11,6 +11,7 @@
     <saved-with-version>27500</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
+        <plugin author="Scirra" id="Audio" version="1">Audio</plugin>
         <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
         <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
@@ -24,6 +25,7 @@
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Text" version="1">Text</plugin>
         <plugin author="Scirra" id="TiledBg" version="1">Tiled Background</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
         <plugin author="Scirra" id="XML" version="1">XML</plugin>
         <plugin author="Scirra" id="progressbar" version="1">Progress bar</plugin>
         <plugin author="Scirra" id="sliderbar" version="1">Slider bar</plugin>
@@ -359,7 +361,7 @@
                 <plugin id="Sprite" />
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="688040408964790" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Downloads\87050454_2974299595969486_7463545853454581760_n.png">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\Jerry\Downloads\88077153_2657659654362778_8596213572193746944_n.png">
                             <collision-poly>
                                 <point x="0.234375" y="0.234375" />
                                 <point x="0.5" y="0.015625" />
@@ -526,6 +528,9 @@
         </object-type>
         <object-type name="storeScrollBar" sid="664249171951838">
             <plugin id="sliderbar" />
+            <instance-variables>
+                <instance-variable name="IconID" sid="960678021661218" type="number" />
+            </instance-variables>
         </object-type>
         <object-type name="item_wand" sid="901293592553338">
             <plugin id="Sprite" />
@@ -562,6 +567,10 @@
         </object-type>
         <object-type name="shopPanelScroll" sid="587406690751793">
             <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="newY" sid="695785802708085" type="number" />
+                <instance-variable name="oldY" sid="118139004179224" type="number" />
+            </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="145060720539031" speed="5">
                     <frame duration="1" hotspotX="0.508" hotspotY="0.004" />
@@ -614,6 +623,22 @@
         </object-type>
         <object-type name="List" sid="805042235930503">
             <plugin id="List" />
+        </object-type>
+        <object-type name="Audio" sid="627070738790344">
+            <plugin id="Audio" />
+        </object-type>
+        <object-type name="ItemPanel" sid="243642473700628">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="865365971962129" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
+                        <image-point name="ItemIcon" x="0.19" y="0.38" />
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Touch" sid="995347659947304">
+            <plugin id="Touch" />
         </object-type>
     </object-folder>
     <families>
@@ -745,9 +770,39 @@
         <global-instance type="AJAX" uid="41" />
         <global-instance type="Browser" uid="42" />
         <global-instance type="Function" uid="46" />
+        <global-instance type="Audio" uid="114">
+            <properties>
+                <timescale-audio>Off</timescale-audio>
+                <saveload>All</saveload>
+                <play-in-background>No</play-in-background>
+                <positioned-audio></positioned-audio>
+                <panning-model>HRTF</panning-model>
+                <distance-model>Inverse</distance-model>
+                <listener-z-height>600</listener-z-height>
+                <reference-distance>600</reference-distance>
+                <maximum-distance>10000</maximum-distance>
+                <roll-off-factor>1</roll-off-factor>
+            </properties>
+        </global-instance>
+        <global-instance type="Touch" uid="116">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
     </global-instances>
-    <sounds-folder />
-    <music-folder />
+    <sounds-folder>
+        <file name="Laser Beam.ogg" />
+        <file name="Bass-ic Error.ogg" />
+        <file name="Burp.ogg" />
+        <file name="Circuit.ogg" />
+        <file name="Power.ogg" />
+        <file name="Decision1.ogg" />
+        <file name="Decision2.ogg" />
+        <file name="Cardboard Hit 12 Short Crush.ogg" />
+    </sounds-folder>
+    <music-folder>
+        <file name="Kevin MacLeod - Werq.ogg" />
+    </music-folder>
     <files-folder>
         <file-folder name="Icons">
             <file name="icon-16.png" />
