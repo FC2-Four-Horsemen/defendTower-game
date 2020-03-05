@@ -17,7 +17,6 @@
         <plugin author="Scirra" id="Button" version="1">Button</plugin>
         <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
-        <plugin author="Yann Granjon" id="JSON" version="1">JSON</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
         <plugin author="Scirra" id="List" version="1">List</plugin>
         <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
@@ -29,7 +28,6 @@
         <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
         <plugin author="Scirra" id="XML" version="1">XML</plugin>
         <plugin author="Scirra" id="progressbar" version="1">Progress bar</plugin>
-        <plugin author="Scirra" id="sliderbar" version="1">Slider bar</plugin>
     </used-plugins>
     <used-behaviors>
         <behavior author="Scirra" id="Bullet" version="1">Bullet</behavior>
@@ -80,20 +78,6 @@
             </object-type>
             <object-type name="ui_4skillbar" sid="849834402002202">
                 <plugin id="progressbar" />
-            </object-type>
-        </object-folder>
-        <object-folder name="Text">
-            <object-type name="Controls" sid="609089099193732">
-                <plugin id="Text" />
-            </object-type>
-            <object-type name="scoreValue" sid="242989090152986">
-                <plugin id="Text" />
-            </object-type>
-            <object-type name="Skills" sid="937034697253287">
-                <plugin id="Text" />
-            </object-type>
-            <object-type name="SkillsLabel" sid="386109056414375">
-                <plugin id="Text" />
             </object-type>
         </object-folder>
         <object-folder name="Enemies">
@@ -358,7 +342,7 @@
             </object-type>
         </object-folder>
         <object-folder name="Tower">
-            <object-type name="obj_toweMage" sid="884216566008129">
+            <object-type name="obj_towerMage" sid="884216566008129">
                 <plugin id="Sprite" />
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="688040408964790" speed="5">
@@ -478,14 +462,84 @@
             </object-type>
         </object-folder>
         <object-folder name="UI">
-            <object-type name="ui_healthBar" sid="565821462946055">
+            <object-folder name="Store">
+                <object-type name="ui_storeBuyText" sid="613990405653882">
+                    <plugin id="Text" />
+                </object-type>
+                <object-type name="ui_storePanel" sid="586645770594655">
+                    <plugin id="Sprite" />
+                    <instance-variables>
+                        <instance-variable name="keyTPressed" sid="582057797500670" type="boolean" />
+                        <instance-variable name="showStore" sid="741961650796813" type="boolean" />
+                        <instance-variable name="itemSelectedUID" sid="216328837859353" type="number" />
+                        <instance-variable name="itemHoveredUID" sid="279400397628838" type="number" />
+                    </instance-variables>
+                    <animation-folder>
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="985730287008840" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Desktop\new\89298877_497367537556813_5193214797780353024_n (1).png" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="ui_storeTitleText" sid="560712186189234">
+                    <plugin id="Text" />
+                </object-type>
+                <object-type name="ui_storeItemNameText" sid="827647817062373">
+                    <plugin id="Text" />
+                    <container>
+                        <type>ui_storeItemTooltip</type>
+                        <type>ui_storeItemNameText</type>
+                    </container>
+                </object-type>
+                <object-type name="ui_storeItemTooltip" sid="243642473700628">
+                    <plugin id="Sprite" />
+                    <instance-variables>
+                        <instance-variable name="isDrawn" sid="126444710540602" type="boolean" />
+                        <instance-variable name="itemHovered" sid="978323109980345" type="number" />
+                    </instance-variables>
+                    <container>
+                        <type>ui_storeItemTooltip</type>
+                        <type>ui_storeItemNameText</type>
+                    </container>
+                    <animation-folder>
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="865365971962129" speed="5">
+                            <frame duration="1" hotspotX="0" hotspotY="0">
+                                <image-point name="toolTipName" x="0.035" y="0.04" />
+                                <image-point name="toolTipDesc" x="0.095" y="0.49" />
+                            </frame>
+                        </animation>
+                    </animation-folder>
+                </object-type>
+                <object-type name="ui_storeBuyArea" sid="281039810969642">
+                    <plugin id="Sprite" />
+                    <animation-folder>
+                        <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="334741874166510" speed="5">
+                            <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                        </animation>
+                    </animation-folder>
+                </object-type>
+            </object-folder>
+            <object-folder name="Text">
+                <object-type name="Controls" sid="609089099193732">
+                    <plugin id="Text" />
+                </object-type>
+                <object-type name="ui_scoreValue" sid="242989090152986">
+                    <plugin id="Text" />
+                </object-type>
+                <object-type name="Skills" sid="937034697253287">
+                    <plugin id="Text" />
+                </object-type>
+                <object-type name="SkillsLabel" sid="386109056414375">
+                    <plugin id="Text" />
+                </object-type>
+            </object-folder>
+            <object-type name="ui_floatingHealthBar" sid="565821462946055">
                 <plugin id="NinePatch" />
                 <instance-variables>
                     <instance-variable name="id" sid="809783338491183" type="number" />
                 </instance-variables>
                 <texture />
             </object-type>
-            <object-type name="ui_heath" sid="312117338026690">
+            <object-type name="ui_floatingHealth" sid="312117338026690">
                 <plugin id="NinePatch" />
                 <instance-variables>
                     <instance-variable name="id" sid="574720052905513" type="number" />
@@ -496,7 +550,7 @@
                 <plugin id="Sprite" />
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="651936229639012" speed="5">
-                        <frame duration="1" hotspotX="0.5" hotspotY="1" />
+                        <frame duration="1" hotspotX="0" hotspotY="0.5" />
                     </animation>
                 </animation-folder>
             </object-type>
@@ -513,6 +567,48 @@
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="404783877711081" speed="5">
                         <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+        </object-folder>
+        <object-folder name="Items">
+            <object-type name="item_holyChalice" sid="893543609851368">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="117205040214921" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Desktop\new\87983754_683023965849104_6896070456202231808_n.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="item_bookEnlight" sid="533575161028772">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="999795501781032" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Desktop\new\88005293_193890115225118_9152052064795230208_n.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="item_sorcerersCap" sid="901293592553338">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="580236340389376" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Desktop\new\88302154_500239820585052_5488232759858036736_n.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="item_hourglassFate" sid="480411810859427">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="200449211096893" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Desktop\new\88261127_809828162840377_3737314342924713984_n.png" />
+                    </animation>
+                </animation-folder>
+            </object-type>
+            <object-type name="item_catalystMagic" sid="575174183373443">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="299044372545106" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" original-source="C:\Users\11400314\Desktop\new\88140316_217377779455919_4177773787569192960_n.png" />
                     </animation>
                 </animation-folder>
             </object-type>
@@ -538,122 +634,80 @@
         <object-type global="1" name="Dictionary" sid="205716771670651">
             <plugin id="Dictionary" />
         </object-type>
-        <object-type global="1" name="JSON" sid="734830339253292">
-            <plugin id="JSON" />
-        </object-type>
-        <object-type name="storeTitle" sid="560712186189234">
-            <plugin id="Text" />
-        </object-type>
-        <object-type name="storePanel" sid="586645770594655">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="keyTPressed" sid="582057797500670" type="boolean" />
-                <instance-variable name="showStore" sid="741961650796813" type="boolean" />
-            </instance-variables>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="985730287008840" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="storeScrollBar" sid="664249171951838">
-            <plugin id="sliderbar" />
-            <instance-variables>
-                <instance-variable name="IconID" sid="960678021661218" type="number" />
-            </instance-variables>
-        </object-type>
-        <object-type name="item_wand" sid="901293592553338">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="580236340389376" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="item_shield" sid="533575161028772">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="999795501781032" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="shopPanelScroll" sid="587406690751793">
-            <plugin id="Sprite" />
-            <instance-variables>
-                <instance-variable name="newY" sid="695785802708085" type="number" />
-                <instance-variable name="oldY" sid="118139004179224" type="number" />
-            </instance-variables>
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="145060720539031" speed="5">
-                    <frame duration="1" hotspotX="0.508" hotspotY="0.004" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Sprite" sid="196201955308480">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="397545087921148" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Sprite2" sid="202019109400273">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="992627967201558" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Sprite3" sid="784681954911380">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="624988062606995" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
-        <object-type name="Sprite4" sid="480058559090083">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="747012307770861" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
-                </animation>
-            </animation-folder>
-        </object-type>
         <object-type name="List" sid="805042235930503">
             <plugin id="List" />
         </object-type>
         <object-type name="Audio" sid="627070738790344">
             <plugin id="Audio" />
         </object-type>
-        <object-type name="ItemPanel" sid="243642473700628">
-            <plugin id="Sprite" />
-            <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="865365971962129" speed="5">
-                    <frame duration="1" hotspotX="0.5" hotspotY="0.5">
-                        <image-point name="ItemIcon" x="0.19" y="0.38" />
-                    </frame>
-                </animation>
-            </animation-folder>
-        </object-type>
         <object-type name="Touch" sid="995347659947304">
             <plugin id="Touch" />
         </object-type>
-        <object-type global="1" name="Array" sid="694897658144115">
+        <object-type global="1" name="shopArray" sid="694897658144115">
             <plugin id="Arr" />
         </object-type>
         <object-type name="Download" sid="832373726192589">
             <plugin id="Button" />
         </object-type>
-        <object-type name="item_three" sid="893543609851368">
+        <object-type global="1" name="inventoryArray" sid="573710052973619">
+            <plugin id="Arr" />
+        </object-type>
+        <object-type name="ui_storeItemDescText" sid="619820665883131">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="ui_HeroPortrait" sid="574101940492020">
             <plugin id="Sprite" />
             <animation-folder>
-                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="117205040214921" speed="5">
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="365010511280021" speed="5">
                     <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
                 </animation>
             </animation-folder>
+        </object-type>
+        <object-type name="ui_healthBar" sid="672680919302908">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="231585963159406" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="ui_health" sid="696595905225719">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="174180755115702" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0.5">
+                        <collision-poly>
+                            <point x="0.1" y="0.1" />
+                            <point x="0.811111" y="0.1" />
+                            <point x="0.811111" y="0.9" />
+                            <point x="0.1" y="0.9" />
+                        </collision-poly>
+                    </frame>
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="ui_healthTower" sid="943948333106767">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="421378570642550" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="ui_armorTower" sid="406713305298701">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="730839541186300" speed="5">
+                    <frame duration="1" hotspotX="0" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="par_buyExplo" sid="745793460021287">
+            <plugin id="Particles" />
+            <texture />
+        </object-type>
+        <object-type name="ui_goldValue" sid="609154709929416">
+            <plugin id="Text" />
         </object-type>
     </object-folder>
     <families>
@@ -717,6 +771,8 @@
                 <instance-variable name="inventory_2_slot" sid="814368090699764" type="string" />
                 <instance-variable name="inventory_3_slot" sid="791657054543503" type="string" />
                 <instance-variable name="inventory_4_slot" sid="931066349689260" type="string" />
+                <instance-variable name="totalItems" sid="453977819173677" type="number" />
+                <instance-variable name="curGold" sid="583598705422442" type="number" />
             </instance-variables>
         </family>
         <family name="bouncingProjectiles" plugin-id="Sprite" sid="749633539684510">
@@ -746,21 +802,42 @@
         </family>
         <family name="playableTowers" plugin-id="Sprite" sid="656702669783686">
             <members>
-                <member>obj_toweMage</member>
+                <member>obj_towerMage</member>
             </members>
             <instance-variables>
-                <instance-variable name="health" sid="323399217072313" type="number" />
+                <instance-variable name="curHealth" sid="323399217072313" type="number" />
+                <instance-variable name="curArmor" sid="226770695820658" type="number" />
+                <instance-variable name="maxHealth" sid="475069951078511" type="number" />
+                <instance-variable name="maxArmor" sid="725447072512255" type="number" />
+                <instance-variable name="isSelected" sid="207210332516709" type="boolean" />
             </instance-variables>
         </family>
         <family name="playableItems" plugin-id="Sprite" sid="580216549207888">
             <members>
-                <member>item_shield</member>
-                <member>item_three</member>
-                <member>item_wand</member>
+                <member>item_bookEnlight</member>
+                <member>item_catalystMagic</member>
+                <member>item_holyChalice</member>
+                <member>item_hourglassFate</member>
+                <member>item_sorcerersCap</member>
             </members>
             <instance-variables>
                 <instance-variable name="name" sid="621967594712241" type="string" />
                 <instance-variable name="index" sid="920035883585244" type="number" />
+                <instance-variable name="isSelected" sid="540489202519218" type="boolean" />
+                <instance-variable name="xPosition" sid="344397400340227" type="number" />
+                <instance-variable name="yPosition" sid="527938699224289" type="number" />
+                <instance-variable name="itemCost" sid="656284299741176" type="number" />
+            </instance-variables>
+        </family>
+        <family name="horizontalScaleBars" plugin-id="Sprite" sid="171927002748794">
+            <members>
+                <member>ui_armorTower</member>
+                <member>ui_health</member>
+                <member>ui_healthTower</member>
+                <member>ui_iconProgress</member>
+            </members>
+            <instance-variables>
+                <instance-variable name="maxSize" sid="859527863263237" type="number" />
             </instance-variables>
         </family>
     </families>
@@ -778,6 +855,7 @@
         <event-sheet>sht_StartMap.xml</event-sheet>
         <event-sheet>sht_DarkMap.xml</event-sheet>
         <event-sheet>sht_Shop.xml</event-sheet>
+        <event-sheet>sht_Tower.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" uid="16" />

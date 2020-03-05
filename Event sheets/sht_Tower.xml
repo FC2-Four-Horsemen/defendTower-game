@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>sht_Tower</name>
+    <events>
+        <event-block sid="384288010894288">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="271385499770532" type="playableTowers">
+                    <param id="0" name="Instance variable">curArmor</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="818158754900462" type="playableTowers">
+                    <param id="0" name="Instance variable">curArmor</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="772410723223422">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="969378479080832" type="playableTowers">
+                    <param id="0" name="Instance variable">curHealth</param>
+                    <param id="1" name="Comparison">2</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="757231201573637" type="playableTowers">
+                    <param id="0" name="Instance variable">curHealth</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="579042918631628">
+            <conditions>
+                <condition id="-14" name="Pick by unique ID" sid="836223789147769" type="ui_armorTower">
+                    <param id="0" name="Unique ID">129</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-5" name="Set width" sid="779132136934699" type="ui_armorTower">
+                    <param id="0" name="Width">Self.maxSize * (playableTowers.curArmor / playableTowers.maxArmor)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="692620618862735">
+            <conditions>
+                <condition id="-14" name="Pick by unique ID" sid="689504153013072" type="ui_healthTower">
+                    <param id="0" name="Unique ID">127</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-5" name="Set width" sid="484218036568410" type="ui_healthTower">
+                    <param id="0" name="Width">Self.maxSize * (playableTowers.curHealth / playableTowers.maxHealth)</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -45,7 +45,7 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="0" name="Set text" sid="175252016181863" type="scoreValue">
+                <action id="0" name="Set text" sid="175252016181863" type="ui_scoreValue">
                     <param id="0" name="Text">&quot;Score:&quot; &amp; playableCharacters.totalScore</param>
                 </action>
             </actions>

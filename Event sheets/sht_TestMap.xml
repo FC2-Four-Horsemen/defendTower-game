@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>sht_TestMap</name>
     <events>
+        <variable constant="0" name="isGameOver" sid="132498478831955" static="0" type="number">0</variable>
         <event-block sid="945052852829212">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="423222928015370" type="System" />
@@ -17,18 +18,25 @@
                     <param id="1" name="Scale">0.5</param>
                 </action>
             </actions>
-        </event-block>
-        <event-block sid="542969929703424">
-            <conditions>
-                <condition id="0" name="On clicked" sid="694542462030919" type="btn_reset" />
-            </conditions>
-            <actions>
-                <action id="-26" name="Restart layout" sid="713736250608973" type="System" />
-                <action id="33" name="Stop all" sid="659869500115699" type="Audio" />
-            </actions>
+            <sub-events>
+                <event-block sid="242344992375008">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="768278498112516" type="System">
+                            <param id="0" name="Object">horizontalScaleBars</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="182364928514766" type="horizontalScaleBars">
+                            <param id="0" name="Instance variable">maxSize</param>
+                            <param id="1" name="Value">Self.Width</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <include>sht_Shop</include>
         <include>sht_Player</include>
+        <include>sht_Tower</include>
         <include>sht_Enemy</include>
         <event-group description="" sid="644021911339679" title="Spawn">
             <sub-events>
@@ -62,18 +70,6 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-block sid="979400839239874">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="664053743643179" type="System">
-                    <param id="0" name="Interval (seconds)">0.1</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Set text" sid="617314126566867" type="scoreValue">
-                    <param id="0" name="Text">&quot;Score:&quot; &amp; playableCharacters.totalScore</param>
-                </action>
-            </actions>
-        </event-block>
         <event-block sid="383421024534658">
             <conditions>
                 <condition id="-7" name="Compare instance variable" sid="507078604643865" type="playableCharacters">
@@ -109,6 +105,64 @@
                     </actions>
                 </event-block>
             </sub-events>
+        </event-block>
+        <event-block any="1" sid="808798540681872">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="421804249723126" type="playableTowers">
+                    <param id="0" name="Instance variable">curHealth</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="543592200125625" type="playableCharacters">
+                    <param id="0" name="Instance variable">curHealth</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="143309478432864" type="System">
+                    <param id="0" name="Variable">isGameOver</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="802715335963446">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="538285089965699" type="System">
+                    <param id="0" name="Variable">isGameOver</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-13" name="Set time scale" sid="864882247687735" type="System">
+                    <param id="0" name="Time scale">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="542969929703424">
+            <conditions>
+                <condition id="0" name="On clicked" sid="694542462030919" type="btn_reset" />
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="713736250608973" type="System" />
+                <action id="33" name="Stop all" sid="659869500115699" type="Audio" />
+            </actions>
+        </event-block>
+        <event-block sid="979400839239874">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="664053743643179" type="System">
+                    <param id="0" name="Interval (seconds)">0.1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="617314126566867" type="ui_scoreValue">
+                    <param id="0" name="Text">&quot;Score: &quot; &amp; playableCharacters.totalScore</param>
+                </action>
+                <action id="0" name="Set text" sid="418278996578882" type="ui_goldValue">
+                    <param id="0" name="Text">&quot;Gold: &quot; &amp; playableCharacters.curGold</param>
+                </action>
+            </actions>
         </event-block>
     </events>
 </c2eventsheet>

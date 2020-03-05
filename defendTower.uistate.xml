@@ -12,10 +12,10 @@ you probably do not want to add any .uistate.xml files to the repository.-->
     <open-tabs>
         <layout order="3">TestMap</layout>
         <layout order="5">AssetsMap</layout>
-        <event-sheet order="0">sht_Player</event-sheet>
+        <event-sheet active="1" order="0">sht_Player</event-sheet>
         <event-sheet order="1">sht_Enemy</event-sheet>
         <event-sheet order="2">sht_TestMap</event-sheet>
-        <event-sheet active="1" order="4">sht_Shop</event-sheet>
+        <event-sheet order="4">sht_Shop</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -31,11 +31,11 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <family expanded="0" name="playerBulletProjectiles" />
         <family expanded="0" name="playableTowers" />
         <family expanded="0" name="playableItems" />
+        <family expanded="0" name="horizontalScaleBars" />
     </families-expanded>
     <folders-expanded>
-        <folder expanded="0" path="object-folder/" />
+        <folder expanded="1" path="object-folder/" />
         <folder expanded="0" path="object-folder/Bars/" />
-        <folder expanded="0" path="object-folder/Text/" />
         <folder expanded="0" path="object-folder/Enemies/" />
         <folder expanded="0" path="object-folder/ParticleEffects/" />
         <folder expanded="0" path="object-folder/Players/" />
@@ -45,6 +45,9 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="0" path="object-folder/Environment/" />
         <folder expanded="0" path="object-folder/Buttons/" />
         <folder expanded="0" path="object-folder/UI/" />
+        <folder expanded="1" path="object-folder/UI/Store/" />
+        <folder expanded="1" path="object-folder/UI/Text/" />
+        <folder expanded="1" path="object-folder/Items/" />
         <folder expanded="0" path="layout-folder/" />
         <folder expanded="0" path="event-folder/" />
         <folder expanded="0" path="file-folder/" />
@@ -59,23 +62,26 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="animation-folder/proj_manaBullet/" />
         <folder expanded="1" path="animation-folder/proj_fireball/" />
         <folder expanded="1" path="animation-folder/proj_stunBullet/" />
-        <folder expanded="1" path="animation-folder/obj_toweMage/" />
+        <folder expanded="1" path="animation-folder/obj_towerMage/" />
         <folder expanded="1" path="animation-folder/vfx_fireballShadow/" />
         <folder expanded="1" path="animation-folder/obj_spawner/" />
         <folder expanded="1" path="animation-folder/obj_hole/" />
         <folder expanded="1" path="animation-folder/obj_wall/" />
+        <folder expanded="1" path="animation-folder/ui_storePanel/" />
+        <folder expanded="1" path="animation-folder/ui_storeItemTooltip/" />
+        <folder expanded="1" path="animation-folder/ui_storeBuyArea/" />
         <folder expanded="1" path="animation-folder/ui_iconProgress/" />
         <folder expanded="1" path="animation-folder/ui_laserIcon/" />
         <folder expanded="1" path="animation-folder/ui_stunIcon/" />
-        <folder expanded="1" path="animation-folder/storePanel/" />
-        <folder expanded="1" path="animation-folder/item_wand/" />
-        <folder expanded="1" path="animation-folder/item_shield/" />
-        <folder expanded="1" path="animation-folder/shopPanelScroll/" />
-        <folder expanded="1" path="animation-folder/Sprite/" />
-        <folder expanded="1" path="animation-folder/Sprite2/" />
-        <folder expanded="1" path="animation-folder/Sprite3/" />
-        <folder expanded="1" path="animation-folder/Sprite4/" />
-        <folder expanded="1" path="animation-folder/ItemPanel/" />
-        <folder expanded="1" path="animation-folder/item_three/" />
+        <folder expanded="1" path="animation-folder/item_holyChalice/" />
+        <folder expanded="1" path="animation-folder/item_bookEnlight/" />
+        <folder expanded="1" path="animation-folder/item_sorcerersCap/" />
+        <folder expanded="1" path="animation-folder/item_hourglassFate/" />
+        <folder expanded="1" path="animation-folder/item_catalystMagic/" />
+        <folder expanded="1" path="animation-folder/ui_HeroPortrait/" />
+        <folder expanded="1" path="animation-folder/ui_healthBar/" />
+        <folder expanded="1" path="animation-folder/ui_health/" />
+        <folder expanded="1" path="animation-folder/ui_healthTower/" />
+        <folder expanded="1" path="animation-folder/ui_armorTower/" />
     </folders-expanded>
 </c2uistate>

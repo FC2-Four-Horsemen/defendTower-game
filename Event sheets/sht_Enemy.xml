@@ -31,17 +31,11 @@
                 <condition id="1" name="Is overlapping another object" sid="716695144535823" type="enemyMinions">
                     <param id="0" name="Object">playableTowers</param>
                 </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="975562037405920" type="playableTowers">
+                    <param id="0" name="Instance variable">isSelected</param>
+                </condition>
             </conditions>
             <actions>
-                <action id="-12" name="Subtract from" sid="392806024075929" type="playableTowers">
-                    <param id="0" name="Instance variable">health</param>
-                    <param id="1" name="Value">enemyMinions.suicideDamage</param>
-                </action>
-                <action id="-9" name="Destroy" sid="823774260447091" type="enemyMinions" />
-                <action id="-12" name="Subtract from" sid="492907292328097" type="playableCharacters">
-                    <param id="0" name="Instance variable">curHealth</param>
-                    <param id="1" name="Value">5</param>
-                </action>
                 <action id="25" name="Play at object" sid="143143734951524" type="Audio">
                     <param id="0" name="Audio file">Bass-ic Error</param>
                     <param id="1" name="Loop">0</param>
@@ -53,6 +47,40 @@
                     <param id="7" name="Tag (optional)">&quot;&quot;</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="305419674596343">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="603483787268997" type="playableTowers">
+                            <param id="0" name="Instance variable">curArmor</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="560126060728934" type="playableTowers">
+                            <param id="0" name="Instance variable">curArmor</param>
+                            <param id="1" name="Value">enemyMinions.suicideDamage</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="882254651512916">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="113501006069709" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="392806024075929" type="playableTowers">
+                            <param id="0" name="Instance variable">curHealth</param>
+                            <param id="1" name="Value">enemyMinions.suicideDamage</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="189839456877107">
+                    <conditions />
+                    <actions>
+                        <action id="-9" name="Destroy" sid="823774260447091" type="enemyMinions" />
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <comment>Destroy if less than 0 health</comment>
         <event-block sid="142753221007475">
@@ -73,6 +101,10 @@
                 <action id="-11" name="Add to" sid="112125326534895" type="playableCharacters">
                     <param id="0" name="Instance variable">totalScore</param>
                     <param id="1" name="Value">5</param>
+                </action>
+                <action id="-11" name="Add to" sid="634344700973022" type="playableCharacters">
+                    <param id="0" name="Instance variable">curGold</param>
+                    <param id="1" name="Value">2</param>
                 </action>
                 <action id="25" name="Play at object" sid="298863146382778" type="Audio">
                     <param id="0" name="Audio file">Cardboard Hit 12 Short Crush</param>
@@ -101,25 +133,25 @@
                     </conditions>
                     <actions>
                         <action id="-3" name="Create object" sid="246117510885357" type="System">
-                            <param id="0" name="Object to create">ui_healthBar</param>
+                            <param id="0" name="Object to create">ui_floatingHealthBar</param>
                             <param id="1" name="Layer">(&quot;Game&quot;)</param>
                             <param id="2" name="X">enemyMinions.X</param>
                             <param id="3" name="Y">enemyMinions.Y</param>
                         </action>
-                        <action id="-5" name="Set width" sid="657946930497652" type="ui_healthBar">
+                        <action id="-5" name="Set width" sid="657946930497652" type="ui_floatingHealthBar">
                             <param id="0" name="Width">enemyMinions.Width</param>
                         </action>
-                        <action id="-10" name="Set value" sid="642119934478979" type="ui_healthBar">
+                        <action id="-10" name="Set value" sid="642119934478979" type="ui_floatingHealthBar">
                             <param id="0" name="Instance variable">id</param>
                             <param id="1" name="Value">enemyMinions.UID</param>
                         </action>
                         <action id="-3" name="Create object" sid="794447767225492" type="System">
-                            <param id="0" name="Object to create">ui_heath</param>
+                            <param id="0" name="Object to create">ui_floatingHealth</param>
                             <param id="1" name="Layer">(&quot;Game&quot;)</param>
                             <param id="2" name="X">enemyMinions.X</param>
                             <param id="3" name="Y">enemyMinions.Y</param>
                         </action>
-                        <action id="-10" name="Set value" sid="528943315712788" type="ui_heath">
+                        <action id="-10" name="Set value" sid="528943315712788" type="ui_floatingHealth">
                             <param id="0" name="Instance variable">id</param>
                             <param id="1" name="Value">enemyMinions.UID</param>
                         </action>
@@ -132,27 +164,27 @@
                 <event-block sid="934165739599809">
                     <conditions>
                         <condition id="-11" name="For Each" sid="293303774486346" type="System">
-                            <param id="0" name="Object">ui_healthBar</param>
+                            <param id="0" name="Object">ui_floatingHealthBar</param>
                         </condition>
                         <condition id="-14" name="Pick by unique ID" sid="121080656399552" type="enemyMinions">
-                            <param id="0" name="Unique ID">ui_healthBar.id</param>
+                            <param id="0" name="Unique ID">ui_floatingHealthBar.id</param>
                         </condition>
-                        <condition id="-7" name="Compare instance variable" sid="750431297396560" type="ui_heath">
+                        <condition id="-7" name="Compare instance variable" sid="750431297396560" type="ui_floatingHealth">
                             <param id="0" name="Instance variable">id</param>
                             <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">ui_healthBar.id</param>
+                            <param id="2" name="Value">ui_floatingHealthBar.id</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="-3" name="Set position" sid="489149796424421" type="ui_healthBar">
+                        <action id="-3" name="Set position" sid="489149796424421" type="ui_floatingHealthBar">
                             <param id="0" name="X">enemyMinions.X - (enemyMinions.Width/2)</param>
                             <param id="1" name="Y">enemyMinions.Y - (enemyMinions.Height/2) - 20</param>
                         </action>
-                        <action id="-3" name="Set position" sid="586554804066670" type="ui_heath">
+                        <action id="-3" name="Set position" sid="586554804066670" type="ui_floatingHealth">
                             <param id="0" name="X">enemyMinions.X - (enemyMinions.Width/2)</param>
                             <param id="1" name="Y">enemyMinions.Y - (enemyMinions.Height/2) - 20</param>
                         </action>
-                        <action id="-5" name="Set width" sid="285771137412411" type="ui_heath">
+                        <action id="-5" name="Set width" sid="285771137412411" type="ui_floatingHealth">
                             <param id="0" name="Width">enemyMinions.Width * (enemyMinions.curHealth / enemyMinions.maxHealth)</param>
                         </action>
                     </actions>
@@ -166,23 +198,23 @@
                         <event-block sid="738926932757880">
                             <conditions>
                                 <condition id="-11" name="For Each" sid="377538584660334" type="System">
-                                    <param id="0" name="Object">ui_healthBar</param>
+                                    <param id="0" name="Object">ui_floatingHealthBar</param>
                                 </condition>
                                 <condition id="-8" name="Is boolean instance variable set" sid="616530646761356" type="enemyMinions">
                                     <param id="0" name="Instance variable">isHealthShown</param>
                                 </condition>
                                 <condition id="-14" name="Pick by unique ID" sid="799704969261144" type="enemyMinions">
-                                    <param id="0" name="Unique ID">ui_healthBar.id</param>
+                                    <param id="0" name="Unique ID">ui_floatingHealthBar.id</param>
                                 </condition>
-                                <condition id="-7" name="Compare instance variable" sid="517710769965192" type="ui_heath">
+                                <condition id="-7" name="Compare instance variable" sid="517710769965192" type="ui_floatingHealth">
                                     <param id="0" name="Instance variable">id</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">ui_healthBar.id</param>
+                                    <param id="2" name="Value">ui_floatingHealthBar.id</param>
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="-9" name="Destroy" sid="844855296382659" type="ui_healthBar" />
-                                <action id="-9" name="Destroy" sid="715740320674426" type="ui_heath" />
+                                <action id="-9" name="Destroy" sid="844855296382659" type="ui_floatingHealthBar" />
+                                <action id="-9" name="Destroy" sid="715740320674426" type="ui_floatingHealth" />
                             </actions>
                         </event-block>
                     </sub-events>

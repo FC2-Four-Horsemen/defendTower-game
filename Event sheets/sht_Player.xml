@@ -14,7 +14,7 @@
                             <param id="0" name="Tag">&quot;Mage&quot;</param>
                             <param id="1" name="File">Mage.json</param>
                         </action>
-                        <action id="-5" name="Set width" sid="214182892773123" type="ui_healthBar">
+                        <action id="-5" name="Set width" sid="214182892773123" type="ui_floatingHealthBar">
                             <param id="0" name="Width">playableCharacters.maxHealth</param>
                         </action>
                     </actions>
@@ -220,8 +220,8 @@
                                 <action id="3" name="Set progress" sid="790039874374030" type="ui_1skillbar">
                                     <param id="0" name="Value">Function.Call(&quot;skillUI&quot;, ui_1skillbar.Progress, Dictionary.Get(&quot;laserCooldown&quot;))</param>
                                 </action>
-                                <action id="-6" name="Set height" sid="855904003967378" type="ui_iconProgress">
-                                    <param id="0" name="Height">65.24 * (ui_1skillbar.Progress/100)</param>
+                                <action id="-5" name="Set width" sid="172821812225014" type="ui_iconProgress">
+                                    <param id="0" name="Width">Self.maxSize * (ui_1skillbar.Progress/100)</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -376,8 +376,8 @@
                                 <action id="3" name="Set progress" sid="296693839834328" type="ui_2skillbar">
                                     <param id="0" name="Value">Function.Call(&quot;skillUI&quot;, ui_2skillbar.Progress, Dictionary.Get(&quot;stunCooldown&quot;))</param>
                                 </action>
-                                <action id="-6" name="Set height" sid="710073074965689" type="ui_iconProgress">
-                                    <param id="0" name="Height">65.24 * (ui_2skillbar.Progress/100)</param>
+                                <action id="-5" name="Set width" sid="334614665091552" type="ui_iconProgress">
+                                    <param id="0" name="Width">Self.maxSize * (ui_2skillbar.Progress/100)</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -794,18 +794,15 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="121393502071388">
+        <event-block sid="134948711200057">
             <conditions>
-                <condition id="-14" name="Pick by unique ID" sid="416921811753622" type="ui_healthBar">
-                    <param id="0" name="Unique ID">74</param>
-                </condition>
-                <condition id="-14" name="Pick by unique ID" sid="339376159197006" type="ui_heath">
-                    <param id="0" name="Unique ID">76</param>
+                <condition id="-14" name="Pick by unique ID" sid="471595209434944" type="ui_health">
+                    <param id="0" name="Unique ID">125</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-5" name="Set width" sid="746992284306976" type="ui_heath">
-                    <param id="0" name="Width">playableCharacters.maxHealth * (PlayableCharacters.curHealth / playableCharacters.maxHealth)</param>
+                <action id="-5" name="Set width" sid="727249389688443" type="ui_health">
+                    <param id="0" name="Width">Self.maxSize * (playableCharacters.curHealth / playableCharacters.maxHealth)</param>
                 </action>
             </actions>
         </event-block>

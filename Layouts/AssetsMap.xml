@@ -228,8 +228,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>503</x>
-                        <y>327</y>
+                        <x>509</x>
+                        <y>328</y>
                         <z>0</z>
                         <width>16</width>
                         <height>16</height>
@@ -760,7 +760,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="item_wand" uid="21">
+                <instance type="item_sorcerersCap" uid="21">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -768,8 +768,12 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <name>Wand</name>
-                        <index>1</index>
+                        <name>Sorcerer&apos;s Cap</name>
+                        <index>4</index>
+                        <isSelected>false</isSelected>
+                        <xPosition>0</xPosition>
+                        <yPosition>0</yPosition>
+                        <itemCost>0</itemCost>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -777,8 +781,8 @@
                         <x>162.339859009</x>
                         <y>851.66015625</y>
                         <z>0</z>
-                        <width>64</width>
-                        <height>64</height>
+                        <width>8.192000389</width>
+                        <height>8.192000389</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -786,7 +790,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="item_shield" uid="22">
+                <instance type="item_bookEnlight" uid="22">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -794,8 +798,12 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <name>Shield</name>
-                        <index>2</index>
+                        <name>Book of Enlightenment</name>
+                        <index>1</index>
+                        <isSelected>false</isSelected>
+                        <xPosition>0</xPosition>
+                        <yPosition>0</yPosition>
+                        <itemCost>0</itemCost>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -803,8 +811,8 @@
                         <x>251</x>
                         <y>852</y>
                         <z>0</z>
-                        <width>64</width>
-                        <height>64</height>
+                        <width>32</width>
+                        <height>32</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
@@ -832,13 +840,17 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ItemPanel" uid="115">
+                <instance type="ui_storeItemTooltip" uid="115">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <isDrawn>false</isDrawn>
+                        <itemHovered>0</itemHovered>
+                    </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -848,13 +860,13 @@
                         <width>200</width>
                         <height>100</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
-                        <hotspotY>0.5</hotspotY>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="item_three" uid="120">
+                <instance type="item_holyChalice" uid="120">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -862,8 +874,12 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <name>Three</name>
-                        <index>3</index>
+                        <name>Holy Chalice</name>
+                        <index>2</index>
+                        <isSelected>false</isSelected>
+                        <xPosition>0</xPosition>
+                        <yPosition>0</yPosition>
+                        <itemCost>0</itemCost>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -871,10 +887,163 @@
                         <x>83</x>
                         <y>852</y>
                         <z>0</z>
+                        <width>32</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_storeItemNameText" uid="122">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-19,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1132.305175781</x>
+                        <y>-129.508514404</y>
+                        <z>0</z>
+                        <width>366.16784668</width>
+                        <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_storeItemDescText" uid="5">
+                    <properties>
+                        <text>TEST LOREM LOREM TEST LOREM LOREMTEST LOREM</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-15,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1133.234375</x>
+                        <y>-101.984481812</y>
+                        <z>0</z>
+                        <width>186.002685547</width>
+                        <height>90.6459198</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="item_hourglassFate" uid="130">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>Hourglass of Fate</name>
+                        <index>3</index>
+                        <isSelected>false</isSelected>
+                        <xPosition>0</xPosition>
+                        <yPosition>0</yPosition>
+                        <itemCost>0</itemCost>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>133</x>
+                        <y>791</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="item_catalystMagic" uid="131">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>Catalyst of Magic</name>
+                        <index>5</index>
+                        <isSelected>false</isSelected>
+                        <xPosition>0</xPosition>
+                        <yPosition>0</yPosition>
+                        <itemCost>5</itemCost>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1091</x>
+                        <y>685</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="par_buyExplo" uid="133">
+                    <properties>
+                        <rate>30</rate>
+                        <spray-cone>360</spray-cone>
+                        <type>One-shot</type>
+                        <initial-particle-properties></initial-particle-properties>
+                        <speed>200</speed>
+                        <size>8</size>
+                        <opacity>100</opacity>
+                        <grow-rate>-15</grow-rate>
+                        <x-randomiser>0</x-randomiser>
+                        <y-randomiser>0</y-randomiser>
+                        <speed-randomiser->0</speed-randomiser->
+                        <size-randomiser>0</size-randomiser>
+                        <grow-rate-randomiser>0</grow-rate-randomiser>
+                        <particle-lifetime-properties></particle-lifetime-properties>
+                        <acceleration>-150</acceleration>
+                        <gravity>0</gravity>
+                        <angle-randomiser>0</angle-randomiser>
+                        <speed-randomiser>800</speed-randomiser>
+                        <opacity-randomiser>0</opacity-randomiser>
+                        <destroy-mode>Fade to invisible</destroy-mode>
+                        <timeout>1</timeout>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>737</x>
+                        <y>229</y>
+                        <z>0</z>
                         <width>64</width>
                         <height>64</height>
                         <depth>0</depth>
-                        <hotspotX>0.5</hotspotX>
+                        <hotspotX>0</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
