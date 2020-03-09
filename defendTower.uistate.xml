@@ -10,12 +10,12 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout order="3">TestMap</layout>
-        <layout order="5">AssetsMap</layout>
-        <event-sheet active="1" order="0">sht_Player</event-sheet>
-        <event-sheet order="1">sht_Enemy</event-sheet>
-        <event-sheet order="2">sht_TestMap</event-sheet>
-        <event-sheet order="4">sht_Shop</event-sheet>
+        <layout order="4">TestMap</layout>
+        <layout order="6">AssetsMap</layout>
+        <event-sheet order="1">sht_Player</event-sheet>
+        <event-sheet order="2">sht_Enemy</event-sheet>
+        <event-sheet order="3">sht_TestMap</event-sheet>
+        <event-sheet active="1" order="5">sht_Shop</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -23,7 +23,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <property expanded="0" name="Window Size" />
         <property expanded="1" name="Configuration Settings" />
     </properties>
-    <families-expanded root="0">
+    <families-expanded root="1">
         <family expanded="0" name="stunBulletEffects" />
         <family expanded="0" name="enemyMinions" />
         <family expanded="0" name="playableCharacters" />
@@ -38,7 +38,7 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="0" path="object-folder/Bars/" />
         <folder expanded="0" path="object-folder/Enemies/" />
         <folder expanded="0" path="object-folder/ParticleEffects/" />
-        <folder expanded="0" path="object-folder/Players/" />
+        <folder expanded="1" path="object-folder/Players/" />
         <folder expanded="0" path="object-folder/Projectiles/" />
         <folder expanded="0" path="object-folder/Tower/" />
         <folder expanded="0" path="object-folder/Effects/" />

@@ -37,13 +37,28 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <name>Sorcerer&apos;s Cap</name>
                         <index>4</index>
+                        <name>Sorcerer&apos;s Cap</name>
+                        <description>Its size covers your eyes, making you appear menacing. +200 Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
                         <itemCost>2500</itemCost>
+                        <defaultPositionRecorded>false</defaultPositionRecorded>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="LiteTween">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Position</tweened-property>
+                                <function>EaseOutBounce</function>
+                                <target>100,100</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>1</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -67,13 +82,28 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <name>Book of Enlightenment</name>
                         <index>1</index>
+                        <name>Book of Enlightenment</name>
+                        <description>Book with an LED light inside. +50 Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
                         <itemCost>1000</itemCost>
+                        <defaultPositionRecorded>false</defaultPositionRecorded>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="LiteTween">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Position</tweened-property>
+                                <function>EaseOutBounce</function>
+                                <target>100,100</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>1</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -97,13 +127,28 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <name>Holy Chalice</name>
                         <index>2</index>
+                        <name>Holy Chalice</name>
+                        <description>The chalice was once used to hold some yellow liquid.  +100 Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
                         <itemCost>1500</itemCost>
+                        <defaultPositionRecorded>false</defaultPositionRecorded>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="LiteTween">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Position</tweened-property>
+                                <function>EaseOutBounce</function>
+                                <target>100,100</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>1</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -127,13 +172,28 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <name>Hourglass of Fate</name>
                         <index>3</index>
+                        <name>Hourglass of Fate</name>
+                        <description>Contains the sands of Boracay Beach. +150 Damage </description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
                         <itemCost>2000</itemCost>
+                        <defaultPositionRecorded>false</defaultPositionRecorded>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="LiteTween">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Position</tweened-property>
+                                <function>EaseOutBounce</function>
+                                <target>100,100</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>1</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -157,13 +217,28 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <name>Catalyst of Magic</name>
                         <index>5</index>
+                        <name>Catalyst of Magic</name>
+                        <description>A gallstone from a former Sage. +250 Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
                         <itemCost>5</itemCost>
+                        <defaultPositionRecorded>false</defaultPositionRecorded>
                     </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="LiteTween">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Position</tweened-property>
+                                <function>EaseOutBounce</function>
+                                <target>100,100</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>1</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -454,7 +529,7 @@
                         <inventory_3_slot>&quot;empty&quot;</inventory_3_slot>
                         <inventory_4_slot>&quot;empty&quot;</inventory_4_slot>
                         <totalItems>0</totalItems>
-                        <curGold>0</curGold>
+                        <curGold>200</curGold>
                         <isBlinkFinished>false</isBlinkFinished>
                         <distanceToBlink>0</distanceToBlink>
                     </instance-variables>
@@ -749,7 +824,7 @@
                     <properties>
                         <type>Button</type>
                         <text>Reset</text>
-                        <tooltip></tooltip>
+                        <tooltip>Reset button</tooltip>
                         <initial-visibility>Visible</initial-visibility>
                         <enabled>Yes</enabled>
                         <auto-font-size>Yes</auto-font-size>
@@ -759,11 +834,11 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>556.821655273</x>
-                        <y>445.237182617</y>
+                        <x>616.090637207</x>
+                        <y>466.122589111</y>
                         <z>0</z>
-                        <width>72</width>
-                        <height>24</height>
+                        <width>18.940551758</width>
+                        <height>8.759246826</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>

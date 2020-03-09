@@ -207,6 +207,32 @@
                             <param id="0" name="Instance variable">yPosition</param>
                             <param id="1" name="Value">Self.Y</param>
                         </action>
+                        <action id="-13" name="Set boolean" sid="704960332865022" type="playableItems">
+                            <param id="0" name="Instance variable">defaultPositionRecorded</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action behavior="LiteTween" id="4" name="Set tweened property" sid="704087595230158" type="playableItems">
+                            <param id="0" name="Tweened property">0</param>
+                        </action>
+                        <action behavior="LiteTween" id="3" name="Set target" sid="635489906638412" type="playableItems">
+                            <param id="0" name="Target is">0</param>
+                            <param id="1" name="Relativity">0</param>
+                            <param id="2" name="Value">Self.xPosition</param>
+                        </action>
+                        <action behavior="LiteTween" id="3" name="Set target" sid="429115808141389" type="playableItems">
+                            <param id="0" name="Target is">1</param>
+                            <param id="1" name="Relativity">0</param>
+                            <param id="2" name="Value">Self.yPosition</param>
+                        </action>
+                        <action behavior="LiteTween" id="1" name="Set duration" sid="450750403333751" type="playableItems">
+                            <param id="0" name="Duration">1</param>
+                        </action>
+                        <action behavior="LiteTween" id="5" name="Set easing" sid="561307151158602" type="playableItems">
+                            <param id="0" name="Function">20</param>
+                        </action>
+                        <action behavior="LiteTween" id="15" name="Seek" sid="799955692694796" type="playableItems">
+                            <param id="0" name="Seek to">0</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="940523166267553">
@@ -222,7 +248,7 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block sid="897231455085428">
+                        <event-block sid="897839619341330">
                             <conditions>
                                 <condition id="3" name="On button released" sid="547204196219197" type="Mouse">
                                     <param id="0" name="Mouse button">0</param>
@@ -230,7 +256,7 @@
                             </conditions>
                             <actions />
                             <sub-events>
-                                <event-block sid="897839619341330">
+                                <event-block sid="699901634915722">
                                     <conditions>
                                         <condition id="7" name="Cursor is over object" sid="442073432166880" type="Mouse">
                                             <param id="0" name="Object">ui_storeBuyArea</param>
@@ -283,15 +309,11 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="935711196587679">
+                                <event-block sid="905191008384109">
                                     <conditions>
-                                        <condition id="-22" name="Else" sid="943451283793077" type="System" />
+                                        <condition id="-22" name="Else" sid="364947281128086" type="System" />
                                     </conditions>
                                     <actions>
-                                        <action id="-3" name="Set position" sid="318872697716043" type="playableItems">
-                                            <param id="0" name="X">Self.xPosition</param>
-                                            <param id="1" name="Y">Self.yPosition</param>
-                                        </action>
                                         <action id="-13" name="Set boolean" sid="678865478563742" type="playableItems">
                                             <param id="0" name="Instance variable">isSelected</param>
                                             <param id="1" name="Value">0</param>
@@ -301,6 +323,28 @@
                             </sub-events>
                         </event-block>
                     </sub-events>
+                </event-block>
+                <event-block sid="516488073979485">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="390034351171627" type="System" />
+                        <condition id="-8" name="Is boolean instance variable set" sid="882496194426843" type="playableItems">
+                            <param id="0" name="Instance variable">defaultPositionRecorded</param>
+                        </condition>
+                        <condition disabled="1" id="-1" name="Compare X" sid="690775103114798" type="playableItems">
+                            <param id="0" name="Comparison">1</param>
+                            <param id="1" name="X co-ordinate">Self.xPosition</param>
+                        </condition>
+                        <condition disabled="1" id="-1" name="Compare X" sid="436501456285921" type="playableItems">
+                            <param id="0" name="Comparison">1</param>
+                            <param id="1" name="X co-ordinate">Self.xPosition</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="LiteTween" id="10" name="Start" sid="859025590075470" type="playableItems">
+                            <param id="0" name="Start Mode">0</param>
+                            <param id="1" name="Force use current">1</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
@@ -342,6 +386,9 @@
                                 <action id="0" name="Set text" sid="988767314611723" type="ui_storeItemNameText">
                                     <param id="0" name="Text">Function.Call(&quot;findName&quot;)</param>
                                 </action>
+                                <action id="0" name="Set text" sid="194877410064319" type="ui_storeItemDescText">
+                                    <param id="0" name="Text">Function.Call(&quot;findDescription&quot;)</param>
+                                </action>
                                 <action id="-9" name="Set value" sid="652539630535252" type="System">
                                     <param id="0" name="Variable">toolTipShown</param>
                                     <param id="1" name="Value">1</param>
@@ -360,6 +407,10 @@
                                 <action id="-4" name="Set position to another object" sid="611072587084783" type="ui_storeItemNameText">
                                     <param id="0" name="Object">ui_storeItemTooltip</param>
                                     <param id="1" name="Image point (optional)">&quot;toolTipName&quot;</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="204601482690396" type="ui_storeItemDescText">
+                                    <param id="0" name="Object">ui_storeItemTooltip</param>
+                                    <param id="1" name="Image point (optional)">&quot;toolTipDescription&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -407,6 +458,40 @@
                             <actions>
                                 <action id="1" name="Set return value" sid="109231243055636" type="Function">
                                     <param id="0" name="Value">playableItems.name</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="455129567097158">
+            <conditions>
+                <condition id="0" name="On function" sid="892974828934079" type="Function">
+                    <param id="0" name="Name">&quot;findDescription&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="316725476552190">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="324986545810365" type="System">
+                            <param id="0" name="Object">playableItems</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="741986681331270">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="885512237104781" type="System">
+                                    <param id="0" name="First value">ui_storePanel.itemHoveredUID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">playableItems.UID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set return value" sid="324911575194334" type="Function">
+                                    <param id="0" name="Value">playableItems.description</param>
                                 </action>
                             </actions>
                         </event-block>

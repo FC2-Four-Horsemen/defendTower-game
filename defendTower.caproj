@@ -37,6 +37,7 @@
         <behavior author="Scirra" id="Timer" version="1">Timer</behavior>
         <behavior author="Scirra" id="bound" version="1">Bound to layout</behavior>
         <behavior author="Scirra" id="destroy" version="1">Destroy outside layout</behavior>
+        <behavior author="lunarray" id="lunarray_LiteTween" version="1.700000048">LiteTween</behavior>
         <behavior author="Scirra" id="scrollto" version="1">Scroll To</behavior>
         <behavior author="Scirra" id="solid" version="1">Solid</behavior>
     </used-behaviors>
@@ -488,6 +489,7 @@
                     <container>
                         <type>ui_storeItemTooltip</type>
                         <type>ui_storeItemNameText</type>
+                        <type>ui_storeItemDescText</type>
                     </container>
                 </object-type>
                 <object-type name="ui_storeItemTooltip" sid="243642473700628">
@@ -499,12 +501,13 @@
                     <container>
                         <type>ui_storeItemTooltip</type>
                         <type>ui_storeItemNameText</type>
+                        <type>ui_storeItemDescText</type>
                     </container>
                     <animation-folder>
                         <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="865365971962129" speed="5">
                             <frame duration="1" hotspotX="0" hotspotY="0">
                                 <image-point name="toolTipName" x="0.035" y="0.04" />
-                                <image-point name="toolTipDesc" x="0.095" y="0.49" />
+                                <image-point name="toolTipDescription" x="0.055" y="0.34" />
                             </frame>
                         </animation>
                     </animation-folder>
@@ -654,6 +657,11 @@
         </object-type>
         <object-type name="ui_storeItemDescText" sid="619820665883131">
             <plugin id="Text" />
+            <container>
+                <type>ui_storeItemTooltip</type>
+                <type>ui_storeItemNameText</type>
+                <type>ui_storeItemDescText</type>
+            </container>
         </object-type>
         <object-type name="ui_HeroPortrait" sid="574101940492020">
             <plugin id="Sprite" />
@@ -708,6 +716,10 @@
         </object-type>
         <object-type name="ui_goldValue" sid="609154709929416">
             <plugin id="Text" />
+        </object-type>
+        <object-type name="par_buyTrail" sid="866794229289317">
+            <plugin id="Particles" />
+            <texture />
         </object-type>
     </object-folder>
     <families>
@@ -821,13 +833,20 @@
                 <member>item_sorcerersCap</member>
             </members>
             <instance-variables>
-                <instance-variable name="name" sid="621967594712241" type="string" />
                 <instance-variable name="index" sid="920035883585244" type="number" />
+                <instance-variable name="name" sid="621967594712241" type="string" />
+                <instance-variable name="description" sid="983831719514904" type="string" />
                 <instance-variable name="isSelected" sid="540489202519218" type="boolean" />
                 <instance-variable name="xPosition" sid="344397400340227" type="number" />
                 <instance-variable name="yPosition" sid="527938699224289" type="number" />
                 <instance-variable name="itemCost" sid="656284299741176" type="number" />
+                <instance-variable name="defaultPositionRecorded" sid="662139810852485" type="boolean" />
             </instance-variables>
+            <behaviors>
+                <behavior-type name="LiteTween" sid="791092667917259">
+                    <behavior id="lunarray_LiteTween" />
+                </behavior-type>
+            </behaviors>
         </family>
         <family name="horizontalScaleBars" plugin-id="Sprite" sid="171927002748794">
             <members>
