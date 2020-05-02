@@ -3,6 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>sht_Shop</name>
     <events>
+        <variable constant="0" name="shopDrawn" sid="180930468808496" static="0" type="number">0</variable>
+        <variable constant="0" name="storeCategory" sid="185160363954384" static="0" type="text">character</variable>
         <event-block sid="153864052585099">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="649228849921680" type="System" />
@@ -18,6 +20,18 @@
                     <param id="1" name="Height">6</param>
                     <param id="2" name="Depth">1</param>
                 </action>
+                <action id="-12" name="Set group active" sid="988687448279078" type="System">
+                    <param id="0" name="Group name">&quot;Click and Drag then Buy Items&quot;</param>
+                    <param id="1" name="State">0</param>
+                </action>
+                <action id="-12" name="Set group active" sid="371119699430876" type="System">
+                    <param id="0" name="Group name">&quot;Hover / ToolTips Shop Panel&quot;</param>
+                    <param id="1" name="State">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="262139199267001" type="System">
+                    <param id="0" name="Variable">shopDrawn</param>
+                    <param id="1" name="Value">0</param>
+                </action>
             </actions>
         </event-block>
         <event-group description="" sid="656160428172656" title="Store Draw and Toggle">
@@ -25,7 +39,7 @@
                 <event-block sid="826247325602946">
                     <conditions>
                         <condition id="0" name="On key pressed" sid="932432755149267" type="Keyboard">
-                            <param id="0" name="Key">84</param>
+                            <param id="0" name="Key">90</param>
                         </condition>
                         <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="993592998235155" type="ui_storePanel">
                             <param id="0" name="Instance variable">keyTPressed</param>
@@ -69,8 +83,13 @@
                             <param id="0" name="Layer">(&quot;StoreScroll&quot;)</param>
                             <param id="1" name="Visibility">1</param>
                         </action>
-                        <action id="-13" name="Set time scale" sid="416600109870763" type="System">
-                            <param id="0" name="Time scale">1</param>
+                        <action id="-12" name="Set group active" sid="153780660516018" type="System">
+                            <param id="0" name="Group name">&quot;Click and Drag then Buy Items&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="246501345147296" type="System">
+                            <param id="0" name="Group name">&quot;Hover / ToolTips Shop Panel&quot;</param>
+                            <param id="1" name="State">1</param>
                         </action>
                     </actions>
                 </event-block>
@@ -87,97 +106,169 @@
                             <param id="0" name="Layer">(&quot;StoreScroll&quot;)</param>
                             <param id="1" name="Visibility">0</param>
                         </action>
-                        <action id="-13" name="Set time scale" sid="792249314491601" type="System">
-                            <param id="0" name="Time scale">1</param>
+                        <action id="-12" name="Set group active" sid="625384272806936" type="System">
+                            <param id="0" name="Group name">&quot;Click and Drag then Buy Items&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="816213781301184" type="System">
+                            <param id="0" name="Group name">&quot;Hover / ToolTips Shop Panel&quot;</param>
+                            <param id="1" name="State">0</param>
                         </action>
                     </actions>
                 </event-block>
-                <comment>Make Array of store items, store index, name, uid</comment>
-                <event-block any="1" sid="528222692252673">
-                    <conditions>
-                        <condition id="-9" name="Layer is visible" sid="114829744609437" type="System">
-                            <param id="0" name="Layer">(&quot;Store&quot;)</param>
-                        </condition>
-                    </conditions>
-                    <actions />
+                <event-group description="" sid="335707118511723" title="Store Buttons">
                     <sub-events>
-                        <variable constant="0" name="shopDrawn" sid="180930468808496" static="1" type="number">0</variable>
-                        <event-block sid="134525150307519">
+                        <event-block sid="538179944163341">
                             <conditions>
-                                <condition id="-14" name="Compare variable" sid="841727487206807" type="System">
-                                    <param id="0" name="Variable">shopDrawn</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">0</param>
+                                <condition id="6" name="On object clicked" sid="214487499109334" type="Mouse">
+                                    <param id="0" name="Mouse button">0</param>
+                                    <param id="1" name="Click type">0</param>
+                                    <param id="2" name="Object clicked">ui_storeArrowLeft</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="683981634294729" type="Function">
+                                    <param id="0" name="Name">&quot;toggleStoreCategory&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;tower&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="238056225055902">
+                            <conditions>
+                                <condition id="6" name="On object clicked" sid="378536582117126" type="Mouse">
+                                    <param id="0" name="Mouse button">0</param>
+                                    <param id="1" name="Click type">0</param>
+                                    <param id="2" name="Object clicked">ui_storeArrowLeft2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="884519415329267" type="Function">
+                                    <param id="0" name="Name">&quot;toggleStoreCategory&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;character&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="216973449709156" title="Char Category">
+                    <sub-events>
+                        <comment>Make Array of store items, store index, name, uid</comment>
+                        <event-block any="1" sid="528222692252673">
+                            <conditions>
+                                <condition id="-9" name="Layer is visible" sid="114829744609437" type="System">
+                                    <param id="0" name="Layer">(&quot;Store&quot;)</param>
                                 </condition>
                             </conditions>
                             <actions />
                             <sub-events>
-                                <variable constant="0" name="indexToDraw" sid="446101435242474" static="0" type="number">0</variable>
-                                <event-block sid="307326138942120">
+                                <event-block sid="134525150307519">
                                     <conditions>
-                                        <condition id="-11" name="For Each" sid="970500815872402" type="System">
-                                            <param id="0" name="Object">playableItems</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="4" name="Set at XYZ" sid="196870520937077" type="shopArray">
-                                            <param id="0" name="X">indexToDraw</param>
-                                            <param id="1" name="Y">0</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">playableItems.index</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="124403238472487" type="shopArray">
-                                            <param id="0" name="X">indexToDraw</param>
-                                            <param id="1" name="Y">1</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">playableItems.name</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="645023116228467" type="shopArray">
-                                            <param id="0" name="X">indexToDraw</param>
-                                            <param id="1" name="Y">2</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">playableItems.UID</param>
-                                        </action>
-                                        <action id="-10" name="Add to" sid="247650369673495" type="System">
-                                            <param id="0" name="Variable">indexToDraw</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="151205055825166">
-                                    <conditions>
-                                        <condition id="-24" name="For Each (ordered)" sid="936808505434977" type="System">
-                                            <param id="0" name="Object">playableItems</param>
-                                            <param id="1" name="Expression">playableItems.index</param>
-                                            <param id="2" name="Order">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-26" name="Move to layer" sid="920206906506546" type="playableItems">
-                                            <param id="0" name="Layer">(&quot;Store&quot;)</param>
-                                        </action>
-                                        <action id="-3" name="Set position" sid="790514986495846" type="playableItems">
-                                            <param id="0" name="X">50</param>
-                                            <param id="1" name="Y">100 + (50 * playableItems.index)</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="187890988936738">
-                                    <conditions />
-                                    <actions>
-                                        <action id="-9" name="Set value" sid="708651855598491" type="System">
+                                        <condition id="-14" name="Compare variable" sid="841727487206807" type="System">
                                             <param id="0" name="Variable">shopDrawn</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                    </actions>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <variable constant="0" name="indexToDraw" sid="446101435242474" static="0" type="number">0</variable>
+                                        <variable constant="0" name="columnToDraw" sid="237904662325923" static="0" type="number">1</variable>
+                                        <event-block sid="307326138942120">
+                                            <conditions>
+                                                <condition id="-11" name="For Each" sid="970500815872402" type="System">
+                                                    <param id="0" name="Object">playableItems</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set at XYZ" sid="196870520937077" type="shopArray">
+                                                    <param id="0" name="X">indexToDraw</param>
+                                                    <param id="1" name="Y">0</param>
+                                                    <param id="2" name="Z">0</param>
+                                                    <param id="3" name="Value">playableItems.index</param>
+                                                </action>
+                                                <action id="4" name="Set at XYZ" sid="124403238472487" type="shopArray">
+                                                    <param id="0" name="X">indexToDraw</param>
+                                                    <param id="1" name="Y">1</param>
+                                                    <param id="2" name="Z">0</param>
+                                                    <param id="3" name="Value">playableItems.name</param>
+                                                </action>
+                                                <action id="4" name="Set at XYZ" sid="645023116228467" type="shopArray">
+                                                    <param id="0" name="X">indexToDraw</param>
+                                                    <param id="1" name="Y">2</param>
+                                                    <param id="2" name="Z">0</param>
+                                                    <param id="3" name="Value">playableItems.UID</param>
+                                                </action>
+                                                <action id="-10" name="Add to" sid="247650369673495" type="System">
+                                                    <param id="0" name="Variable">indexToDraw</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="151205055825166">
+                                            <conditions>
+                                                <condition id="-24" name="For Each (ordered)" sid="936808505434977" type="System">
+                                                    <param id="0" name="Object">playableItems</param>
+                                                    <param id="1" name="Expression">playableItems.index</param>
+                                                    <param id="2" name="Order">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-26" name="Move to layer" sid="920206906506546" type="playableItems">
+                                                    <param id="0" name="Layer">(&quot;Store&quot;)</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="329628864665642">
+                                                    <conditions>
+                                                        <condition id="-8" name="Compare two values" sid="316023605284427" type="System">
+                                                            <param id="0" name="First value">playableItems.index % 2</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Second value">1</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-3" name="Set position" sid="790514986495846" type="playableItems">
+                                                            <param id="0" name="X">ui_storePanel.X - (ui_storePanel.Width / 4)</param>
+                                                            <param id="1" name="Y">100 + (columnToDraw * 70)</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="184274159414660">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="949495299084045" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-3" name="Set position" sid="509186624464762" type="playableItems">
+                                                            <param id="0" name="X">ui_storePanel.X + (ui_storePanel.Width / 4)</param>
+                                                            <param id="1" name="Y">100 + (columnToDraw * 70)</param>
+                                                        </action>
+                                                        <action id="-10" name="Add to" sid="811490860154794" type="System">
+                                                            <param id="0" name="Variable">columnToDraw</param>
+                                                            <param id="1" name="Value">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="187890988936738">
+                                            <conditions />
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="708651855598491" type="System">
+                                                    <param id="0" name="Variable">shopDrawn</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
                     </sub-events>
-                </event-block>
+                </event-group>
+                <event-group description="" sid="835365109135264" title="Tower Category" />
             </sub-events>
         </event-group>
-        <event-group description="" sid="832978604657690" title="Click and Drag Items">
+        <event-group description="" inactive="1" sid="832978604657690" title="Click and Drag then Buy Items">
             <sub-events>
                 <event-block sid="360368105506728">
                     <conditions>
@@ -264,50 +355,155 @@
                                         <condition id="-7" name="Compare instance variable" sid="823918482226763" type="playableItems">
                                             <param id="0" name="Instance variable">itemCost</param>
                                             <param id="1" name="Comparison">3</param>
-                                            <param id="2" name="Value">playableCharacters.curGold</param>
+                                            <param id="2" name="Value">currentGold</param>
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="4" name="Set at XYZ" sid="544808058454150" type="inventoryArray">
-                                            <param id="0" name="X">playableCharacters.totalItems</param>
-                                            <param id="1" name="Y">0</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">playableItems.index</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="925295890611758" type="inventoryArray">
-                                            <param id="0" name="X">playableCharacters.totalItems</param>
-                                            <param id="1" name="Y">1</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">playableItems.name</param>
-                                        </action>
-                                        <action id="4" name="Set at XYZ" sid="729866849912082" type="inventoryArray">
-                                            <param id="0" name="X">playableCharacters.totalItems</param>
-                                            <param id="1" name="Y">2</param>
-                                            <param id="2" name="Z">0</param>
-                                            <param id="3" name="Value">playableItems.UID</param>
-                                        </action>
                                         <action id="-3" name="Create object" sid="729290346694627" type="System">
                                             <param id="0" name="Object to create">par_buyExplo</param>
                                             <param id="1" name="Layer">(&quot;Store&quot;)</param>
                                             <param id="2" name="X">Mouse.X(&quot;Store&quot;)</param>
                                             <param id="3" name="Y">Mouse.Y(&quot;Store&quot;)</param>
                                         </action>
-                                        <action id="-12" name="Subtract from" sid="405487714371376" type="playableCharacters">
-                                            <param id="0" name="Instance variable">curGold</param>
+                                        <action id="-11" name="Subtract from" sid="843354368773257" type="System">
+                                            <param id="0" name="Variable">currentGold</param>
                                             <param id="1" name="Value">playableItems.itemCost</param>
-                                        </action>
-                                        <action id="-11" name="Add to" sid="241348898299341" type="playableCharacters">
-                                            <param id="0" name="Instance variable">totalItems</param>
-                                            <param id="1" name="Value">1</param>
                                         </action>
                                         <action id="-13" name="Set boolean" sid="983137612467722" type="playableItems">
                                             <param id="0" name="Instance variable">isSelected</param>
                                             <param id="1" name="Value">0</param>
                                         </action>
-                                        <action id="-15" name="Set visible" sid="841589113154674" type="playableItems">
-                                            <param id="0" name="Visibility">0</param>
-                                        </action>
                                     </actions>
+                                    <sub-events>
+                                        <event-block sid="699164538682669">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="280212946834464" type="playableItems">
+                                                    <param id="0" name="Instance variable">index</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-13" name="Set boolean" sid="926797743873504" type="playableCharacters">
+                                                    <param id="0" name="Instance variable">equipped_1_slot</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="266288948752728" type="Function">
+                                                    <param id="0" name="Name">&quot;updatePlayerInventory&quot;</param>
+                                                    <param id="1" name="Parameter {n}">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="440279051233968">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="230760329567003" type="playableItems">
+                                                    <param id="0" name="Instance variable">index</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">2</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-13" name="Set boolean" sid="483232813409203" type="playableCharacters">
+                                                    <param id="0" name="Instance variable">equipped_2_slot</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="152939793049021" type="Function">
+                                                    <param id="0" name="Name">&quot;updatePlayerInventory&quot;</param>
+                                                    <param id="1" name="Parameter {n}">2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="384555266437621">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="209990410611790" type="playableItems">
+                                                    <param id="0" name="Instance variable">index</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">3</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-13" name="Set boolean" sid="765047332951193" type="playableCharacters">
+                                                    <param id="0" name="Instance variable">equipped_3_slot</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="238636130355359" type="Function">
+                                                    <param id="0" name="Name">&quot;updatePlayerInventory&quot;</param>
+                                                    <param id="1" name="Parameter {n}">3</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="430030537187926">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="911948419598570" type="playableItems">
+                                                    <param id="0" name="Instance variable">index</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">4</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-13" name="Set boolean" sid="312540366450039" type="playableCharacters">
+                                                    <param id="0" name="Instance variable">equipped_4_slot</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="445141545309117" type="Function">
+                                                    <param id="0" name="Name">&quot;updatePlayerInventory&quot;</param>
+                                                    <param id="1" name="Parameter {n}">4</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="564460453810852">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="923045044770315" type="playableItems">
+                                                    <param id="0" name="Instance variable">index</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">5</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-13" name="Set boolean" sid="688276694547256" type="playableCharacters">
+                                                    <param id="0" name="Instance variable">equipped_5_slot</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="370424321060028" type="Function">
+                                                    <param id="0" name="Name">&quot;updatePlayerInventory&quot;</param>
+                                                    <param id="1" name="Parameter {n}">5</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="530078854183202">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="525256826501246" type="playableItems">
+                                                    <param id="0" name="Instance variable">index</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">6</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Call function" sid="216671412747233" type="Function">
+                                                    <param id="0" name="Name">&quot;levelUp&quot;</param>
+                                                    <param id="1" name="Parameter {n}">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="991587540066088" type="playableItems">
+                                                    <param id="0" name="Instance variable">itemCost</param>
+                                                    <param id="1" name="Value">Self.itemCost * 2</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="304969181732327">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="344076834629081" type="playableItems">
+                                                    <param id="0" name="Instance variable">index</param>
+                                                    <param id="1" name="Comparison">1</param>
+                                                    <param id="2" name="Value">6</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-15" name="Set visible" sid="841589113154674" type="playableItems">
+                                                    <param id="0" name="Visibility">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                                 <event-block sid="905191008384109">
                                     <conditions>
@@ -330,14 +526,6 @@
                         <condition id="-8" name="Is boolean instance variable set" sid="882496194426843" type="playableItems">
                             <param id="0" name="Instance variable">defaultPositionRecorded</param>
                         </condition>
-                        <condition disabled="1" id="-1" name="Compare X" sid="690775103114798" type="playableItems">
-                            <param id="0" name="Comparison">1</param>
-                            <param id="1" name="X co-ordinate">Self.xPosition</param>
-                        </condition>
-                        <condition disabled="1" id="-1" name="Compare X" sid="436501456285921" type="playableItems">
-                            <param id="0" name="Comparison">1</param>
-                            <param id="1" name="X co-ordinate">Self.xPosition</param>
-                        </condition>
                     </conditions>
                     <actions>
                         <action behavior="LiteTween" id="10" name="Start" sid="859025590075470" type="playableItems">
@@ -348,7 +536,7 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="show tooltip when item is hovered" sid="784288035911513" title="Hover / ToolTips">
+        <event-group description="show tooltip when item is hovered" inactive="1" sid="784288035911513" title="Hover / ToolTips Shop Panel">
             <sub-events>
                 <variable constant="0" name="toolTipShown" sid="386380896797443" static="1" type="number">0</variable>
                 <event-block sid="446082140284968">
@@ -393,6 +581,9 @@
                                     <param id="0" name="Variable">toolTipShown</param>
                                     <param id="1" name="Value">1</param>
                                 </action>
+                                <action id="0" name="Set text" sid="993792505059524" type="ui_toolTipItemCost">
+                                    <param id="0" name="Text">Function.Call(&quot;findCost&quot;)</param>
+                                </action>
                             </actions>
                         </event-block>
                         <event-block sid="172633931183309">
@@ -411,6 +602,10 @@
                                 <action id="-4" name="Set position to another object" sid="204601482690396" type="ui_storeItemDescText">
                                     <param id="0" name="Object">ui_storeItemTooltip</param>
                                     <param id="1" name="Image point (optional)">&quot;toolTipDescription&quot;</param>
+                                </action>
+                                <action id="-4" name="Set position to another object" sid="281511800353145" type="ui_toolTipItemCost">
+                                    <param id="0" name="Object">ui_storeItemTooltip</param>
+                                    <param id="1" name="Image point (optional)">&quot;toolTipCost&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -499,6 +694,40 @@
                 </event-block>
             </sub-events>
         </event-block>
+        <event-block sid="143688606130239">
+            <conditions>
+                <condition id="0" name="On function" sid="807920465776353" type="Function">
+                    <param id="0" name="Name">&quot;findCost&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="619084942848804">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="568883915164998" type="System">
+                            <param id="0" name="Object">playableItems</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="436783926535879">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="824903943116154" type="System">
+                                    <param id="0" name="First value">ui_storePanel.itemHoveredUID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">playableItems.UID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set return value" sid="796863989266964" type="Function">
+                                    <param id="0" name="Value">playableItems.itemCost</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
         <comment>Debug</comment>
         <event-block sid="728831425673451">
             <conditions>
@@ -509,6 +738,42 @@
                     <param id="0" name="Filename">&quot;data.json&quot;</param>
                 </action>
             </actions>
+        </event-block>
+        <event-block sid="553481123905808">
+            <conditions>
+                <condition id="0" name="On function" sid="735379265777589" type="Function">
+                    <param id="0" name="Name">&quot;toggleStoreCategory&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="220480718591480">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="846480121885656" type="System">
+                            <param id="0" name="First value">Function.Param(0)</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;tower&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action behavior="MoveTo" id="4" name="Move to XY" sid="963474105476117" type="ui_storeBoxSelected">
+                            <param id="0" name="X">ui_storeTowerText.X</param>
+                            <param id="1" name="Y">ui_storeTowerText.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="120525171533256">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="225619475201113" type="System" />
+                    </conditions>
+                    <actions>
+                        <action behavior="MoveTo" id="4" name="Move to XY" sid="283926578215426" type="ui_storeBoxSelected">
+                            <param id="0" name="X">ui_storeCharacterText.X</param>
+                            <param id="1" name="Y">ui_storeCharacterText.Y</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
     </events>
 </c2eventsheet>

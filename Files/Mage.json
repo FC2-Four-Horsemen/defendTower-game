@@ -2,28 +2,34 @@
 	"c2dictionary": true,
 	"data": {
 		"name": "Mage",
-		"defHeath": 10, 
+		
+		"defHealth": 100, 
 		"moveSpeed": 400,
+		"healthPerLevel": 5,
 
-		"autoDamage": 30,
+		"autoDamage": 50,		
+		"autoCooldown": 50,
 		"autoSpeed": 900,
-		"autoCooldown": 30,
-
-		"laserDamage": 30,
+		"autoDamagePerLevel": 5,
+		
+		"laserDamage": 65,
+		"laserCooldown": 300,
 		"laserSpeed": 900,
 		"laserPiercing": 1,
-		"laserCooldown": 500,
-		
-		"stunDamage": 30,
-		"stunSpeed": 900,
-		"stunDuration": 2,
-		"stunCooldown": 300,
-
-		"fireballDamage": 30,
-		"fireballSpeed": 900,
-		"fireballCooldown": 600,
+		"laserDamagePerLevel": 5,
 		
 		"blinkRange": 300,
-		"blinkCooldown": 50
+		"blinkCooldown": 300,	
+		
+		"stunDamage": 40,		
+		"stunCooldown": 500,
+		"stunDuration": 2,		
+		"stunSpeed": 900,
+		"stunDamagePerLevel": 5,
+		
+		"fireballDamage": 150,
+		"fireballCooldown": 800,
+		"fireballSpeed": 900,
+		"fireballDamagePerLevel": 5
 	}
 }

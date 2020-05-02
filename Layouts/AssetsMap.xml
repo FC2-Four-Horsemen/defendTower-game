@@ -508,6 +508,8 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
+                        <damage>0</damage>
+                        <targetTower>false</targetTower>
                         <isFired>false</isFired>
                     </instance-variables>
                     <behavior-instances>
@@ -526,8 +528,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>656</x>
-                        <y>-60</y>
+                        <x>638.839782715</x>
+                        <y>-24.165615082</y>
                         <z>0</z>
                         <width>16</width>
                         <height>6</height>
@@ -547,51 +549,37 @@
                     </properties>
                     <instance-variables>
                         <name>enemyRanged</name>
-                        <curHealth>20</curHealth>
-                        <maxHealth>20</maxHealth>
+                        <curHealth>70</curHealth>
+                        <maxHealth>70</maxHealth>
                         <isStunned>false</isStunned>
                         <isRanged>true</isRanged>
+                        <attackRange>300</attackRange>
                         <attackCoolDown>0</attackCoolDown>
                         <isHealthShown>false</isHealthShown>
-                        <suicideDamage>10</suicideDamage>
+                        <suicideDamage>7</suicideDamage>
+                        <goldReward>25</goldReward>
+                        <pathToFollow>0</pathToFollow>
+                        <hasSpawned>false</hasSpawned>
+                        <isTank>0</isTank>
+                        <onlyAttackTower>false</onlyAttackTower>
                     </instance-variables>
                     <behavior-instances>
-                        <behavior-instance type="Pathfinding">
-                            <properties>
-                                <cell-size>50</cell-size>
-                                <cell-border>-1</cell-border>
-                                <obstacles>Solids</obstacles>
-                                <max-speed>100</max-speed>
-                                <acceleration>1000</acceleration>
-                                <deceleration>2000</deceleration>
-                                <rotate-speed>135</rotate-speed>
-                                <rotate-object>No</rotate-object>
-                                <diagonals>Enabled</diagonals>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
                         <behavior-instance type="Timer" />
-                        <behavior-instance type="Solid">
+                        <behavior-instance type="MoveTo">
                             <properties>
-                                <initial-state>Disabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="8Direction">
-                            <properties>
-                                <max-speed>200</max-speed>
-                                <acceleration>600</acceleration>
-                                <deceleration>500</deceleration>
-                                <directions>8 directions</directions>
-                                <set-angle>360 degree (smooth)</set-angle>
-                                <default-controls>Yes</default-controls>
-                                <initial-state>Enabled</initial-state>
+                                <activated>Yes</activated>
+                                <max-speed>90</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>No</stop-by-solid>
+                                <continued-mode>No</continued-mode>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>
                     <effect-instances>
-                        <effect-instance type="Pixellate">
+                        <effect-instance type="Grayscale">
                             <parameters>
-                                <size>16</size>
+                                <intensity>1</intensity>
                             </parameters>
                         </effect-instance>
                     </effect-instances>
@@ -697,66 +685,52 @@
                     </properties>
                     <instance-variables>
                         <name>enemyMelee</name>
-                        <curHealth>30</curHealth>
-                        <maxHealth>30</maxHealth>
+                        <curHealth>100</curHealth>
+                        <maxHealth>100</maxHealth>
                         <isStunned>false</isStunned>
                         <isRanged>false</isRanged>
+                        <attackRange>0</attackRange>
                         <attackCoolDown>0</attackCoolDown>
                         <isHealthShown>false</isHealthShown>
-                        <suicideDamage>10</suicideDamage>
+                        <suicideDamage>5</suicideDamage>
+                        <goldReward>20</goldReward>
+                        <pathToFollow>0</pathToFollow>
+                        <hasSpawned>false</hasSpawned>
+                        <isTank>0</isTank>
+                        <onlyAttackTower>false</onlyAttackTower>
                     </instance-variables>
                     <behavior-instances>
-                        <behavior-instance type="Pathfinding">
-                            <properties>
-                                <cell-size>50</cell-size>
-                                <cell-border>-1</cell-border>
-                                <obstacles>Solids</obstacles>
-                                <max-speed>200</max-speed>
-                                <acceleration>1000</acceleration>
-                                <deceleration>2000</deceleration>
-                                <rotate-speed>360</rotate-speed>
-                                <rotate-object>No</rotate-object>
-                                <diagonals>Enabled</diagonals>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
                         <behavior-instance type="Timer" />
-                        <behavior-instance type="Solid">
+                        <behavior-instance type="MoveTo">
                             <properties>
-                                <initial-state>Disabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="8Direction">
-                            <properties>
-                                <max-speed>200</max-speed>
-                                <acceleration>600</acceleration>
-                                <deceleration>500</deceleration>
-                                <directions>8 directions</directions>
-                                <set-angle>360 degree (smooth)</set-angle>
-                                <default-controls>Yes</default-controls>
-                                <initial-state>Enabled</initial-state>
+                                <activated>Yes</activated>
+                                <max-speed>110</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>No</stop-by-solid>
+                                <continued-mode>No</continued-mode>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>
                     <effect-instances>
-                        <effect-instance type="Pixellate">
+                        <effect-instance type="Grayscale">
                             <parameters>
-                                <size>16</size>
+                                <intensity>1</intensity>
                             </parameters>
                         </effect-instance>
                     </effect-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>267</x>
-                        <y>-49</y>
+                        <x>352.893127441</x>
+                        <y>-108.265869141</y>
                         <z>0</z>
                         <width>64</width>
                         <height>64</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
-                        <angle>3.141592741</angle>
+                        <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>
@@ -770,7 +744,7 @@
                     <instance-variables>
                         <index>4</index>
                         <name>Sorcerer&apos;s Cap</name>
-                        <description>Its size covers your eyes, making you appear menacing. +200 Damage</description>
+                        <description>Its size covers your eyes, making you appear menacing. +25 Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -815,7 +789,7 @@
                     <instance-variables>
                         <index>1</index>
                         <name>Book of Enlightenment</name>
-                        <description>Book with an LED light inside. +50 Damage</description>
+                        <description>Book with an LED light inside. +10 Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -887,8 +861,8 @@
                         <x>1127</x>
                         <y>-132</y>
                         <z>0</z>
-                        <width>200</width>
-                        <height>100</height>
+                        <width>235.438476563</width>
+                        <height>118.019386292</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -906,7 +880,7 @@
                     <instance-variables>
                         <index>2</index>
                         <name>Holy Chalice</name>
-                        <description>The chalice was once used to hold some yellow liquid.  +100 Damage</description>
+                        <description>The chalice was once used to hold some yellow liquid.  +15 Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -983,10 +957,10 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>1133.234375</x>
-                        <y>-101.984481812</y>
+                        <x>1136.236206055</x>
+                        <y>-98.380592346</y>
                         <z>0</z>
-                        <width>186.002685547</width>
+                        <width>218.439453125</width>
                         <height>90.6459198</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
@@ -1005,7 +979,7 @@
                     <instance-variables>
                         <index>3</index>
                         <name>Hourglass of Fate</name>
-                        <description>Contains the sands of Boracay Beach. +150 Damage </description>
+                        <description>Contains the sands of Boracay Beach. +20 Damage </description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -1050,7 +1024,7 @@
                     <instance-variables>
                         <index>5</index>
                         <name>Catalyst of Magic</name>
-                        <description>A gallstone from a former Sage. +250 Damage</description>
+                        <description>A gallstone from a former Sage. +30 Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -1158,6 +1132,497 @@
                         <height>128</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_getGoldPopup" uid="138">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>788.779174805</x>
+                        <y>-27.844703674</y>
+                        <z>0</z>
+                        <width>23.855405807</width>
+                        <height>23.855405807</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_getGoldPopupText" uid="139">
+                    <properties>
+                        <text>+20</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-21,400,0</font>
+                        <color>255,204,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>802.939331055</x>
+                        <y>-27.99968338</y>
+                        <z>0</z>
+                        <width>57.411437988</width>
+                        <height>29.76231575</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_frame" uid="140">
+                    <properties>
+                        <left-margin>10</left-margin>
+                        <right-margin>10</right-margin>
+                        <top-margin>10</top-margin>
+                        <bottom-margin>10</bottom-margin>
+                        <edges>Tile</edges>
+                        <fill>Tile</fill>
+                        <initial-visibility>Visible</initial-visibility>
+                        <hotspot>Top-left</hotspot>
+                        <seams>Overlap</seams>
+                    </properties>
+                    <behavior-instances>
+                        <behavior-instance type="LiteTween2">
+                            <properties>
+                                <active-on-start>No</active-on-start>
+                                <tweened-property>Position</tweened-property>
+                                <function>EaseOutBounce</function>
+                                <target>100,100</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>2.5</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="LiteTween">
+                            <properties>
+                                <active-on-start>Yes</active-on-start>
+                                <tweened-property>Position</tweened-property>
+                                <function>EaseOutBounce</function>
+                                <target>100,100</target>
+                                <target-mode>Absolute</target-mode>
+                                <duration>2.5</duration>
+                                <enforce-mode>Enforce</enforce-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>848</x>
+                        <y>41</y>
+                        <z>0</z>
+                        <width>180.78137207</width>
+                        <height>147.845825195</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_towerMageShield" uid="145">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>135.815505981</x>
+                        <y>-193.260040283</y>
+                        <z>0</z>
+                        <width>256</width>
+                        <height>256</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_toolTipItemCost" uid="123">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16,400,0</font>
+                        <color>255,255,102</color>
+                        <horizontal-alignment>Right</horizontal-alignment>
+                        <vertical-alignment>Bottom</vertical-alignment>
+                        <hotspot>Bottom-right</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1359.047973633</x>
+                        <y>-15.794628143</y>
+                        <z>0</z>
+                        <width>154.9375</width>
+                        <height>22.594974518</height>
+                        <depth>0</depth>
+                        <hotspotX>1</hotspotX>
+                        <hotspotY>1</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_playerArcher" uid="88">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>-245</x>
+                        <y>-151</y>
+                        <z>0</z>
+                        <width>32</width>
+                        <height>32</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_eventsPanel" uid="99">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <isDrawn>false</isDrawn>
+                        <itemHovered>0</itemHovered>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1125</x>
+                        <y>-272</y>
+                        <z>0</z>
+                        <width>237.267776489</width>
+                        <height>118.633888245</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_eventsNameText" uid="100">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-19,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1130.18347168</x>
+                        <y>-269</y>
+                        <z>0</z>
+                        <width>366.16784668</width>
+                        <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_eventsDescText" uid="101">
+                    <properties>
+                        <text>TEST LOREM LOREM TEST LOREM LOREMTEST LOREM</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-15,400,0</font>
+                        <color>255,255,255</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1138.708496094</x>
+                        <y>-245.353668213</y>
+                        <z>0</z>
+                        <width>218.439453125</width>
+                        <height>90.6459198</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ui_eventsCommandText" uid="104">
+                    <properties>
+                        <text>Text</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16,400,0</font>
+                        <color>255,255,102</color>
+                        <horizontal-alignment>Right</horizontal-alignment>
+                        <vertical-alignment>Bottom</vertical-alignment>
+                        <hotspot>Bottom-right</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>1356.309204102</x>
+                        <y>-157.326522827</y>
+                        <z>0</z>
+                        <width>154.9375</width>
+                        <height>22.594974518</height>
+                        <depth>0</depth>
+                        <hotspotX>1</hotspotX>
+                        <hotspotY>1</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_enemyTank" uid="105">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>enemyTank</name>
+                        <curHealth>200</curHealth>
+                        <maxHealth>200</maxHealth>
+                        <isStunned>false</isStunned>
+                        <isRanged>false</isRanged>
+                        <attackRange>0</attackRange>
+                        <attackCoolDown>0</attackCoolDown>
+                        <isHealthShown>false</isHealthShown>
+                        <suicideDamage>25</suicideDamage>
+                        <goldReward>50</goldReward>
+                        <pathToFollow>0</pathToFollow>
+                        <hasSpawned>false</hasSpawned>
+                        <isTank>1</isTank>
+                        <onlyAttackTower>false</onlyAttackTower>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Timer" />
+                        <behavior-instance type="MoveTo">
+                            <properties>
+                                <activated>Yes</activated>
+                                <max-speed>70</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>No</stop-by-solid>
+                                <continued-mode>No</continued-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <effect-instances>
+                        <effect-instance type="Grayscale">
+                            <parameters>
+                                <intensity>1</intensity>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>503.254577637</x>
+                        <y>-103.378845215</y>
+                        <z>0</z>
+                        <width>64</width>
+                        <height>64</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_enemyFlyer" uid="107">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>enemyFlyer</name>
+                        <curHealth>50</curHealth>
+                        <maxHealth>50</maxHealth>
+                        <isStunned>false</isStunned>
+                        <isRanged>false</isRanged>
+                        <attackRange>0</attackRange>
+                        <attackCoolDown>0</attackCoolDown>
+                        <isHealthShown>false</isHealthShown>
+                        <suicideDamage>15</suicideDamage>
+                        <goldReward>20</goldReward>
+                        <pathToFollow>0</pathToFollow>
+                        <hasSpawned>false</hasSpawned>
+                        <isTank>0</isTank>
+                        <onlyAttackTower>false</onlyAttackTower>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Timer" />
+                        <behavior-instance type="MoveTo">
+                            <properties>
+                                <activated>Yes</activated>
+                                <max-speed>200</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>No</stop-by-solid>
+                                <continued-mode>No</continued-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <effect-instances>
+                        <effect-instance type="Grayscale">
+                            <parameters>
+                                <intensity>1</intensity>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>581.414916992</x>
+                        <y>-102.519897461</y>
+                        <z>0</z>
+                        <width>64</width>
+                        <height>64</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_enemyCatapult" uid="109">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>enemyCatapult</name>
+                        <curHealth>175</curHealth>
+                        <maxHealth>175</maxHealth>
+                        <isStunned>false</isStunned>
+                        <isRanged>true</isRanged>
+                        <attackRange>900</attackRange>
+                        <attackCoolDown>0</attackCoolDown>
+                        <isHealthShown>false</isHealthShown>
+                        <suicideDamage>25</suicideDamage>
+                        <goldReward>75</goldReward>
+                        <pathToFollow>0</pathToFollow>
+                        <hasSpawned>false</hasSpawned>
+                        <isTank>0</isTank>
+                        <onlyAttackTower>true</onlyAttackTower>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Timer" />
+                        <behavior-instance type="MoveTo">
+                            <properties>
+                                <activated>Yes</activated>
+                                <max-speed>60</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>No</stop-by-solid>
+                                <continued-mode>No</continued-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <effect-instances>
+                        <effect-instance type="Grayscale">
+                            <parameters>
+                                <intensity>1</intensity>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>654.965332031</x>
+                        <y>-103.09854126</y>
+                        <z>0</z>
+                        <width>64</width>
+                        <height>64</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="proj_enemyCatapult" uid="166">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <damage>0</damage>
+                        <targetTower>true</targetTower>
+                        <isFired>false</isFired>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Bullet">
+                            <properties>
+                                <speed>200</speed>
+                                <acceleration>0</acceleration>
+                                <gravity>0</gravity>
+                                <bounce-off-solids>No</bounce-off-solids>
+                                <set-angle>Yes</set-angle>
+                                <initial-state>Enabled</initial-state>
+                            </properties>
+                        </behavior-instance>
+                        <behavior-instance type="DestroyOutsideLayout" />
+                    </behavior-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>694.32220459</x>
+                        <y>-21.625411987</y>
+                        <z>0</z>
+                        <width>64</width>
+                        <height>64</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>

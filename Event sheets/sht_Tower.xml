@@ -7,7 +7,7 @@
             <conditions>
                 <condition id="-7" name="Compare instance variable" sid="271385499770532" type="playableTowers">
                     <param id="0" name="Instance variable">curArmor</param>
-                    <param id="1" name="Comparison">2</param>
+                    <param id="1" name="Comparison">3</param>
                     <param id="2" name="Value">0</param>
                 </condition>
             </conditions>
@@ -15,6 +15,19 @@
                 <action id="-10" name="Set value" sid="818158754900462" type="playableTowers">
                     <param id="0" name="Instance variable">curArmor</param>
                     <param id="1" name="Value">0</param>
+                </action>
+                <action id="-15" name="Set visible" sid="904718120071958" type="obj_towerMageShield">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="670257835394550">
+            <conditions>
+                <condition id="-22" name="Else" sid="383394093502132" type="System" />
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="801596502180202" type="obj_towerMageShield">
+                    <param id="0" name="Visibility">1</param>
                 </action>
             </actions>
         </event-block>
@@ -33,29 +46,134 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="579042918631628">
+        <event-block sid="441716888771100">
             <conditions>
-                <condition id="-14" name="Pick by unique ID" sid="836223789147769" type="ui_armorTower">
-                    <param id="0" name="Unique ID">129</param>
+                <condition id="0" name="On collision with another object" sid="601839591443605" type="playableTowers">
+                    <param id="0" name="Object">enemyProjectiles</param>
+                </condition>
+                <condition id="-8" name="Is boolean instance variable set" sid="323960086901472" type="enemyProjectiles">
+                    <param id="0" name="Instance variable">targetTower</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-5" name="Set width" sid="779132136934699" type="ui_armorTower">
+                <action id="0" name="Call function" sid="107327061529199" type="Function">
+                    <param id="0" name="Name">&quot;damageTower&quot;</param>
+                    <param id="1" name="Parameter {n}">enemyProjectiles.damage</param>
+                </action>
+                <action id="-9" name="Destroy" sid="450386048061506" type="enemyProjectiles" />
+            </actions>
+        </event-block>
+        <event-block sid="140601492118405">
+            <conditions>
+                <condition id="-14" name="Pick by unique ID" sid="982110835959939" type="ui_towerArmor">
+                    <param id="0" name="Unique ID">158</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-5" name="Set width" sid="405971114639579" type="ui_towerArmor">
                     <param id="0" name="Width">Self.maxSize * (playableTowers.curArmor / playableTowers.maxArmor)</param>
                 </action>
             </actions>
         </event-block>
-        <event-block sid="692620618862735">
+        <event-block sid="268534885426932">
             <conditions>
-                <condition id="-14" name="Pick by unique ID" sid="689504153013072" type="ui_healthTower">
-                    <param id="0" name="Unique ID">127</param>
+                <condition id="-14" name="Pick by unique ID" sid="483200991814443" type="ui_towerHealth">
+                    <param id="0" name="Unique ID">146</param>
                 </condition>
             </conditions>
             <actions>
-                <action id="-5" name="Set width" sid="484218036568410" type="ui_healthTower">
+                <action id="-5" name="Set width" sid="161338862351749" type="ui_towerHealth">
                     <param id="0" name="Width">Self.maxSize * (playableTowers.curHealth / playableTowers.maxHealth)</param>
                 </action>
             </actions>
+        </event-block>
+        <event-block sid="925542660839703">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="128937135773106" type="playableTowers">
+                    <param id="0" name="Instance variable">curHealth</param>
+                    <param id="1" name="Comparison">3</param>
+                    <param id="2" name="Value">0</param>
+                </condition>
+                <condition id="5" inverted="1" name="Is tag playing" sid="500776652228341" type="Audio">
+                    <param id="0" name="Tag">&quot;Gameover&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="484221472590165" type="Audio">
+                    <param id="0" name="Audio file">Sad Violin</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-10</param>
+                    <param id="1" name="Tag (optional)">&quot;Gameover&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>TowerFunctions</comment>
+        <event-block sid="587824791467936">
+            <conditions>
+                <condition id="0" name="On function" sid="491123749742905" type="Function">
+                    <param id="0" name="Name">&quot;restoreShield&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="829613385684020" type="playableTowers">
+                    <param id="0" name="Instance variable">curArmor</param>
+                    <param id="1" name="Value">Self.maxArmor</param>
+                </action>
+                <action id="0" name="Play" sid="760765741493830" type="Audio">
+                    <param id="0" name="Audio file">shieldRestored</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-10</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="620170149564552">
+            <conditions>
+                <condition id="0" name="On function" sid="625217121254907" type="Function">
+                    <param id="0" name="Name">&quot;damageTower&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="470897511859627">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="302145519567645" type="playableTowers">
+                            <param id="0" name="Instance variable">curArmor</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="268002140573233" type="playableTowers">
+                            <param id="0" name="Instance variable">curArmor</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
+                        </action>
+                        <action id="0" name="Play" sid="479439920893862" type="Audio">
+                            <param id="0" name="Audio file">shieldHit</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">-10</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="297526281699636">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="122473865317073" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Subtract from" sid="457978410359680" type="playableTowers">
+                            <param id="0" name="Instance variable">curHealth</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
+                        </action>
+                        <action id="0" name="Play" sid="908698528727789" type="Audio">
+                            <param id="0" name="Audio file">towerHit</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">-10</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
     </events>
 </c2eventsheet>

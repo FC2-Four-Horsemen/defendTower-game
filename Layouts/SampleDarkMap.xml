@@ -76,22 +76,22 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <name>&quot;Mage&quot;</name>
-                        <curLevel>1</curLevel>
+                        <name>Mage</name>
+                        <curLevel>0</curLevel>
                         <curHealth>100</curHealth>
                         <maxHealth>100</maxHealth>
                         <totalScore>0</totalScore>
-                        <autoAttackSpeed>0</autoAttackSpeed>
                         <skill_1_level>1</skill_1_level>
                         <skill_2_level>1</skill_2_level>
                         <skill_3_level>1</skill_3_level>
                         <skill_4_level>1</skill_4_level>
-                        <inventory_1_slot>&quot;empty&quot;</inventory_1_slot>
-                        <inventory_2_slot>&quot;empty&quot;</inventory_2_slot>
-                        <inventory_3_slot>&quot;empty&quot;</inventory_3_slot>
-                        <inventory_4_slot>&quot;empty&quot;</inventory_4_slot>
-                        <totalItems>0</totalItems>
-                        <curGold>0</curGold>
+                        <equipped_1_slot>false</equipped_1_slot>
+                        <equipped_2_slot>false</equipped_2_slot>
+                        <equipped_3_slot>false</equipped_3_slot>
+                        <equipped_4_slot>false</equipped_4_slot>
+                        <equipped_5_slot>false</equipped_5_slot>
+                        <curGold>5</curGold>
+                        <selected>false</selected>
                         <isBlinkFinished>false</isBlinkFinished>
                         <distanceToBlink>0</distanceToBlink>
                     </instance-variables>
@@ -100,7 +100,7 @@
                             <properties>
                                 <max-speed>200</max-speed>
                                 <acceleration>600</acceleration>
-                                <deceleration>400</deceleration>
+                                <deceleration>500</deceleration>
                                 <directions>8 directions</directions>
                                 <set-angle>No</set-angle>
                                 <default-controls>Yes</default-controls>
@@ -118,6 +118,16 @@
                             </properties>
                         </behavior-instance>
                         <behavior-instance type="Timer" />
+                        <behavior-instance type="MoveTo">
+                            <properties>
+                                <activated>Yes</activated>
+                                <max-speed>400</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>Yes</stop-by-solid>
+                                <continued-mode>No</continued-mode>
+                            </properties>
+                        </behavior-instance>
                     </behavior-instances>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -143,51 +153,37 @@
                     </properties>
                     <instance-variables>
                         <name>enemyMelee</name>
-                        <curHealth>30</curHealth>
-                        <maxHealth>30</maxHealth>
+                        <curHealth>100</curHealth>
+                        <maxHealth>100</maxHealth>
                         <isStunned>false</isStunned>
                         <isRanged>false</isRanged>
+                        <attackRange>0</attackRange>
                         <attackCoolDown>0</attackCoolDown>
                         <isHealthShown>false</isHealthShown>
-                        <suicideDamage>10</suicideDamage>
+                        <suicideDamage>5</suicideDamage>
+                        <goldReward>20</goldReward>
+                        <pathToFollow>0</pathToFollow>
+                        <hasSpawned>false</hasSpawned>
+                        <isTank>0</isTank>
+                        <onlyAttackTower>false</onlyAttackTower>
                     </instance-variables>
                     <behavior-instances>
-                        <behavior-instance type="Pathfinding">
-                            <properties>
-                                <cell-size>50</cell-size>
-                                <cell-border>-1</cell-border>
-                                <obstacles>Solids</obstacles>
-                                <max-speed>200</max-speed>
-                                <acceleration>1000</acceleration>
-                                <deceleration>2000</deceleration>
-                                <rotate-speed>360</rotate-speed>
-                                <rotate-object>No</rotate-object>
-                                <diagonals>Enabled</diagonals>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
                         <behavior-instance type="Timer" />
-                        <behavior-instance type="Solid">
+                        <behavior-instance type="MoveTo">
                             <properties>
-                                <initial-state>Disabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="8Direction">
-                            <properties>
-                                <max-speed>200</max-speed>
-                                <acceleration>600</acceleration>
-                                <deceleration>500</deceleration>
-                                <directions>8 directions</directions>
-                                <set-angle>360 degree (smooth)</set-angle>
-                                <default-controls>Yes</default-controls>
-                                <initial-state>Enabled</initial-state>
+                                <activated>Yes</activated>
+                                <max-speed>110</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>No</stop-by-solid>
+                                <continued-mode>No</continued-mode>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>
                     <effect-instances>
-                        <effect-instance type="Pixellate">
+                        <effect-instance type="Grayscale">
                             <parameters>
-                                <size>16</size>
+                                <intensity>1</intensity>
                             </parameters>
                         </effect-instance>
                     </effect-instances>
@@ -202,7 +198,7 @@
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
-                        <angle>3.141592741</angle>
+                        <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>
@@ -215,51 +211,37 @@
                     </properties>
                     <instance-variables>
                         <name>enemyMelee</name>
-                        <curHealth>30</curHealth>
-                        <maxHealth>30</maxHealth>
+                        <curHealth>100</curHealth>
+                        <maxHealth>100</maxHealth>
                         <isStunned>false</isStunned>
                         <isRanged>false</isRanged>
+                        <attackRange>0</attackRange>
                         <attackCoolDown>0</attackCoolDown>
                         <isHealthShown>false</isHealthShown>
-                        <suicideDamage>10</suicideDamage>
+                        <suicideDamage>5</suicideDamage>
+                        <goldReward>20</goldReward>
+                        <pathToFollow>0</pathToFollow>
+                        <hasSpawned>false</hasSpawned>
+                        <isTank>0</isTank>
+                        <onlyAttackTower>false</onlyAttackTower>
                     </instance-variables>
                     <behavior-instances>
-                        <behavior-instance type="Pathfinding">
-                            <properties>
-                                <cell-size>50</cell-size>
-                                <cell-border>-1</cell-border>
-                                <obstacles>Solids</obstacles>
-                                <max-speed>200</max-speed>
-                                <acceleration>1000</acceleration>
-                                <deceleration>2000</deceleration>
-                                <rotate-speed>360</rotate-speed>
-                                <rotate-object>No</rotate-object>
-                                <diagonals>Enabled</diagonals>
-                                <initial-state>Enabled</initial-state>
-                            </properties>
-                        </behavior-instance>
                         <behavior-instance type="Timer" />
-                        <behavior-instance type="Solid">
+                        <behavior-instance type="MoveTo">
                             <properties>
-                                <initial-state>Disabled</initial-state>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="8Direction">
-                            <properties>
-                                <max-speed>200</max-speed>
-                                <acceleration>600</acceleration>
-                                <deceleration>500</deceleration>
-                                <directions>8 directions</directions>
-                                <set-angle>360 degree (smooth)</set-angle>
-                                <default-controls>Yes</default-controls>
-                                <initial-state>Enabled</initial-state>
+                                <activated>Yes</activated>
+                                <max-speed>110</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>No</stop-by-solid>
+                                <continued-mode>No</continued-mode>
                             </properties>
                         </behavior-instance>
                     </behavior-instances>
                     <effect-instances>
-                        <effect-instance type="Pixellate">
+                        <effect-instance type="Grayscale">
                             <parameters>
-                                <size>16</size>
+                                <intensity>1</intensity>
                             </parameters>
                         </effect-instance>
                     </effect-instances>
@@ -274,7 +256,7 @@
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
-                        <angle>3.141592741</angle>
+                        <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
                 </instance>
@@ -286,10 +268,10 @@
                         <collisions>Enabled</collisions>
                     </properties>
                     <instance-variables>
-                        <curHealth>20</curHealth>
-                        <curArmor>15</curArmor>
-                        <maxHealth>20</maxHealth>
-                        <maxArmor>15</maxArmor>
+                        <curHealth>150</curHealth>
+                        <curArmor>50</curArmor>
+                        <maxHealth>150</maxHealth>
+                        <maxArmor>50</maxArmor>
                         <isSelected>true</isSelected>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
@@ -488,6 +470,9 @@
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <path>0</path>
+                    </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
@@ -510,6 +495,9 @@
                         <initial-frame>0</initial-frame>
                         <collisions>Enabled</collisions>
                     </properties>
+                    <instance-variables>
+                        <path>0</path>
+                    </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
