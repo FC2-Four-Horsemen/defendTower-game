@@ -21,6 +21,29 @@
                     <param id="1" name="CSS URL">&quot;stylesheet.css&quot;</param>
                 </action>
             </actions>
+            <sub-events>
+                <event-block sid="626153176672624">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="267816117470261" type="ui_frame">
+                            <param id="0" name="Unique ID">142</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="349008556596964" type="ui_frame">
+                            <param id="0" name="X">Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.1)</param>
+                            <param id="1" name="Y">Function.Call(&quot;relHeight&quot;, &quot;UI&quot;, -0.1)</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="249532486365151" type="ui_goldBar">
+                            <param id="0" name="X">Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.9)</param>
+                            <param id="1" name="Y">Function.Call(&quot;relHeight&quot;, &quot;UI&quot;, -0.05)</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="100330074885932" type="ui_bottomPanels">
+                            <param id="0" name="X">Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.5)</param>
+                            <param id="1" name="Y">Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 1.12)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-group description="" sid="285942986790429" title="UI Tween Initialize">
             <sub-events>
@@ -28,74 +51,20 @@
                     <conditions>
                         <condition id="-2" name="On start of layout" sid="978324420423609" type="System" />
                     </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="249225245113571">
-                            <conditions>
-                                <condition id="-14" name="Pick by unique ID" sid="775773037980231" type="ui_frame">
-                                    <param id="0" name="Unique ID">142</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Set position" sid="349008556596964" type="ui_frame">
-                                    <param id="0" name="X">Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.1)</param>
-                                    <param id="1" name="Y">Function.Call(&quot;relHeight&quot;, &quot;UI&quot;, -0.1)</param>
-                                </action>
-                                <action id="0" name="Call function" sid="386667218158027" type="Function">
-                                    <param id="0" name="Name">&quot;setTween&quot;</param>
-                                    <param id="1" name="Parameter {n}">142{###}Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.1){###}Function.Call(&quot;relHeight&quot;, &quot;UI&quot;, 0.1){###}1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="257461973497352">
-                            <conditions />
-                            <actions>
-                                <action id="-3" name="Set position" sid="249532486365151" type="ui_goldBar">
-                                    <param id="0" name="X">Self.X</param>
-                                    <param id="1" name="Y">Self.Y - 70</param>
-                                </action>
-                                <action behavior="LiteTween" id="4" name="Set tweened property" sid="848056270644330" type="ui_goldBar">
-                                    <param id="0" name="Tweened property">0</param>
-                                </action>
-                                <action behavior="LiteTween" id="3" name="Set target" sid="836280617569455" type="ui_goldBar">
-                                    <param id="0" name="Target is">0</param>
-                                    <param id="1" name="Relativity">1</param>
-                                    <param id="2" name="Value">0</param>
-                                </action>
-                                <action behavior="LiteTween" id="3" name="Set target" sid="993102886785724" type="ui_goldBar">
-                                    <param id="0" name="Target is">1</param>
-                                    <param id="1" name="Relativity">1</param>
-                                    <param id="2" name="Value">70</param>
-                                </action>
-                                <action behavior="LiteTween" id="1" name="Set duration" sid="435345717448327" type="ui_goldBar">
-                                    <param id="0" name="Duration">1</param>
-                                </action>
-                                <action behavior="LiteTween" id="5" name="Set easing" sid="618436479671520" type="ui_goldBar">
-                                    <param id="0" name="Function">14</param>
-                                </action>
-                                <action id="-3" name="Set position" sid="100330074885932" type="ui_bottomPanels">
-                                    <param id="0" name="X">Self.X</param>
-                                    <param id="1" name="Y">Self.Y + 70</param>
-                                </action>
-                                <action behavior="LiteTween" id="4" name="Set tweened property" sid="369254983746980" type="ui_bottomPanels">
-                                    <param id="0" name="Tweened property">0</param>
-                                </action>
-                                <action behavior="LiteTween" id="3" name="Set target" sid="151688108759314" type="ui_bottomPanels">
-                                    <param id="0" name="Target is">0</param>
-                                    <param id="1" name="Relativity">1</param>
-                                    <param id="2" name="Value">0</param>
-                                </action>
-                                <action behavior="LiteTween" id="3" name="Set target" sid="109692042202749" type="ui_bottomPanels">
-                                    <param id="0" name="Target is">1</param>
-                                    <param id="1" name="Relativity">1</param>
-                                    <param id="2" name="Value">-70</param>
-                                </action>
-                                <action behavior="LiteTween" id="1" name="Set duration" sid="487510638463810" type="ui_bottomPanels">
-                                    <param id="0" name="Duration">1</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
+                    <actions>
+                        <action id="0" name="Call function" sid="386667218158027" type="Function">
+                            <param id="0" name="Name">&quot;setTween&quot;</param>
+                            <param id="1" name="Parameter {n}">142{###}Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.1){###}Function.Call(&quot;relHeight&quot;, &quot;UI&quot;, 0.1){###}1</param>
+                        </action>
+                        <action id="0" name="Call function" sid="482677932288539" type="Function">
+                            <param id="0" name="Name">&quot;setSpriteTween&quot;</param>
+                            <param id="1" name="Parameter {n}">137{###}Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.9){###}Function.Call(&quot;relHeight&quot;, &quot;UI&quot;, 0.05){###}1</param>
+                        </action>
+                        <action id="0" name="Call function" sid="171089586795767" type="Function">
+                            <param id="0" name="Name">&quot;setSpriteTween&quot;</param>
+                            <param id="1" name="Parameter {n}">80{###}Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.5){###}Function.Call(&quot;relHeight&quot;, &quot;UI&quot;, 0.87){###}1</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-group>
@@ -105,41 +74,19 @@
                     <conditions>
                         <condition id="-4" name="Trigger once while true" sid="769467244653601" type="System" />
                     </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="878191559190967">
-                            <conditions>
-                                <condition id="-14" name="Pick by unique ID" sid="316522792119570" type="ui_frame">
-                                    <param id="0" name="Unique ID">142</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Call function" sid="559794437375425" type="Function">
-                                    <param id="0" name="Name">&quot;startTween&quot;</param>
-                                    <param id="1" name="Parameter {n}">142</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="982150029246519">
-                            <conditions />
-                            <actions>
-                                <action behavior="LiteTween" id="10" name="Start" sid="509684646573273" type="ui_goldBar">
-                                    <param id="0" name="Start Mode">0</param>
-                                    <param id="1" name="Force use current">0</param>
-                                </action>
-                                <action behavior="LiteTween" id="10" name="Start" sid="380954325472340" type="ui_bottomPanels">
-                                    <param id="0" name="Start Mode">0</param>
-                                    <param id="1" name="Force use current">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-                <event-block sid="652204985825737">
-                    <conditions>
-                        <condition behavior="LiteTween" id="4" name="On tween end" sid="579220355027130" type="ui_bottomPanels" />
-                    </conditions>
                     <actions>
+                        <action id="0" name="Call function" sid="559794437375425" type="Function">
+                            <param id="0" name="Name">&quot;startTween&quot;</param>
+                            <param id="1" name="Parameter {n}">142</param>
+                        </action>
+                        <action id="0" name="Call function" sid="452183509354633" type="Function">
+                            <param id="0" name="Name">&quot;startSpriteTween&quot;</param>
+                            <param id="1" name="Parameter {n}">137</param>
+                        </action>
+                        <action id="0" name="Call function" sid="525945897623801" type="Function">
+                            <param id="0" name="Name">&quot;startSpriteTween&quot;</param>
+                            <param id="1" name="Parameter {n}">80</param>
+                        </action>
                         <action id="0" name="Call function" sid="865093938625807" type="Function">
                             <param id="0" name="Name">&quot;enablePlayerAttack&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
@@ -175,16 +122,6 @@
                             <param id="0" name="Instance variable">id</param>
                             <param id="1" name="Value">enemyMinions.UID</param>
                         </action>
-                        <action id="-3" name="Create object" sid="762216814704958" type="System">
-                            <param id="0" name="Object to create">ui_floatingHealth</param>
-                            <param id="1" name="Layer">(&quot;Game&quot;)</param>
-                            <param id="2" name="X">enemyMinions.X</param>
-                            <param id="3" name="Y">enemyMinions.Y</param>
-                        </action>
-                        <action id="-10" name="Set value" sid="187611283203506" type="ui_floatingHealth">
-                            <param id="0" name="Instance variable">id</param>
-                            <param id="1" name="Value">enemyMinions.UID</param>
-                        </action>
                         <action id="-13" name="Set boolean" sid="143124282106179" type="enemyMinions">
                             <param id="0" name="Instance variable">isHealthShown</param>
                             <param id="1" name="Value">1</param>
@@ -198,11 +135,6 @@
                         </condition>
                         <condition id="-14" name="Pick by unique ID" sid="917461583548373" type="enemyMinions">
                             <param id="0" name="Unique ID">ui_floatingHealthBar.id</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" sid="832544729709578" type="ui_floatingHealth">
-                            <param id="0" name="Instance variable">id</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">ui_floatingHealthBar.id</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -236,15 +168,9 @@
                                 <condition id="-14" name="Pick by unique ID" sid="103803424521763" type="enemyMinions">
                                     <param id="0" name="Unique ID">ui_floatingHealthBar.id</param>
                                 </condition>
-                                <condition id="-7" name="Compare instance variable" sid="589750372257770" type="ui_floatingHealth">
-                                    <param id="0" name="Instance variable">id</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">ui_floatingHealthBar.id</param>
-                                </condition>
                             </conditions>
                             <actions>
                                 <action id="-9" name="Destroy" sid="668951464331530" type="ui_floatingHealthBar" />
-                                <action id="-9" name="Destroy" sid="788272761200420" type="ui_floatingHealth" />
                             </actions>
                         </event-block>
                     </sub-events>
@@ -443,7 +369,7 @@
                             <param id="0" name="Text">&quot;Level: &quot; &amp; playableCharacters.curLevel</param>
                         </action>
                         <action id="0" name="Set text" sid="728837281272104" type="ui_textHealth">
-                            <param id="0" name="Text">playableCharacters.curHealth &amp; &quot;/&quot; &amp; playableCharacters.maxHealth</param>
+                            <param id="0" name="Text">floor(playableCharacters.curHealth) &amp; &quot;/&quot; &amp; playableCharacters.maxHealth</param>
                         </action>
                         <action id="0" name="Set text" sid="653659225082686" type="ui_playerAADamage">
                             <param id="0" name="Text">&quot;Atk: &quot; &amp; playerDictionary.Get(&quot;autoDamage&quot;)</param>
@@ -563,6 +489,58 @@
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="470899509203527">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="503335963878848" type="ui_iconProgress">
+                            <param id="0" name="Unique ID">52</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set position to another object" sid="732921293229605" type="ui_iconProgress">
+                            <param id="0" name="Object">ui_laserIcon</param>
+                            <param id="1" name="Image point (optional)">&quot;Progress&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="890834931199717">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="713960278488210" type="ui_iconProgress">
+                            <param id="0" name="Unique ID">8</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set position to another object" sid="114623730834036" type="ui_iconProgress">
+                            <param id="0" name="Object">ui_blinkIcon</param>
+                            <param id="1" name="Image point (optional)">&quot;Progress&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="676654623610002">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="634633391023839" type="ui_iconProgress">
+                            <param id="0" name="Unique ID">160</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set position to another object" sid="271551921424430" type="ui_iconProgress">
+                            <param id="0" name="Object">ui_stunIcon</param>
+                            <param id="1" name="Image point (optional)">&quot;Progress&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="380444854238367">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="459741402718555" type="ui_iconProgress">
+                            <param id="0" name="Unique ID">161</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-4" name="Set position to another object" sid="277519451301798" type="ui_iconProgress">
+                            <param id="0" name="Object">ui_fireBallIcon</param>
+                            <param id="1" name="Image point (optional)">&quot;Progress&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
             </sub-events>
         </event-group>
         <event-group description="" inactive="1" sid="960863405140940" title="Game Over Panel">
@@ -587,7 +565,7 @@
                                     <param id="1" name="Value">currentWave * 100</param>
                                 </action>
                                 <action id="0" name="Set text" sid="445627026514649" type="ui_gameOverScore">
-                                    <param id="0" name="Text">&quot;Wave x 100: &quot; &amp; currentScore</param>
+                                    <param id="0" name="Text">&quot;Wave x 1000: &quot; &amp; currentScore</param>
                                 </action>
                                 <action id="-16" name="Wait" sid="981001814202089" type="System">
                                     <param id="0" name="Seconds">2</param>
@@ -768,11 +746,17 @@
                     <param id="0" name="Name">&quot;setEnemyCount&quot;</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="0" name="Set text" sid="241453671326665" type="ui_enemyCount">
-                    <param id="0" name="Text">Function.Param(0) &amp; &quot;/&quot; &amp; Function.Param(1)</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="851674186321081">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Set text" sid="241453671326665" type="ui_enemyCount">
+                            <param id="0" name="Text">Function.Param(0) &amp; &quot;/&quot; &amp; Function.Param(1)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <comment>Return Width based on 0 - 1. ie. 0.5 is center. Hotspot at top-left</comment>
         <event-block sid="840609490243851">
@@ -781,11 +765,17 @@
                     <param id="0" name="Name">&quot;relWidth&quot;</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="1" name="Set return value" sid="571264302706239" type="Function">
-                    <param id="0" name="Value">ViewportRight(Function.Param(0)) * Function.Param(1)</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="645096499439258">
+                    <conditions />
+                    <actions>
+                        <action id="1" name="Set return value" sid="571264302706239" type="Function">
+                            <param id="0" name="Value">ViewportRight(Function.Param(0)) * Function.Param(1)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="973254558952779">
             <conditions>
@@ -793,11 +783,17 @@
                     <param id="0" name="Name">&quot;relHeight&quot;</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="1" name="Set return value" sid="610837497696825" type="Function">
-                    <param id="0" name="Value">ViewportBottom(Function.Param(0)) * Function.Param(1) </param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="656087713411762">
+                    <conditions />
+                    <actions>
+                        <action id="1" name="Set return value" sid="610837497696825" type="Function">
+                            <param id="0" name="Value">ViewportBottom(Function.Param(0)) * Function.Param(1) </param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="110055964134082">
             <conditions>
@@ -815,81 +811,31 @@
                             <param id="2" name="Second value">1</param>
                         </condition>
                     </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="415876963615991">
-                            <conditions>
-                                <condition id="-14" name="Pick by unique ID" sid="399867446306448" type="ui_frame">
-                                    <param id="0" name="Unique ID">178</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action behavior="LiteTween" id="4" name="Set tweened property" sid="155105667212357" type="ui_frame">
-                                    <param id="0" name="Tweened property">0</param>
-                                </action>
-                                <action behavior="LiteTween" id="3" name="Set target" sid="842222979272715" type="ui_frame">
-                                    <param id="0" name="Target is">0</param>
-                                    <param id="1" name="Relativity">1</param>
-                                    <param id="2" name="Value">120</param>
-                                </action>
-                                <action behavior="LiteTween" id="3" name="Set target" sid="822236014130495" type="ui_frame">
-                                    <param id="0" name="Target is">1</param>
-                                    <param id="1" name="Relativity">1</param>
-                                    <param id="2" name="Value">0</param>
-                                </action>
-                                <action behavior="LiteTween" id="1" name="Set duration" sid="566147517858617" type="ui_frame">
-                                    <param id="0" name="Duration">1</param>
-                                </action>
-                                <action behavior="LiteTween" id="5" name="Set easing" sid="830983027433634" type="ui_frame">
-                                    <param id="0" name="Function">14</param>
-                                </action>
-                                <action behavior="LiteTween" id="10" name="Start" sid="938213282808183" type="ui_frame">
-                                    <param id="0" name="Start Mode">0</param>
-                                    <param id="1" name="Force use current">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
+                    <actions>
+                        <action id="0" name="Call function" sid="203676999002677" type="Function">
+                            <param id="0" name="Name">&quot;setTween&quot;</param>
+                            <param id="1" name="Parameter {n}">178{###}Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.3){###}Function.Call(&quot;relHeight&quot;, &quot;UI&quot;, 0.05){###}1</param>
+                        </action>
+                        <action id="0" name="Call function" sid="103093733105737" type="Function">
+                            <param id="0" name="Name">&quot;startTween&quot;</param>
+                            <param id="1" name="Parameter {n}">178</param>
+                        </action>
+                    </actions>
                 </event-block>
                 <event-block sid="866499424527496">
                     <conditions>
                         <condition id="-22" name="Else" sid="751054304852396" type="System" />
                     </conditions>
-                    <actions />
-                    <sub-events>
-                        <event-block sid="234145779322816">
-                            <conditions>
-                                <condition id="-14" name="Pick by unique ID" sid="630998032460591" type="ui_frame">
-                                    <param id="0" name="Unique ID">178</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action behavior="LiteTween" id="4" name="Set tweened property" sid="159211028393026" type="ui_frame">
-                                    <param id="0" name="Tweened property">0</param>
-                                </action>
-                                <action behavior="LiteTween" id="3" name="Set target" sid="737133467442772" type="ui_frame">
-                                    <param id="0" name="Target is">1</param>
-                                    <param id="1" name="Relativity">1</param>
-                                    <param id="2" name="Value">0</param>
-                                </action>
-                                <action behavior="LiteTween" id="3" name="Set target" sid="395996129731069" type="ui_frame">
-                                    <param id="0" name="Target is">0</param>
-                                    <param id="1" name="Relativity">1</param>
-                                    <param id="2" name="Value">-120</param>
-                                </action>
-                                <action behavior="LiteTween" id="1" name="Set duration" sid="815199254312466" type="ui_frame">
-                                    <param id="0" name="Duration">1</param>
-                                </action>
-                                <action behavior="LiteTween" id="5" name="Set easing" sid="818000369524804" type="ui_frame">
-                                    <param id="0" name="Function">14</param>
-                                </action>
-                                <action behavior="LiteTween" id="10" name="Start" sid="167771338082833" type="ui_frame">
-                                    <param id="0" name="Start Mode">0</param>
-                                    <param id="1" name="Force use current">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
+                    <actions>
+                        <action id="0" name="Call function" sid="461265145521777" type="Function">
+                            <param id="0" name="Name">&quot;setTween&quot;</param>
+                            <param id="1" name="Parameter {n}">178{###}Function.Call(&quot;relWidth&quot;, &quot;UI&quot;, 0.1){###}Function.Call(&quot;relHeight&quot;, &quot;UI&quot;, 0.05){###}1</param>
+                        </action>
+                        <action id="0" name="Call function" sid="387948729436046" type="Function">
+                            <param id="0" name="Name">&quot;startTween&quot;</param>
+                            <param id="1" name="Parameter {n}">178</param>
+                        </action>
+                    </actions>
                 </event-block>
             </sub-events>
         </event-block>
@@ -899,11 +845,17 @@
                     <param id="0" name="Name">&quot;setTimerText&quot;</param>
                 </condition>
             </conditions>
-            <actions>
-                <action id="0" name="Set text" sid="741088438217316" type="ui_timerCountText">
-                    <param id="0" name="Text">Function.Param(0)</param>
-                </action>
-            </actions>
+            <actions />
+            <sub-events>
+                <event-block sid="172388158834510">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Set text" sid="741088438217316" type="ui_timerCountText">
+                            <param id="0" name="Text">Function.Param(0)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-block sid="560386201726425">
             <conditions>
@@ -915,36 +867,39 @@
             <sub-events>
                 <event-block sid="425553886461655">
                     <conditions>
-                        <condition id="-14" name="Pick by unique ID" sid="720973616314294" type="TweenablePatchElements">
-                            <param id="0" name="Unique ID">Function.Param(0)</param>
-                        </condition>
                         <condition id="-4" name="Trigger once while true" sid="223138033789124" type="System" />
                     </conditions>
-                    <actions>
-                        <action behavior="LiteTween2" id="4" name="Set tweened property" sid="809824747702960" type="TweenablePatchElements">
-                            <param id="0" name="Tweened property">0</param>
-                        </action>
-                        <action behavior="LiteTween2" id="3" name="Set target" sid="942914195548192" type="TweenablePatchElements">
-                            <param id="0" name="Target is">0</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Function.Param(1)</param>
-                        </action>
-                        <action behavior="LiteTween2" id="3" name="Set target" sid="785002215861990" type="TweenablePatchElements">
-                            <param id="0" name="Target is">1</param>
-                            <param id="1" name="Relativity">0</param>
-                            <param id="2" name="Value">Function.Param(2)</param>
-                        </action>
-                        <action behavior="LiteTween2" id="1" name="Set duration" sid="367760175631769" type="TweenablePatchElements">
-                            <param id="0" name="Duration">Function.Param(3)</param>
-                        </action>
-                        <action behavior="LiteTween2" id="5" name="Set easing" sid="759231783706641" type="TweenablePatchElements">
-                            <param id="0" name="Function">14</param>
-                        </action>
-                        <action behavior="LiteTween2" disabled="1" id="10" name="Start" sid="716285637927494" type="TweenablePatchElements">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="559163522504073">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="720973616314294" type="TweenablePatchElements">
+                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="LiteTween4" id="4" name="Set tweened property" sid="809824747702960" type="TweenablePatchElements">
+                                    <param id="0" name="Tweened property">0</param>
+                                </action>
+                                <action behavior="LiteTween4" id="3" name="Set target" sid="942914195548192" type="TweenablePatchElements">
+                                    <param id="0" name="Target is">0</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Function.Param(1)</param>
+                                </action>
+                                <action behavior="LiteTween4" id="3" name="Set target" sid="785002215861990" type="TweenablePatchElements">
+                                    <param id="0" name="Target is">1</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Function.Param(2)</param>
+                                </action>
+                                <action behavior="LiteTween4" id="1" name="Set duration" sid="367760175631769" type="TweenablePatchElements">
+                                    <param id="0" name="Duration">Function.Param(3)</param>
+                                </action>
+                                <action behavior="LiteTween4" id="5" name="Set easing" sid="759231783706641" type="TweenablePatchElements">
+                                    <param id="0" name="Function">15</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>
@@ -956,19 +911,103 @@
             </conditions>
             <actions />
             <sub-events>
-                <event-block sid="603736531665040">
+                <event-block sid="833341310723766">
                     <conditions>
-                        <condition id="-14" name="Pick by unique ID" sid="452659310134612" type="TweenablePatchElements">
-                            <param id="0" name="Unique ID">Function.Param(0)</param>
-                        </condition>
                         <condition id="-4" name="Trigger once while true" sid="694068322409292" type="System" />
                     </conditions>
-                    <actions>
-                        <action behavior="LiteTween2" id="10" name="Start" sid="221500327297523" type="TweenablePatchElements">
-                            <param id="0" name="Start Mode">0</param>
-                            <param id="1" name="Force use current">0</param>
-                        </action>
-                    </actions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="603736531665040">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="452659310134612" type="TweenablePatchElements">
+                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="LiteTween4" id="10" name="Start" sid="221500327297523" type="TweenablePatchElements">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="379463780364129">
+            <conditions>
+                <condition id="0" name="On function" sid="115904477528522" type="Function">
+                    <param id="0" name="Name">&quot;setSpriteTween&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="888790461590144">
+                    <conditions>
+                        <condition id="-4" name="Trigger once while true" sid="686362388683587" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="900179249082846">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="948552780561871" type="TweenableSpriteElements">
+                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="LiteTween2" id="4" name="Set tweened property" sid="273061383898815" type="TweenableSpriteElements">
+                                    <param id="0" name="Tweened property">0</param>
+                                </action>
+                                <action behavior="LiteTween2" id="3" name="Set target" sid="588450628742831" type="TweenableSpriteElements">
+                                    <param id="0" name="Target is">0</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Function.Param(1)</param>
+                                </action>
+                                <action behavior="LiteTween2" id="3" name="Set target" sid="894533673197337" type="TweenableSpriteElements">
+                                    <param id="0" name="Target is">1</param>
+                                    <param id="1" name="Relativity">0</param>
+                                    <param id="2" name="Value">Function.Param(2)</param>
+                                </action>
+                                <action behavior="LiteTween2" id="1" name="Set duration" sid="993632581096008" type="TweenableSpriteElements">
+                                    <param id="0" name="Duration">Function.Param(3)</param>
+                                </action>
+                                <action behavior="LiteTween2" id="5" name="Set easing" sid="574278668463845" type="TweenableSpriteElements">
+                                    <param id="0" name="Function">15</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="948139624770924">
+            <conditions>
+                <condition id="0" name="On function" sid="277751260006636" type="Function">
+                    <param id="0" name="Name">&quot;startSpriteTween&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="768083065898609">
+                    <conditions>
+                        <condition id="-4" name="Trigger once while true" sid="249725180742089" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="496603724814642">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="718243149463325" type="TweenableSpriteElements">
+                                    <param id="0" name="Unique ID">Function.Param(0)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action behavior="LiteTween2" id="10" name="Start" sid="621411905358795" type="TweenableSpriteElements">
+                                    <param id="0" name="Start Mode">0</param>
+                                    <param id="1" name="Force use current">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>

@@ -3,13 +3,19 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>sht_Player</name>
     <events>
-        <variable constant="0" name="skillBoostDamage" sid="882717653697611" static="0" type="number">0</variable>
         <comment>KeyCodes = https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes</comment>
         <variable comment="1 Key" constant="0" name="keyboard_skill_1" sid="647895916050373" static="0" type="number">49</variable>
         <variable comment=" 2 Key" constant="0" name="keyboard_skill_2" sid="109441706929297" static="0" type="number">50</variable>
         <variable comment="3 Key" constant="0" name="keyboard_skill_3" sid="778446396076601" static="0" type="number">51</variable>
         <variable comment="4 Key" constant="0" name="keyboard_skill_4" sid="863823576210883" static="0" type="number">52</variable>
         <variable constant="0" name="currentGold" sid="873160719585768" static="0" type="number">10</variable>
+        <variable constant="0" name="cooldownMult" sid="887694450832794" static="0" type="number">100</variable>
+        <variable constant="0" name="piercingDamageReducedMult" sid="834574455955930" static="0" type="number">1.5</variable>
+        <variable constant="0" name="skillBoostDamageMult" sid="882717653697611" static="0" type="number">1</variable>
+        <variable constant="0" name="fireballDamageMult" sid="460614499871285" static="0" type="number">1</variable>
+        <variable constant="0" name="enableHealthRecovery" sid="243523597511899" static="0" type="number">0</variable>
+        <variable constant="0" name="stunAOE" sid="676642794914244" static="0" type="number">0</variable>
+        <variable constant="0" name="itemCostMult" sid="456608512272710" static="0" type="number">1</variable>
         <event-group description="Dictionary Mage.json" sid="926729626211004" title="Load JSON Values">
             <sub-events>
                 <event-block sid="326741241332894">
@@ -89,11 +95,12 @@
                             <param id="0" name="Variable">autoAttackCooldown</param>
                             <param id="1" name="Value">playerDictionary.Get(&quot;autoCooldown&quot;)</param>
                         </action>
-                        <action id="0" name="Play" sid="475011866386286" type="Audio">
-                            <param id="0" name="Audio file">mageShootSound</param>
-                            <param id="2" name="Loop">0</param>
-                            <param id="3" name="Volume">-10</param>
-                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        <action id="7" name="Play (by name)" sid="145745086393267" type="Audio">
+                            <param id="0" name="Folder">0</param>
+                            <param id="1" name="Audio file name">&quot;mageShootSound&quot;</param>
+                            <param id="3" name="Loop">0</param>
+                            <param id="4" name="Volume">sfxVolume</param>
+                            <param id="2" name="Tag (optional)">&quot;&quot;</param>
                         </action>
                     </actions>
                 </event-block>
@@ -116,6 +123,9 @@
                     <conditions>
                         <condition id="0" name="On collision with another object" sid="984739773092556" type="proj_manaBullet">
                             <param id="0" name="Object">enemyMinions</param>
+                        </condition>
+                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="402746988111231" type="enemyMinions">
+                            <param id="0" name="Instance variable">notActuallyEnemy</param>
                         </condition>
                     </conditions>
                     <actions>
@@ -210,21 +220,6 @@
                         </action>
                     </actions>
                 </event-block>
-                <comment>Right Click to Move</comment>
-                <event-block disabled="1" sid="622219880612990">
-                    <conditions>
-                        <condition id="0" name="On click" sid="609511077015116" type="Mouse">
-                            <param id="0" name="Mouse button">2</param>
-                            <param id="1" name="Click type">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action behavior="MoveTo" id="4" name="Move to XY" sid="378054289833395" type="playableCharacters">
-                            <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
-                            <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
-                        </action>
-                    </actions>
-                </event-block>
             </sub-events>
         </event-group>
         <event-group description="" sid="529159819983491" title="Mage Skills">
@@ -293,11 +288,11 @@
                     </conditions>
                     <actions>
                         <action id="1" name="Set return value" sid="603387750051233" type="Function">
-                            <param id="0" name="Value">Function.Param(0) + ((100 * ( 100 / Function.Param(1)) * dt))</param>
+                            <param id="0" name="Value">Function.Param(0) + ((cooldownMult * ( cooldownMult / Function.Param(1)) * dt))</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-group description="" sid="986332771044728" title="Laser">
+                <event-group description="Skill goes through enemies, dealing less each time" sid="986332771044728" title="Laser">
                     <sub-events>
                         <comment>When skill is in cooldown</comment>
                         <event-block sid="604983729891461">
@@ -325,17 +320,25 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="0" name="Spawn another object" sid="454743117249956" type="obj_playerMage">
-                                    <param id="0" name="Object">proj_laser</param>
-                                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
                                 <action behavior="ScrollTo" id="0" name="Shake" sid="812550660032220" type="playableCharacters">
-                                    <param id="0" name="Magnitude">10</param>
+                                    <param id="0" name="Magnitude">10 * (1 + (1.5 - piercingDamageReducedMult))</param>
                                     <param id="1" name="Duration">0.3</param>
                                     <param id="2" name="Mode">0</param>
                                 </action>
+                                <action id="-3" name="Create object" sid="400589075328851" type="System">
+                                    <param id="0" name="Object to create">proj_laser</param>
+                                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                                    <param id="2" name="X">playableCharacters.X</param>
+                                    <param id="3" name="Y">playableCharacters.Y</param>
+                                </action>
+                                <action id="9" name="Set scale" sid="183728194094937" type="proj_laser">
+                                    <param id="0" name="Scale">1 * (1 + (1.5 -  piercingDamageReducedMult))</param>
+                                </action>
                                 <action id="-22" name="Set angle toward position" sid="677627853567992" type="proj_laser">
+                                    <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                    <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                                </action>
+                                <action id="-22" name="Set angle toward position" sid="741955341271949" type="par_laserPath">
                                     <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
                                     <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
                                 </action>
@@ -359,7 +362,7 @@
                                 </action>
                                 <action id="-10" name="Set value" sid="711673874862886" type="proj_laser">
                                     <param id="0" name="Instance variable">damage</param>
-                                    <param id="1" name="Value">playerDictionary.Get(&quot;laserDamage&quot;) + skillBoostDamage</param>
+                                    <param id="1" name="Value">playerDictionary.Get(&quot;laserDamage&quot;) * skillBoostDamageMult</param>
                                 </action>
                                 <action id="-13" name="Set boolean" sid="726011571591514" type="proj_laser">
                                     <param id="0" name="Instance variable">isFired</param>
@@ -368,7 +371,7 @@
                                 <action id="25" name="Play at object" sid="846982258724003" type="Audio">
                                     <param id="0" name="Audio file">Laser Beam</param>
                                     <param id="1" name="Loop">0</param>
-                                    <param id="2" name="Volume">0</param>
+                                    <param id="2" name="Volume">sfxVolume</param>
                                     <param id="3" name="Object">playableCharacters</param>
                                     <param id="4" name="Inner angle">360</param>
                                     <param id="5" name="Outer angle">360</param>
@@ -395,54 +398,62 @@
                                         <condition id="0" name="On collision with another object" sid="339999213542930" type="proj_laser">
                                             <param id="0" name="Object">enemyMinions</param>
                                         </condition>
-                                        <condition id="-7" name="Compare instance variable" sid="351974215332422" type="enemyMinions">
-                                            <param id="0" name="Instance variable">isTank</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">0</param>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="105483078015631" type="enemyMinions">
+                                            <param id="0" name="Instance variable">notActuallyEnemy</param>
                                         </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-12" name="Subtract from" sid="879124760676671" type="enemyMinions">
-                                            <param id="0" name="Instance variable">curHealth</param>
-                                            <param id="1" name="Value">proj_laser.damage</param>
-                                        </action>
-                                        <action id="-10" name="Set value" sid="990138536063461" type="proj_laser">
-                                            <param id="0" name="Instance variable">damage</param>
-                                            <param id="1" name="Value">(proj_laser.damage / 1.5) - 1</param>
-                                        </action>
-                                        <action id="0" name="Call function" sid="319926433894587" type="Function">
-                                            <param id="0" name="Name">&quot;enemyHit&quot;</param>
-                                            <param id="1" name="Parameter {n}"></param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="121611819620533">
-                                    <conditions>
-                                        <condition id="0" name="On collision with another object" sid="810983419920691" type="proj_laser">
-                                            <param id="0" name="Object">enemyMinions</param>
-                                        </condition>
-                                        <condition id="-7" name="Compare instance variable" sid="251478090393869" type="enemyMinions">
-                                            <param id="0" name="Instance variable">isTank</param>
-                                            <param id="1" name="Comparison">0</param>
-                                            <param id="2" name="Value">1</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-12" name="Subtract from" sid="861482485099763" type="enemyMinions">
-                                            <param id="0" name="Instance variable">curHealth</param>
-                                            <param id="1" name="Value">proj_laser.damage</param>
-                                        </action>
-                                        <action id="-10" name="Set value" sid="186782671828873" type="proj_laser">
-                                            <param id="0" name="Instance variable">damage</param>
-                                            <param id="1" name="Value">proj_laser.damage * 0</param>
-                                        </action>
-                                        <action id="0" name="Play" sid="958996750042333" type="Audio">
-                                            <param id="0" name="Audio file">tankHitLaser</param>
-                                            <param id="2" name="Loop">0</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="544671680922170">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="351974215332422" type="enemyMinions">
+                                                    <param id="0" name="Instance variable">isTank</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-12" name="Subtract from" sid="879124760676671" type="enemyMinions">
+                                                    <param id="0" name="Instance variable">curHealth</param>
+                                                    <param id="1" name="Value">proj_laser.damage</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="990138536063461" type="proj_laser">
+                                                    <param id="0" name="Instance variable">damage</param>
+                                                    <param id="1" name="Value">(proj_laser.damage / piercingDamageReducedMult) - 1</param>
+                                                </action>
+                                                <action id="0" name="Call function" sid="319926433894587" type="Function">
+                                                    <param id="0" name="Name">&quot;enemyHit&quot;</param>
+                                                    <param id="1" name="Parameter {n}"></param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="887846663310742">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="877976748303033" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="ScrollTo" id="0" name="Shake" sid="640420902851811" type="playableCharacters">
+                                                    <param id="0" name="Magnitude">20</param>
+                                                    <param id="1" name="Duration">0.6</param>
+                                                    <param id="2" name="Mode">0</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="861482485099763" type="enemyMinions">
+                                                    <param id="0" name="Instance variable">curHealth</param>
+                                                    <param id="1" name="Value">proj_laser.damage</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="186782671828873" type="proj_laser">
+                                                    <param id="0" name="Instance variable">damage</param>
+                                                    <param id="1" name="Value">proj_laser.damage * (1.5 - piercingDamageReducedMult)</param>
+                                                </action>
+                                                <action id="0" name="Play" sid="958996750042333" type="Audio">
+                                                    <param id="0" name="Audio file">tankHitLaser</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                                 <event-block any="1" sid="964839525970033">
                                     <conditions>
@@ -465,7 +476,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="622239753525240" title="Blink">
+                <event-group description="Summons a wall, that stops enemy projectiles" sid="622239753525240" title="Erect Wall">
                     <sub-events>
                         <variable constant="0" name="blinkStatus" sid="610920008050029" static="1" type="number">0</variable>
                         <comment>When skill is in cooldown</comment>
@@ -483,64 +494,57 @@
                             </actions>
                         </event-block>
                         <variable constant="0" name="blinkDistance" sid="970098222752669" static="1" type="number">0</variable>
-                        <comment>when button is held, show blink target</comment>
+                        <comment>when button is held, show wall target</comment>
                         <event-block sid="462120461361432">
                             <conditions>
-                                <condition id="5" name="Key code is down" sid="989697414327958" type="Keyboard">
-                                    <param id="0" name="Keycode">keyboard_skill_2</param>
-                                </condition>
-                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="278975414309298" type="obj_playerMage">
-                                    <param id="0" name="Instance variable">isBlinkFinished</param>
-                                </condition>
-                                <condition id="1" name="Compare progress" sid="442506757240999" type="ui_2skillbar">
-                                    <param id="0" name="Comparison">5</param>
-                                    <param id="1" name="Value">100</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="-3" name="Create object" sid="461338779044417" type="System">
-                                    <param id="0" name="Object to create">par_blinkTarget</param>
-                                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                                    <param id="2" name="X">Mouse.X(&quot;Game&quot;)</param>
-                                    <param id="3" name="Y">Mouse.Y(&quot;Game&quot;)</param>
-                                </action>
-                                <action id="0" name="Spawn another object" sid="782250836074105" type="obj_playerMage">
-                                    <param id="0" name="Object">par_blinkTarget</param>
-                                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="281654314027041" type="System">
-                                    <param id="0" name="Variable">blinkStatus</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action disabled="1" id="-3" name="Create object" sid="417975607213471" type="System">
-                                    <param id="0" name="Object to create">par_blinkCharging</param>
-                                    <param id="1" name="Layer">1</param>
-                                    <param id="2" name="X">obj_playerMage.X</param>
-                                    <param id="3" name="Y">obj_playerMage.Y</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="142920773711816">
-                            <conditions>
-                                <condition id="-14" name="Compare variable" sid="812255066671877" type="System">
+                                <condition id="-14" name="Compare variable" sid="470328855570095" type="System">
                                     <param id="0" name="Variable">blinkStatus</param>
                                     <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">1</param>
+                                    <param id="2" name="Value">0</param>
                                 </condition>
                             </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="837812604773167">
+                                    <conditions>
+                                        <condition id="5" name="Key code is down" sid="989697414327958" type="Keyboard">
+                                            <param id="0" name="Keycode">keyboard_skill_2</param>
+                                        </condition>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="278975414309298" type="obj_playerMage">
+                                            <param id="0" name="Instance variable">isBlinkFinished</param>
+                                        </condition>
+                                        <condition id="1" name="Compare progress" sid="442506757240999" type="ui_2skillbar">
+                                            <param id="0" name="Comparison">5</param>
+                                            <param id="1" name="Value">100</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="461338779044417" type="System">
+                                            <param id="0" name="Object to create">par_blinkTarget</param>
+                                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                                            <param id="2" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                            <param id="3" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                                        </action>
+                                        <action id="-9" name="Set value" sid="281654314027041" type="System">
+                                            <param id="0" name="Variable">blinkStatus</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="759023539517243">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="589916211692041" type="System" />
+                            </conditions>
                             <actions>
-                                <action id="-9" name="Set value" sid="910001720033327" type="System">
-                                    <param id="0" name="Variable">blinkDistance</param>
-                                    <param id="1" name="Value">distance(obj_playerMage.X,obj_playerMage.Y,Mouse.X(&quot;Game&quot;), Mouse.Y(&quot;Game&quot;))</param>
-                                </action>
-                                <action id="-3" name="Set position" sid="513139755804647" type="par_blinkTarget">
+                                <action id="-3" name="Set position" sid="345130236441107" type="par_blinkTarget">
                                     <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
                                     <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
                                 </action>
                             </actions>
                         </event-block>
-                        <comment>when button released blink with delat</comment>
+                        <comment>when button released erect with a bit of delay</comment>
                         <event-block sid="817354173524220">
                             <conditions>
                                 <condition id="6" name="On key code released" sid="661586396118085" type="Keyboard">
@@ -572,27 +576,48 @@
                                     <param id="0" name="Tag">&quot;blinking&quot;</param>
                                 </condition>
                             </conditions>
-                            <actions>
-                                <action id="-22" name="Set angle toward position" sid="812871583119455" type="obj_playerMage">
-                                    <param id="0" name="X">par_blinkTarget.X</param>
-                                    <param id="1" name="Y">par_blinkTarget.Y</param>
-                                </action>
-                                <action id="-17" name="Move forward" sid="135471547199359" type="obj_playerMage">
-                                    <param id="0" name="Distance">blinkDistance</param>
-                                </action>
-                                <action id="-9" name="Destroy" sid="822696390444221" type="par_blinkTarget" />
-                                <action id="-8" name="Set angle" sid="833303712278279" type="obj_playerMage">
-                                    <param id="0" name="Angle">0</param>
-                                </action>
-                                <action id="-13" name="Set boolean" sid="760989840657858" type="obj_playerMage">
-                                    <param id="0" name="Instance variable">isBlinkFinished</param>
-                                    <param id="1" name="Value">1</param>
-                                </action>
-                                <action id="-9" name="Set value" sid="673686235176952" type="System">
-                                    <param id="0" name="Variable">blinkStatus</param>
-                                    <param id="1" name="Value">0</param>
-                                </action>
-                            </actions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="889663623706107">
+                                    <conditions />
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="979563985307182" type="System">
+                                            <param id="0" name="Object to create">obj_archerTower</param>
+                                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                                            <param id="2" name="X">par_blinkTarget.X</param>
+                                            <param id="3" name="Y">par_blinkTarget.Y</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="442608225692574" type="obj_archerTower">
+                                            <param id="0" name="Instance variable">curHealth</param>
+                                            <param id="1" name="Value">Self.curHealth * skillBoostDamageMult</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="102719827505865" type="obj_archerTower">
+                                            <param id="0" name="Instance variable">maxHealth</param>
+                                            <param id="1" name="Value">Self.maxHealth * skillBoostDamageMult</param>
+                                        </action>
+                                        <action id="0" name="Spawn another object" sid="663556869653388" type="obj_archerTower">
+                                            <param id="0" name="Object">par_blinkOut</param>
+                                            <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="0" name="Play" sid="268469457731804" type="Audio">
+                                            <param id="0" name="Audio file">wallErectSound</param>
+                                            <param id="2" name="Loop">0</param>
+                                            <param id="3" name="Volume">sfxVolume</param>
+                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        </action>
+                                        <action id="-13" name="Set boolean" sid="760989840657858" type="obj_playerMage">
+                                            <param id="0" name="Instance variable">isBlinkFinished</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                        <action id="-9" name="Destroy" sid="822696390444221" type="par_blinkTarget" />
+                                        <action id="-9" name="Set value" sid="673686235176952" type="System">
+                                            <param id="0" name="Variable">blinkStatus</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                         <event-block sid="582140358242538">
                             <conditions>
@@ -601,14 +626,6 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="0" name="Spawn another object" sid="391829173673893" type="obj_playerMage">
-                                    <param id="0" name="Object">par_blinkOut</param>
-                                    <param id="1" name="Layer">&quot;Game&quot;</param>
-                                    <param id="2" name="Image point">0</param>
-                                </action>
-                                <action id="-8" name="Set angle" sid="547239925338317" type="par_blinkOut">
-                                    <param id="0" name="Angle">270</param>
-                                </action>
                                 <action id="-13" name="Set boolean" sid="778604279984744" type="obj_playerMage">
                                     <param id="0" name="Instance variable">isBlinkFinished</param>
                                     <param id="1" name="Value">0</param>
@@ -617,7 +634,7 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="731190515956892" title="Stun">
+                <event-group description="Stuns an enemy" sid="731190515956892" title="Stun">
                     <sub-events>
                         <event-block sid="307830200330403">
                             <conditions>
@@ -645,7 +662,7 @@
                             <actions>
                                 <action id="-3" name="Create object" sid="665391361500703" type="System">
                                     <param id="0" name="Object to create">proj_stunBullet</param>
-                                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
+                                    <param id="1" name="Layer">&quot;Game&quot;</param>
                                     <param id="2" name="X">playableCharacters.X</param>
                                     <param id="3" name="Y">playableCharacters.Y</param>
                                 </action>
@@ -653,20 +670,9 @@
                                     <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
                                     <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
                                 </action>
-                                <action disabled="1" id="-3" name="Create object" sid="200437206993244" type="System">
-                                    <param id="0" name="Object to create">par_stunPath1</param>
-                                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
-                                    <param id="2" name="X">proj_stunBullet.X</param>
-                                    <param id="3" name="Y">proj_stunBullet.Y</param>
-                                </action>
-                                <action disabled="1" id="-3" name="Create object" sid="233505740507404" type="System">
-                                    <param id="0" name="Object to create">par_stunPath2</param>
-                                    <param id="1" name="Layer">(&quot;Game&quot;)</param>
-                                    <param id="2" name="X">proj_stunBullet.X</param>
-                                    <param id="3" name="Y">proj_stunBullet.Y</param>
-                                </action>
-                                <action disabled="1" id="-8" name="Set angle" sid="176968025763797" type="stunBulletEffects">
-                                    <param id="0" name="Angle">proj_stunBullet.Angle * -1</param>
+                                <action id="-22" name="Set angle toward position" sid="407786796563675" type="stunBulletEffects">
+                                    <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                    <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
                                 </action>
                                 <action id="3" name="Set progress" sid="817680760954162" type="ui_3skillbar">
                                     <param id="0" name="Value">0</param>
@@ -684,7 +690,7 @@
                                 </action>
                                 <action id="-10" name="Set value" sid="602081932651450" type="proj_stunBullet">
                                     <param id="0" name="Instance variable">damage</param>
-                                    <param id="1" name="Value">playerDictionary.Get(&quot;stunDamage&quot;) + skillBoostDamage</param>
+                                    <param id="1" name="Value">playerDictionary.Get(&quot;stunDamage&quot;) * skillBoostDamageMult</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -699,46 +705,89 @@
                                     <param id="0" name="Object">proj_stunBullet</param>
                                     <param id="1" name="Image point (optional)">0</param>
                                 </action>
+                                <action id="-22" name="Set angle toward position" sid="451959725070623" type="stunBulletEffects">
+                                    <param id="0" name="X">Mouse.X(&quot;Game&quot;)</param>
+                                    <param id="1" name="Y">Mouse.Y(&quot;Game&quot;)</param>
+                                </action>
                             </actions>
                             <sub-events>
-                                <event-block sid="720691646742338">
+                                <event-block sid="397268828979371">
                                     <conditions>
-                                        <condition id="0" name="On collision with another object" sid="683309630410753" type="enemyMinions">
-                                            <param id="0" name="Object">proj_stunBullet</param>
+                                        <condition id="-8" name="Compare two values" sid="761700789019066" type="System">
+                                            <param id="0" name="First value">stunAOE</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">0</param>
                                         </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="-9" name="Destroy" sid="182377120989301" type="proj_stunBullet" />
-                                        <action id="-12" name="Subtract from" sid="606330603749697" type="enemyMinions">
-                                            <param id="0" name="Instance variable">curHealth</param>
-                                            <param id="1" name="Value">proj_stunBullet.damage</param>
-                                        </action>
-                                        <action behavior="Timer" id="0" name="Start timer" sid="915089971909758" type="enemyMinions">
-                                            <param id="0" name="Duration">playerDictionary.Get(&quot;stunDuration&quot;)</param>
-                                            <param id="1" name="Type">0</param>
-                                            <param id="2" name="Tag">&quot;stunDuration&quot;</param>
-                                        </action>
-                                        <action id="-13" name="Set boolean" sid="285087570192133" type="enemyMinions">
-                                            <param id="0" name="Instance variable">isStunned</param>
-                                            <param id="1" name="Value">1</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="720691646742338">
+                                            <conditions>
+                                                <condition id="0" name="On collision with another object" sid="683309630410753" type="enemyMinions">
+                                                    <param id="0" name="Object">proj_stunBullet</param>
+                                                </condition>
+                                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="330494423250691" type="enemyMinions">
+                                                    <param id="0" name="Instance variable">notActuallyEnemy</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-12" name="Subtract from" sid="606330603749697" type="enemyMinions">
+                                                    <param id="0" name="Instance variable">curHealth</param>
+                                                    <param id="1" name="Value">proj_stunBullet.damage</param>
+                                                </action>
+                                                <action behavior="Timer" id="0" name="Start timer" sid="915089971909758" type="enemyMinions">
+                                                    <param id="0" name="Duration">playerDictionary.Get(&quot;stunDuration&quot;)</param>
+                                                    <param id="1" name="Type">0</param>
+                                                    <param id="2" name="Tag">&quot;stunDuration&quot;</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" sid="285087570192133" type="enemyMinions">
+                                                    <param id="0" name="Instance variable">isStunned</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-9" name="Destroy" sid="182377120989301" type="proj_stunBullet" />
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="635280876229535">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="301205626621708" type="System" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="305937803625539">
+                                            <conditions>
+                                                <condition id="-11" name="For Each" sid="565851458539038" type="System">
+                                                    <param id="0" name="Object">enemyMinions</param>
+                                                </condition>
+                                                <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="902887097514800" type="enemyMinions">
+                                                    <param id="0" name="Instance variable">notActuallyEnemy</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-12" name="Subtract from" sid="423957469968702" type="enemyMinions">
+                                                    <param id="0" name="Instance variable">curHealth</param>
+                                                    <param id="1" name="Value">proj_stunBullet.damage</param>
+                                                </action>
+                                                <action behavior="Timer" id="0" name="Start timer" sid="625526520083545" type="enemyMinions">
+                                                    <param id="0" name="Duration">playerDictionary.Get(&quot;stunDuration&quot;)</param>
+                                                    <param id="1" name="Type">0</param>
+                                                    <param id="2" name="Tag">&quot;stunDuration&quot;</param>
+                                                </action>
+                                                <action id="-13" name="Set boolean" sid="416944945680256" type="enemyMinions">
+                                                    <param id="0" name="Instance variable">isStunned</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-9" name="Destroy" sid="394239240054974" type="proj_stunBullet" />
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
-                        <event-block sid="578687843459433">
-                            <conditions>
-                                <condition id="-19" name="On destroyed" sid="237508257958910" type="proj_stunBullet" />
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Set spraying" sid="464555020631836" type="stunBulletEffects">
-                                    <param id="0" name="State">0</param>
-                                </action>
-                            </actions>
-                        </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="983548966437753" title="Fireball">
+                <event-group description="Lobs a powerful AOE attack" sid="983548966437753" title="Fireball">
                     <sub-events>
                         <event-block sid="873671641283398">
                             <conditions>
@@ -844,6 +893,12 @@
                                     <param id="1" name="Layer">&quot;Game&quot;</param>
                                     <param id="2" name="Image point">0</param>
                                 </action>
+                                <action id="4" name="Set speed" sid="255656720091453" type="par_fireballExplo">
+                                    <param id="0" name="Speed">Self.InitSpeed * fireballDamageMult</param>
+                                </action>
+                                <action id="5" name="Set size" sid="199406562286559" type="par_fireballExplo">
+                                    <param id="0" name="Size">Self.InitSize * fireballDamageMult</param>
+                                </action>
                                 <action behavior="Bullet" id="0" name="Set speed" sid="290809225349295" type="proj_fireball">
                                     <param id="0" name="Speed">0</param>
                                 </action>
@@ -851,7 +906,7 @@
                                     <param id="0" name="Opacity">0</param>
                                 </action>
                                 <action id="9" name="Set scale" sid="212250555228402" type="proj_fireball">
-                                    <param id="0" name="Scale">10</param>
+                                    <param id="0" name="Scale">10 * fireballDamageMult</param>
                                 </action>
                                 <action id="-13" name="Set boolean" sid="595069883983819" type="proj_fireball">
                                     <param id="0" name="Instance variable">isExploded</param>
@@ -864,6 +919,9 @@
                                         <condition id="0" name="On collision with another object" sid="262228814480104" type="enemyMinions">
                                             <param id="0" name="Object">proj_fireball</param>
                                         </condition>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="231472901822653" type="enemyMinions">
+                                            <param id="0" name="Instance variable">notActuallyEnemy</param>
+                                        </condition>
                                         <condition id="-8" name="Is boolean instance variable set" sid="632591530888443" type="proj_fireball">
                                             <param id="0" name="Instance variable">isExploded</param>
                                         </condition>
@@ -871,7 +929,7 @@
                                     <actions>
                                         <action id="-12" name="Subtract from" sid="991931314204934" type="enemyMinions">
                                             <param id="0" name="Instance variable">curHealth</param>
-                                            <param id="1" name="Value">playerDictionary.Get(&quot;fireballDamage&quot;) + skillBoostDamage</param>
+                                            <param id="1" name="Value">(playerDictionary.Get(&quot;fireballDamage&quot;) * skillBoostDamageMult) * fireballDamageMult</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -883,8 +941,8 @@
                                     </conditions>
                                     <actions>
                                         <action behavior="ScrollTo" id="0" name="Shake" sid="637358738010185" type="playableCharacters">
-                                            <param id="0" name="Magnitude">20</param>
-                                            <param id="1" name="Duration">0.6</param>
+                                            <param id="0" name="Magnitude">20 * fireballDamageMult</param>
+                                            <param id="1" name="Duration">0.6 * fireballDamageMult</param>
                                             <param id="2" name="Mode">0</param>
                                         </action>
                                         <action id="0" name="Play" sid="508705136199689" type="Audio">
@@ -903,18 +961,145 @@
                 </event-group>
             </sub-events>
         </event-group>
-        <event-block sid="134948711200057">
-            <conditions>
-                <condition id="-14" name="Pick by unique ID" sid="471595209434944" type="ui_health">
-                    <param id="0" name="Unique ID">125</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-5" name="Set width" sid="727249389688443" type="ui_health">
-                    <param id="0" name="Width">Self.maxSize * (playableCharacters.curHealth / playableCharacters.maxHealth)</param>
-                </action>
-            </actions>
-        </event-block>
+        <event-group description="" sid="465410491941779" title="Mage Stats ">
+            <sub-events>
+                <event-block sid="134948711200057">
+                    <conditions>
+                        <condition id="-14" name="Pick by unique ID" sid="471595209434944" type="ui_health">
+                            <param id="0" name="Unique ID">125</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-5" name="Set width" sid="727249389688443" type="ui_health">
+                            <param id="0" name="Width">Self.maxSize * (playableCharacters.curHealth / playableCharacters.maxHealth)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="317168675380020" title="Mage Special Effects">
+            <sub-events>
+                <event-block sid="450061813250307">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="619025402909118" type="System">
+                            <param id="0" name="First value">isBetweenWaves</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="217314855060519">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="516637394189216" type="System">
+                                    <param id="0" name="First value">enableHealthRecovery</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="985338901869564">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="996505462858836" type="System">
+                                            <param id="0" name="First value">playableCharacters.curHealth</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">playableCharacters.maxHealth</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="545379989881553" type="playableCharacters">
+                                            <param id="0" name="Instance variable">curHealth</param>
+                                            <param id="1" name="Value">Self.maxHealth</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="186699983445171">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="336373259087196" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-11" name="Add to" sid="619971093604432" type="playableCharacters">
+                                            <param id="0" name="Instance variable">curHealth</param>
+                                            <param id="1" name="Value">2 * dt</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Lighting Effect</comment>
+                <event-block disabled="1" sid="673252777380462">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="217998931239963" type="System">
+                            <param id="0" name="Variable">nightTime</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="735667246467455">
+                            <conditions>
+                                <condition id="-4" name="Trigger once while true" sid="306472374190342" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="439931065210934" type="System">
+                                    <param id="0" name="Object to create">lightSource</param>
+                                    <param id="1" name="Layer">&quot;Nightshader&quot;</param>
+                                    <param id="2" name="X">playableCharacters.X</param>
+                                    <param id="3" name="Y">playableCharacters.Y</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="547816136733247" type="playableCharacters">
+                                    <param id="0" name="Instance variable">lightingID</param>
+                                    <param id="1" name="Value">lightSource.UID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="166815373716043">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="501451725528950" type="System" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="379201120773416">
+                                    <conditions>
+                                        <condition id="-14" name="Pick by unique ID" sid="835092503052895" type="lightSource">
+                                            <param id="0" name="Unique ID">playableCharacters.lightingID</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Set position" sid="196911402671313" type="lightSource">
+                                            <param id="0" name="X">playableCharacters.X</param>
+                                            <param id="1" name="Y">playableCharacters.Y</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block disabled="1" sid="846942843221833">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="744565056791228" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="444171484819481">
+                            <conditions>
+                                <condition id="-14" name="Pick by unique ID" sid="847991126354723" type="lightSource">
+                                    <param id="0" name="Unique ID">playableCharacters.lightingID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="544118009131213" type="lightSource" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-block sid="837012263818872">
             <conditions>
                 <condition id="0" name="On function" sid="558334219659371" type="Function">
@@ -955,11 +1140,43 @@
                             <param id="0" name="Key">&quot;autoDamage&quot;</param>
                             <param id="1" name="Value">Self.Get(&quot;autoDamage&quot;) + (Function.Param(0) * Self.Get(&quot;autoDamagePerLevel&quot;))</param>
                         </action>
+                        <action id="-10" name="Add to" sid="337379902972157" type="System">
+                            <param id="0" name="Variable">cooldownMult</param>
+                            <param id="1" name="Value">2</param>
+                        </action>
                         <action id="-10" name="Add to" sid="417120799732945" type="System">
-                            <param id="0" name="Variable">skillBoostDamage</param>
-                            <param id="1" name="Value">5 * Function.Param(0)</param>
+                            <param id="0" name="Variable">skillBoostDamageMult</param>
+                            <param id="1" name="Value">0.02 * Function.Param(0)</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="402454483432166">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="881182393143943" type="System">
+                                    <param id="0" name="First value">playerDictionary.Get(&quot;autoCooldown&quot;)</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set key" sid="912673250961117" type="playerDictionary">
+                                    <param id="0" name="Key">&quot;autoCooldown&quot;</param>
+                                    <param id="1" name="Value">playerDictionary.Get(&quot;autoCooldown&quot;) - 1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="132900271893024">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="974647216428980" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set key" sid="277677946837464" type="playerDictionary">
+                                    <param id="0" name="Key">&quot;autoCooldown&quot;</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>
@@ -1005,8 +1222,18 @@
                     <param id="0" name="Name">&quot;updatePlayerInventory&quot;</param>
                 </condition>
             </conditions>
-            <actions />
+            <actions>
+                <action id="-10" name="Add to" sid="888470196477094" type="System">
+                    <param id="0" name="Variable">itemCostMult</param>
+                    <param id="1" name="Value">0.2</param>
+                </action>
+                <action id="0" name="Call function" sid="619270178380589" type="Function">
+                    <param id="0" name="Name">&quot;updateItemCosts&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
             <sub-events>
+                <comment>Book of Enlighten</comment>
                 <event-block sid="464155959628852">
                     <conditions>
                         <condition id="-8" name="Compare two values" sid="535859972658008" type="System">
@@ -1017,11 +1244,16 @@
                     </conditions>
                     <actions>
                         <action id="-10" name="Add to" sid="795294545595150" type="System">
-                            <param id="0" name="Variable">skillBoostDamage</param>
-                            <param id="1" name="Value">10</param>
+                            <param id="0" name="Variable">skillBoostDamageMult</param>
+                            <param id="1" name="Value">0.2</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="900600656326870" type="System">
+                            <param id="0" name="Variable">piercingDamageReducedMult</param>
+                            <param id="1" name="Value">1.1</param>
                         </action>
                     </actions>
                 </event-block>
+                <comment>Chalice</comment>
                 <event-block sid="422240926289544">
                     <conditions>
                         <condition id="-8" name="Compare two values" sid="239042957979291" type="System">
@@ -1032,11 +1264,16 @@
                     </conditions>
                     <actions>
                         <action id="-10" name="Add to" sid="715213461072852" type="System">
-                            <param id="0" name="Variable">skillBoostDamage</param>
-                            <param id="1" name="Value">15</param>
+                            <param id="0" name="Variable">skillBoostDamageMult</param>
+                            <param id="1" name="Value">0.25</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="899637538662460" type="System">
+                            <param id="0" name="Variable">enableHealthRecovery</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
+                <comment>Hourglass</comment>
                 <event-block sid="301998286784652">
                     <conditions>
                         <condition id="-8" name="Compare two values" sid="208325007647805" type="System">
@@ -1047,11 +1284,44 @@
                     </conditions>
                     <actions>
                         <action id="-10" name="Add to" sid="705043186209019" type="System">
-                            <param id="0" name="Variable">skillBoostDamage</param>
+                            <param id="0" name="Variable">skillBoostDamageMult</param>
+                            <param id="1" name="Value">0.3</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="714335979408177" type="System">
+                            <param id="0" name="Variable">cooldownMult</param>
                             <param id="1" name="Value">20</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="488590207967791">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="998592630299138" type="System">
+                                    <param id="0" name="First value">playerDictionary.Get(&quot;autoCooldown&quot;) - 5</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set key" sid="527458652260501" type="playerDictionary">
+                                    <param id="0" name="Key">&quot;autoCooldown&quot;</param>
+                                    <param id="1" name="Value">playerDictionary.Get(&quot;autoCooldown&quot;) - 5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="773640065774333">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="135662903456656" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set key" sid="543562813199333" type="playerDictionary">
+                                    <param id="0" name="Key">&quot;autoCooldown&quot;</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
+                <comment>Sorcerers Cap</comment>
                 <event-block sid="392576842663787">
                     <conditions>
                         <condition id="-8" name="Compare two values" sid="721194329520930" type="System">
@@ -1062,11 +1332,16 @@
                     </conditions>
                     <actions>
                         <action id="-10" name="Add to" sid="707548372626989" type="System">
-                            <param id="0" name="Variable">skillBoostDamage</param>
-                            <param id="1" name="Value">25</param>
+                            <param id="0" name="Variable">skillBoostDamageMult</param>
+                            <param id="1" name="Value">0.35</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="789157788902196" type="System">
+                            <param id="0" name="Variable">stunAOE</param>
+                            <param id="1" name="Value">1</param>
                         </action>
                     </actions>
                 </event-block>
+                <comment>Catalyst</comment>
                 <event-block sid="800613508230352">
                     <conditions>
                         <condition id="-8" name="Compare two values" sid="754040429819383" type="System">
@@ -1077,8 +1352,12 @@
                     </conditions>
                     <actions>
                         <action id="-10" name="Add to" sid="961028489214932" type="System">
-                            <param id="0" name="Variable">skillBoostDamage</param>
-                            <param id="1" name="Value">30</param>
+                            <param id="0" name="Variable">skillBoostDamageMult</param>
+                            <param id="1" name="Value">0.4</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="263853636881959" type="System">
+                            <param id="0" name="Variable">fireballDamageMult</param>
+                            <param id="1" name="Value">1.25</param>
                         </action>
                     </actions>
                 </event-block>
@@ -1093,12 +1372,45 @@
                 </condition>
             </conditions>
             <actions>
+                <action id="-15" name="Set visible" sid="600809367697655" type="playableCharacters">
+                    <param id="0" name="Visibility">0</param>
+                </action>
                 <action id="-12" name="Set group active" sid="431972933330612" type="System">
                     <param id="0" name="Group name">&quot;Mage Attack&quot;</param>
                     <param id="1" name="State">0</param>
                 </action>
-                <action id="-9" name="Destroy" sid="945270426592432" type="playableCharacters" />
+                <action id="-12" name="Set group active" sid="428113308811576" type="System">
+                    <param id="0" name="Group name">&quot;Mage Skills&quot;</param>
+                    <param id="1" name="State">0</param>
+                </action>
+                <action id="-12" name="Set group active" sid="842448474158812" type="System">
+                    <param id="0" name="Group name">&quot;Mage Movement&quot;</param>
+                    <param id="1" name="State">0</param>
+                </action>
             </actions>
+        </event-block>
+        <event-block sid="636668333194814">
+            <conditions>
+                <condition id="0" name="On function" sid="629401194488166" type="Function">
+                    <param id="0" name="Name">&quot;updateItemCosts&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="182014704869301">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="494149634429150" type="System">
+                            <param id="0" name="Object">playableItems</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="873925559168833" type="playableItems">
+                            <param id="0" name="Instance variable">itemCost</param>
+                            <param id="1" name="Value">floor(Self.itemCost * itemCostMult)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
     </events>
 </c2eventsheet>

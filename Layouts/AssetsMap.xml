@@ -18,8 +18,8 @@
             <background-color>255,255,255</background-color>
             <transparent>0</transparent>
             <parallax>
-                <x>1</x>
-                <y>1</y>
+                <x>0</x>
+                <y>0</y>
             </parallax>
             <zoom-rate>1</zoom-rate>
             <opacity>1</opacity>
@@ -176,8 +176,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>333</x>
-                        <y>497</y>
+                        <x>326.07598877</x>
+                        <y>513.557250977</y>
                         <z>0</z>
                         <width>64</width>
                         <height>64</height>
@@ -282,8 +282,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>709</x>
-                        <y>490</y>
+                        <x>533.896606445</x>
+                        <y>355.366638184</y>
                         <z>0</z>
                         <width>64</width>
                         <height>64</height>
@@ -336,8 +336,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>693</x>
-                        <y>436</y>
+                        <x>536.728637695</x>
+                        <y>303.7706604</y>
                         <z>0</z>
                         <width>64</width>
                         <height>64</height>
@@ -553,7 +553,7 @@
                         <maxHealth>70</maxHealth>
                         <isStunned>false</isStunned>
                         <isRanged>true</isRanged>
-                        <attackRange>300</attackRange>
+                        <attackRange>400</attackRange>
                         <attackCoolDown>0</attackCoolDown>
                         <isHealthShown>false</isHealthShown>
                         <suicideDamage>7</suicideDamage>
@@ -562,6 +562,8 @@
                         <hasSpawned>false</hasSpawned>
                         <isTank>0</isTank>
                         <onlyAttackTower>false</onlyAttackTower>
+                        <notActuallyEnemy>false</notActuallyEnemy>
+                        <isBoss>false</isBoss>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Timer" />
@@ -698,6 +700,8 @@
                         <hasSpawned>false</hasSpawned>
                         <isTank>0</isTank>
                         <onlyAttackTower>false</onlyAttackTower>
+                        <notActuallyEnemy>false</notActuallyEnemy>
+                        <isBoss>false</isBoss>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Timer" />
@@ -744,7 +748,7 @@
                     <instance-variables>
                         <index>4</index>
                         <name>Sorcerer&apos;s Cap</name>
-                        <description>Its size covers your eyes, making you appear menacing. +25 Damage</description>
+                        <description>Its size covers your eyes, making you appear menacing. +35 Skill Damage and increases Fireball AOE.</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -789,7 +793,7 @@
                     <instance-variables>
                         <index>1</index>
                         <name>Book of Enlightenment</name>
-                        <description>Book with an LED light inside. +10 Damage</description>
+                        <description>Book with an LED light inside. +20 Skill Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -820,26 +824,6 @@
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>
-                        <angle>0</angle>
-                        <opacity>1</opacity>
-                    </world>
-                </instance>
-                <instance type="tex_path" uid="29">
-                    <properties>
-                        <initial-visibility>Visible</initial-visibility>
-                        <hotspot>Top-left</hotspot>
-                    </properties>
-                    <blend-mode>0</blend-mode>
-                    <effect-fallback>0</effect-fallback>
-                    <world>
-                        <x>327</x>
-                        <y>820</y>
-                        <z>0</z>
-                        <width>512</width>
-                        <height>58</height>
-                        <depth>0</depth>
-                        <hotspotX>0</hotspotX>
-                        <hotspotY>0</hotspotY>
                         <angle>0</angle>
                         <opacity>1</opacity>
                     </world>
@@ -880,7 +864,7 @@
                     <instance-variables>
                         <index>2</index>
                         <name>Holy Chalice</name>
-                        <description>The chalice was once used to hold some yellow liquid.  +15 Damage</description>
+                        <description>The chalice was once used to hold some yellow liquid.  +25 Skill Damage and allows the mage to recover health between waves.</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -979,7 +963,7 @@
                     <instance-variables>
                         <index>3</index>
                         <name>Hourglass of Fate</name>
-                        <description>Contains the sands of Boracay Beach. +20 Damage </description>
+                        <description>Contains the sands of Boracay Beach. +30 Skill Damage and decreases all cooldown significantly.</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -1024,7 +1008,7 @@
                     <instance-variables>
                         <index>5</index>
                         <name>Catalyst of Magic</name>
-                        <description>A gallstone from a former Sage. +30 Damage</description>
+                        <description>A gallstone from a former Sage. +50 Skill Damage</description>
                         <isSelected>false</isSelected>
                         <xPosition>0</xPosition>
                         <yPosition>0</yPosition>
@@ -1199,20 +1183,9 @@
                         <seams>Overlap</seams>
                     </properties>
                     <behavior-instances>
-                        <behavior-instance type="LiteTween2">
+                        <behavior-instance type="LiteTween4">
                             <properties>
                                 <active-on-start>No</active-on-start>
-                                <tweened-property>Position</tweened-property>
-                                <function>EaseOutBounce</function>
-                                <target>100,100</target>
-                                <target-mode>Absolute</target-mode>
-                                <duration>2.5</duration>
-                                <enforce-mode>Enforce</enforce-mode>
-                            </properties>
-                        </behavior-instance>
-                        <behavior-instance type="LiteTween">
-                            <properties>
-                                <active-on-start>Yes</active-on-start>
                                 <tweened-property>Position</tweened-property>
                                 <function>EaseOutBounce</function>
                                 <target>100,100</target>
@@ -1375,8 +1348,8 @@
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
                     <world>
-                        <x>1138.708496094</x>
-                        <y>-245.353668213</y>
+                        <x>1138.266967773</x>
+                        <y>-236.9790802</y>
                         <z>0</z>
                         <width>218.439453125</width>
                         <height>90.6459198</height>
@@ -1436,6 +1409,8 @@
                         <hasSpawned>false</hasSpawned>
                         <isTank>1</isTank>
                         <onlyAttackTower>false</onlyAttackTower>
+                        <notActuallyEnemy>false</notActuallyEnemy>
+                        <isBoss>false</isBoss>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Timer" />
@@ -1494,6 +1469,8 @@
                         <hasSpawned>false</hasSpawned>
                         <isTank>0</isTank>
                         <onlyAttackTower>false</onlyAttackTower>
+                        <notActuallyEnemy>false</notActuallyEnemy>
+                        <isBoss>false</isBoss>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Timer" />
@@ -1552,6 +1529,8 @@
                         <hasSpawned>false</hasSpawned>
                         <isTank>0</isTank>
                         <onlyAttackTower>true</onlyAttackTower>
+                        <notActuallyEnemy>false</notActuallyEnemy>
+                        <isBoss>false</isBoss>
                     </instance-variables>
                     <behavior-instances>
                         <behavior-instance type="Timer" />
@@ -1621,6 +1600,152 @@
                         <z>0</z>
                         <width>64</width>
                         <height>64</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_archerTower" uid="9">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>enemyTank</name>
+                        <curHealth>300</curHealth>
+                        <maxHealth>300</maxHealth>
+                        <isStunned>false</isStunned>
+                        <isRanged>true</isRanged>
+                        <attackRange>0</attackRange>
+                        <attackCoolDown>0</attackCoolDown>
+                        <isHealthShown>false</isHealthShown>
+                        <suicideDamage>0</suicideDamage>
+                        <goldReward>0</goldReward>
+                        <pathToFollow>0</pathToFollow>
+                        <hasSpawned>false</hasSpawned>
+                        <isTank>1</isTank>
+                        <onlyAttackTower>false</onlyAttackTower>
+                        <notActuallyEnemy>true</notActuallyEnemy>
+                        <isBoss>false</isBoss>
+                        <duration>0</duration>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Timer" />
+                        <behavior-instance type="MoveTo">
+                            <properties>
+                                <activated>No</activated>
+                                <max-speed>70</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>No</stop-by-solid>
+                                <continued-mode>No</continued-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <effect-instances>
+                        <effect-instance type="Grayscale">
+                            <parameters>
+                                <intensity>1</intensity>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>538.679077148</x>
+                        <y>477.840667725</y>
+                        <z>0</z>
+                        <width>96</width>
+                        <height>96</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="obj_enemyBossArcher" uid="25">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <name>enemyTank</name>
+                        <curHealth>1000</curHealth>
+                        <maxHealth>1000</maxHealth>
+                        <isStunned>false</isStunned>
+                        <isRanged>true</isRanged>
+                        <attackRange>0</attackRange>
+                        <attackCoolDown>0</attackCoolDown>
+                        <isHealthShown>false</isHealthShown>
+                        <suicideDamage>0</suicideDamage>
+                        <goldReward>1000</goldReward>
+                        <pathToFollow>0</pathToFollow>
+                        <hasSpawned>false</hasSpawned>
+                        <isTank>1</isTank>
+                        <onlyAttackTower>false</onlyAttackTower>
+                        <notActuallyEnemy>true</notActuallyEnemy>
+                        <isBoss>true</isBoss>
+                    </instance-variables>
+                    <behavior-instances>
+                        <behavior-instance type="Timer" />
+                        <behavior-instance type="MoveTo">
+                            <properties>
+                                <activated>No</activated>
+                                <max-speed>70</max-speed>
+                                <acceleration>0</acceleration>
+                                <deceleration>0</deceleration>
+                                <stop-by-solid>No</stop-by-solid>
+                                <continued-mode>No</continued-mode>
+                            </properties>
+                        </behavior-instance>
+                    </behavior-instances>
+                    <effect-instances>
+                        <effect-instance type="Grayscale">
+                            <parameters>
+                                <intensity>1</intensity>
+                            </parameters>
+                        </effect-instance>
+                    </effect-instances>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>336.939819336</x>
+                        <y>557.098022461</y>
+                        <z>0</z>
+                        <width>64</width>
+                        <height>64</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="lightSource" uid="29">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <id>0</id>
+                    </instance-variables>
+                    <blend-mode>8</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>210.677612305</x>
+                        <y>578.571594238</y>
+                        <z>0</z>
+                        <width>250</width>
+                        <height>250</height>
                         <depth>0</depth>
                         <hotspotX>0.5</hotspotX>
                         <hotspotY>0.5</hotspotY>

@@ -19,10 +19,10 @@
 		"laserDamagePerLevel": 5,
 		
 		"blinkRange": 300,
-		"blinkCooldown": 300,	
+		"blinkCooldown": 1200,	
 		
-		"stunDamage": 40,		
-		"stunCooldown": 500,
+		"stunDamage": 20,		
+		"stunCooldown": 1300,
 		"stunDuration": 2,		
 		"stunSpeed": 900,
 		"stunDamagePerLevel": 5,

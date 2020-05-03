@@ -116,40 +116,6 @@
                         </action>
                     </actions>
                 </event-block>
-                <event-group description="" sid="335707118511723" title="Store Buttons">
-                    <sub-events>
-                        <event-block sid="538179944163341">
-                            <conditions>
-                                <condition id="6" name="On object clicked" sid="214487499109334" type="Mouse">
-                                    <param id="0" name="Mouse button">0</param>
-                                    <param id="1" name="Click type">0</param>
-                                    <param id="2" name="Object clicked">ui_storeArrowLeft</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Call function" sid="683981634294729" type="Function">
-                                    <param id="0" name="Name">&quot;toggleStoreCategory&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;tower&quot;</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="238056225055902">
-                            <conditions>
-                                <condition id="6" name="On object clicked" sid="378536582117126" type="Mouse">
-                                    <param id="0" name="Mouse button">0</param>
-                                    <param id="1" name="Click type">0</param>
-                                    <param id="2" name="Object clicked">ui_storeArrowLeft2</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="0" name="Call function" sid="884519415329267" type="Function">
-                                    <param id="0" name="Name">&quot;toggleStoreCategory&quot;</param>
-                                    <param id="1" name="Parameter {n}">&quot;character&quot;</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-group>
                 <event-group description="" sid="216973449709156" title="Char Category">
                     <sub-events>
                         <comment>Make Array of store items, store index, name, uid</comment>
@@ -229,7 +195,7 @@
                                                     <actions>
                                                         <action id="-3" name="Set position" sid="790514986495846" type="playableItems">
                                                             <param id="0" name="X">ui_storePanel.X - (ui_storePanel.Width / 4)</param>
-                                                            <param id="1" name="Y">100 + (columnToDraw * 70)</param>
+                                                            <param id="1" name="Y">100 + (columnToDraw * 80)</param>
                                                         </action>
                                                     </actions>
                                                 </event-block>
@@ -240,7 +206,7 @@
                                                     <actions>
                                                         <action id="-3" name="Set position" sid="509186624464762" type="playableItems">
                                                             <param id="0" name="X">ui_storePanel.X + (ui_storePanel.Width / 4)</param>
-                                                            <param id="1" name="Y">100 + (columnToDraw * 70)</param>
+                                                            <param id="1" name="Y">100 + (columnToDraw * 80)</param>
                                                         </action>
                                                         <action id="-10" name="Add to" sid="811490860154794" type="System">
                                                             <param id="0" name="Variable">columnToDraw</param>
@@ -265,7 +231,6 @@
                         </event-block>
                     </sub-events>
                 </event-group>
-                <event-group description="" sid="835365109135264" title="Tower Category" />
             </sub-events>
         </event-group>
         <event-group description="" inactive="1" sid="832978604657690" title="Click and Drag then Buy Items">
@@ -485,7 +450,7 @@
                                                 </action>
                                                 <action id="-10" name="Set value" sid="991587540066088" type="playableItems">
                                                     <param id="0" name="Instance variable">itemCost</param>
-                                                    <param id="1" name="Value">Self.itemCost * 2</param>
+                                                    <param id="1" name="Value">floor(Self.itemCost * 1.8)</param>
                                                 </action>
                                             </actions>
                                         </event-block>
@@ -538,7 +503,6 @@
         </event-group>
         <event-group description="show tooltip when item is hovered" inactive="1" sid="784288035911513" title="Hover / ToolTips Shop Panel">
             <sub-events>
-                <variable constant="0" name="toolTipShown" sid="386380896797443" static="1" type="number">0</variable>
                 <event-block sid="446082140284968">
                     <conditions>
                         <condition id="7" name="Cursor is over object" sid="656371071883730" type="Mouse">
@@ -556,13 +520,9 @@
                         </action>
                     </actions>
                     <sub-events>
-                        <event-block sid="710956959026804">
+                        <event-block sid="317432239222918">
                             <conditions>
-                                <condition id="-14" name="Compare variable" sid="558566452514938" type="System">
-                                    <param id="0" name="Variable">toolTipShown</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Value">0</param>
-                                </condition>
+                                <condition id="-4" name="Trigger once while true" sid="911849221982094" type="System" />
                             </conditions>
                             <actions>
                                 <action id="-3" name="Create object" sid="972481464388575" type="System">
@@ -574,22 +534,28 @@
                                 <action id="0" name="Set text" sid="988767314611723" type="ui_storeItemNameText">
                                     <param id="0" name="Text">Function.Call(&quot;findName&quot;)</param>
                                 </action>
+                                <action id="-4" name="Set position to another object" sid="337205454162902" type="ui_storeItemNameText">
+                                    <param id="0" name="Object">ui_storeItemTooltip</param>
+                                    <param id="1" name="Image point (optional)">&quot;toolTipName&quot;</param>
+                                </action>
                                 <action id="0" name="Set text" sid="194877410064319" type="ui_storeItemDescText">
                                     <param id="0" name="Text">Function.Call(&quot;findDescription&quot;)</param>
                                 </action>
-                                <action id="-9" name="Set value" sid="652539630535252" type="System">
-                                    <param id="0" name="Variable">toolTipShown</param>
-                                    <param id="1" name="Value">1</param>
+                                <action id="-4" name="Set position to another object" sid="657185745461309" type="ui_storeItemDescText">
+                                    <param id="0" name="Object">ui_storeItemTooltip</param>
+                                    <param id="1" name="Image point (optional)">&quot;toolTipDescription&quot;</param>
                                 </action>
                                 <action id="0" name="Set text" sid="993792505059524" type="ui_toolTipItemCost">
                                     <param id="0" name="Text">Function.Call(&quot;findCost&quot;)</param>
                                 </action>
+                                <action id="-4" name="Set position to another object" sid="541131889092912" type="ui_toolTipItemCost">
+                                    <param id="0" name="Object">ui_storeItemTooltip</param>
+                                    <param id="1" name="Image point (optional)">&quot;toolTipCost&quot;</param>
+                                </action>
                             </actions>
                         </event-block>
-                        <event-block sid="172633931183309">
-                            <conditions>
-                                <condition id="-22" name="Else" sid="724271741231939" type="System" />
-                            </conditions>
+                        <event-block sid="934192907037855">
+                            <conditions />
                             <actions>
                                 <action id="-3" name="Set position" sid="503053697016435" type="ui_storeItemTooltip">
                                     <param id="0" name="X">Mouse.X(&quot;Store&quot;)</param>
@@ -616,10 +582,6 @@
                         <condition id="-22" name="Else" sid="655202250828846" type="System" />
                     </conditions>
                     <actions>
-                        <action id="-9" name="Set value" sid="450187405400844" type="System">
-                            <param id="0" name="Variable">toolTipShown</param>
-                            <param id="1" name="Value">0</param>
-                        </action>
                         <action id="-9" name="Destroy" sid="169672597565742" type="ui_storeItemTooltip" />
                     </actions>
                 </event-block>
@@ -755,23 +717,13 @@
                             <param id="2" name="Second value">&quot;tower&quot;</param>
                         </condition>
                     </conditions>
-                    <actions>
-                        <action behavior="MoveTo" id="4" name="Move to XY" sid="963474105476117" type="ui_storeBoxSelected">
-                            <param id="0" name="X">ui_storeTowerText.X</param>
-                            <param id="1" name="Y">ui_storeTowerText.Y</param>
-                        </action>
-                    </actions>
+                    <actions />
                 </event-block>
                 <event-block sid="120525171533256">
                     <conditions>
                         <condition id="-22" name="Else" sid="225619475201113" type="System" />
                     </conditions>
-                    <actions>
-                        <action behavior="MoveTo" id="4" name="Move to XY" sid="283926578215426" type="ui_storeBoxSelected">
-                            <param id="0" name="X">ui_storeCharacterText.X</param>
-                            <param id="1" name="Y">ui_storeCharacterText.Y</param>
-                        </action>
-                    </actions>
+                    <actions />
                 </event-block>
             </sub-events>
         </event-block>

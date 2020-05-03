@@ -31,4 +31,8 @@ License: http://creativecommons.org/licenses/by/4.0/
 RPG Nature Tileset
 https://stealthix.itch.io/rpg-nature-tileset
 
+Failing Defense by Kevin MacLeod
+Link: https://incompetech.filmmusic.io/song/3734-failing-defense
+License: http://creativecommons.org/licenses/by/4.0/
+
 and other stuff probably...
