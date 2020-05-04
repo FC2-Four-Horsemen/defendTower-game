@@ -16,6 +16,7 @@
         <variable constant="0" name="enableHealthRecovery" sid="243523597511899" static="0" type="number">0</variable>
         <variable constant="0" name="stunAOE" sid="676642794914244" static="0" type="number">0</variable>
         <variable constant="0" name="itemCostMult" sid="456608512272710" static="0" type="number">1</variable>
+        <variable constant="0" name="enemyKilled" sid="863907697903894" static="0" type="number">0</variable>
         <event-group description="Dictionary Mage.json" sid="926729626211004" title="Load JSON Values">
             <sub-events>
                 <event-block sid="326741241332894">

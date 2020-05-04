@@ -562,10 +562,20 @@
                             <actions>
                                 <action id="-9" name="Set value" sid="997679327252606" type="System">
                                     <param id="0" name="Variable">currentScore</param>
-                                    <param id="1" name="Value">currentWave * 100</param>
+                                    <param id="1" name="Value">currentWave * 500</param>
                                 </action>
                                 <action id="0" name="Set text" sid="445627026514649" type="ui_gameOverScore">
-                                    <param id="0" name="Text">&quot;Wave x 1000: &quot; &amp; currentScore</param>
+                                    <param id="0" name="Text">&quot;Wave x 500: &quot; &amp; currentScore</param>
+                                </action>
+                                <action id="25" name="Play at object" sid="188693093098045" type="Audio">
+                                    <param id="0" name="Audio file">Ding Sound Effect</param>
+                                    <param id="1" name="Loop">0</param>
+                                    <param id="2" name="Volume">sfxVolume - 10</param>
+                                    <param id="3" name="Object">enemyMinions</param>
+                                    <param id="4" name="Inner angle">360</param>
+                                    <param id="5" name="Outer angle">360</param>
+                                    <param id="6" name="Outer gain">0</param>
+                                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
                                 </action>
                                 <action id="-16" name="Wait" sid="981001814202089" type="System">
                                     <param id="0" name="Seconds">2</param>
@@ -577,10 +587,40 @@
                                 <action id="0" name="Set text" sid="299945571320803" type="ui_gameOverScore">
                                     <param id="0" name="Text">&quot;+ Current Gold: &quot; &amp; currentScore</param>
                                 </action>
+                                <action id="25" name="Play at object" sid="361200219737602" type="Audio">
+                                    <param id="0" name="Audio file">Ding Sound Effect</param>
+                                    <param id="1" name="Loop">0</param>
+                                    <param id="2" name="Volume">sfxVolume - 10</param>
+                                    <param id="3" name="Object">enemyMinions</param>
+                                    <param id="4" name="Inner angle">360</param>
+                                    <param id="5" name="Outer angle">360</param>
+                                    <param id="6" name="Outer gain">0</param>
+                                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
                                 <action id="-16" name="Wait" sid="297895893371193" type="System">
                                     <param id="0" name="Seconds">2</param>
                                 </action>
+                                <action id="-9" name="Set value" sid="780431815691637" type="System">
+                                    <param id="0" name="Variable">currentScore</param>
+                                    <param id="1" name="Value">currentScore + (enemyKilled * 100)</param>
+                                </action>
                                 <action id="0" name="Set text" sid="755970617581619" type="ui_gameOverScore">
+                                    <param id="0" name="Text">&quot;Enemy Killed x 100: &quot; &amp; currentScore</param>
+                                </action>
+                                <action id="25" name="Play at object" sid="405681770119133" type="Audio">
+                                    <param id="0" name="Audio file">Ding Sound Effect</param>
+                                    <param id="1" name="Loop">0</param>
+                                    <param id="2" name="Volume">sfxVolume - 10</param>
+                                    <param id="3" name="Object">enemyMinions</param>
+                                    <param id="4" name="Inner angle">360</param>
+                                    <param id="5" name="Outer angle">360</param>
+                                    <param id="6" name="Outer gain">0</param>
+                                    <param id="7" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="710005300536816" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="0" name="Set text" sid="707345800273846" type="ui_gameOverScore">
                                     <param id="0" name="Text">&quot;Total Score: &quot; &amp; currentScore</param>
                                 </action>
                             </actions>

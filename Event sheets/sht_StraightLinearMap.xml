@@ -705,7 +705,7 @@
                                 <action id="0" name="Play" sid="541509909651212" type="Audio">
                                     <param id="0" name="Audio file">failing-defense-waiting</param>
                                     <param id="2" name="Loop">1</param>
-                                    <param id="3" name="Volume">-10</param>
+                                    <param id="3" name="Volume">musVolume -10</param>
                                     <param id="1" name="Tag (optional)">&quot;waitingLoop&quot;</param>
                                 </action>
                             </actions>
@@ -718,14 +718,14 @@
                     </conditions>
                     <actions />
                     <sub-events>
-                        <event-block any="1" sid="972562016133749">
+                        <event-block any="1" sid="356210539754676">
                             <conditions>
-                                <condition id="-7" name="Compare instance variable" sid="555963494474996" type="playableTowers">
-                                    <param id="0" name="Instance variable">curHealth</param>
+                                <condition id="-7" name="Compare instance variable" sid="892051912209255" type="playableTowers">
+                                    <param id="0" name="Instance variable">curArmor</param>
                                     <param id="1" name="Comparison">3</param>
-                                    <param id="2" name="Value">Self.maxHealth / 2</param>
+                                    <param id="2" name="Value">0</param>
                                 </condition>
-                                <condition id="-7" name="Compare instance variable" sid="809615318047517" type="playableCharacters">
+                                <condition id="-7" name="Compare instance variable" sid="848640749853180" type="playableCharacters">
                                     <param id="0" name="Instance variable">curHealth</param>
                                     <param id="1" name="Comparison">3</param>
                                     <param id="2" name="Value">Self.maxHealth / 2</param>
@@ -733,45 +733,62 @@
                             </conditions>
                             <actions />
                             <sub-events>
-                                <comment>music in danger</comment>
-                                <event-block sid="423920014817952">
+                                <event-block any="1" sid="972562016133749">
                                     <conditions>
-                                        <condition id="-4" name="Trigger once while true" sid="464698365959465" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="33" name="Stop all" sid="871040353118746" type="Audio" />
-                                        <action id="0" name="Play" sid="601533764177479" type="Audio">
-                                            <param id="0" name="Audio file">failing-defense-startDangerLoop</param>
-                                            <param id="2" name="Loop">0</param>
-                                            <param id="3" name="Volume">-10</param>
-                                            <param id="1" name="Tag (optional)">&quot;startDanger&quot;</param>
-                                        </action>
-                                        <action id="4" name="Preload" sid="711081623677775" type="Audio">
-                                            <param id="0" name="Audio file">failing-defense-dangerLoop</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="501330147556927">
-                                    <conditions>
-                                        <condition id="0" name="On ended" sid="304442721903718" type="Audio">
-                                            <param id="0" name="Tag">&quot;startDanger&quot;</param>
+                                        <condition id="-7" name="Compare instance variable" sid="555963494474996" type="playableTowers">
+                                            <param id="0" name="Instance variable">curHealth</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">Self.maxHealth / 2</param>
                                         </condition>
-                                        <condition id="5" inverted="1" name="Is tag playing" sid="263446860079341" type="Audio">
-                                            <param id="0" name="Tag">&quot;startDanger&quot;</param>
-                                        </condition>
-                                        <condition id="5" inverted="1" name="Is tag playing" sid="554929422417828" type="Audio">
-                                            <param id="0" name="Tag">&quot;dangerLoop&quot;</param>
+                                        <condition id="-7" name="Compare instance variable" sid="809615318047517" type="playableCharacters">
+                                            <param id="0" name="Instance variable">curHealth</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Value">Self.maxHealth / 2</param>
                                         </condition>
                                     </conditions>
-                                    <actions>
-                                        <action id="33" name="Stop all" sid="542923178300845" type="Audio" />
-                                        <action id="0" name="Play" sid="708226370293140" type="Audio">
-                                            <param id="0" name="Audio file">failing-defense-dangerLoop</param>
-                                            <param id="2" name="Loop">1</param>
-                                            <param id="3" name="Volume">-10</param>
-                                            <param id="1" name="Tag (optional)">&quot;dangerLoop&quot;</param>
-                                        </action>
-                                    </actions>
+                                    <actions />
+                                    <sub-events>
+                                        <comment>music in danger</comment>
+                                        <event-block sid="423920014817952">
+                                            <conditions>
+                                                <condition id="-4" name="Trigger once while true" sid="464698365959465" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="33" name="Stop all" sid="871040353118746" type="Audio" />
+                                                <action id="0" name="Play" sid="601533764177479" type="Audio">
+                                                    <param id="0" name="Audio file">failing-defense-startDangerLoop</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">musVolume -10</param>
+                                                    <param id="1" name="Tag (optional)">&quot;startDanger&quot;</param>
+                                                </action>
+                                                <action id="4" name="Preload" sid="711081623677775" type="Audio">
+                                                    <param id="0" name="Audio file">failing-defense-dangerLoop</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="501330147556927">
+                                            <conditions>
+                                                <condition id="0" name="On ended" sid="304442721903718" type="Audio">
+                                                    <param id="0" name="Tag">&quot;startDanger&quot;</param>
+                                                </condition>
+                                                <condition id="5" inverted="1" name="Is tag playing" sid="263446860079341" type="Audio">
+                                                    <param id="0" name="Tag">&quot;startDanger&quot;</param>
+                                                </condition>
+                                                <condition id="5" inverted="1" name="Is tag playing" sid="554929422417828" type="Audio">
+                                                    <param id="0" name="Tag">&quot;dangerLoop&quot;</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="33" name="Stop all" sid="542923178300845" type="Audio" />
+                                                <action id="0" name="Play" sid="708226370293140" type="Audio">
+                                                    <param id="0" name="Audio file">failing-defense-dangerLoop</param>
+                                                    <param id="2" name="Loop">1</param>
+                                                    <param id="3" name="Volume">musVolume -10</param>
+                                                    <param id="1" name="Tag (optional)">&quot;dangerLoop&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
                                 </event-block>
                             </sub-events>
                         </event-block>
@@ -790,7 +807,7 @@
                                         <action id="0" name="Play" sid="630377137083027" type="Audio">
                                             <param id="0" name="Audio file">failing-defense-startBattleLoop</param>
                                             <param id="2" name="Loop">0</param>
-                                            <param id="3" name="Volume">-10</param>
+                                            <param id="3" name="Volume">musVolume -10</param>
                                             <param id="1" name="Tag (optional)">&quot;startBattle&quot;</param>
                                         </action>
                                     </actions>
@@ -810,7 +827,7 @@
                                         <action id="0" name="Play" sid="212818126431844" type="Audio">
                                             <param id="0" name="Audio file">failing-defense-battleLoop</param>
                                             <param id="2" name="Loop">1</param>
-                                            <param id="3" name="Volume">-10</param>
+                                            <param id="3" name="Volume">musVolume -10</param>
                                             <param id="1" name="Tag (optional)">&quot;battleLoop&quot;</param>
                                         </action>
                                     </actions>
@@ -825,11 +842,15 @@
             <sub-events>
                 <event-block any="1" sid="836571848838162">
                     <conditions>
-                        <condition id="-9" inverted="1" name="Is visible" sid="780021928523937" type="obj_towerMageShield" />
+                        <condition id="-7" name="Compare instance variable" sid="376216013578545" type="playableTowers">
+                            <param id="0" name="Instance variable">curArmor</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
                         <condition id="-7" name="Compare instance variable" sid="697345279324198" type="playableCharacters">
                             <param id="0" name="Instance variable">curHealth</param>
                             <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Value">Self.maxHealth / 5</param>
+                            <param id="2" name="Value">Self.maxHealth / 3</param>
                         </condition>
                     </conditions>
                     <actions />
@@ -844,7 +865,7 @@
                                 <condition id="-7" name="Compare instance variable" sid="357657883000539" type="playableCharacters">
                                     <param id="0" name="Instance variable">curHealth</param>
                                     <param id="1" name="Comparison">3</param>
-                                    <param id="2" name="Value">Self.maxHealth / 5</param>
+                                    <param id="2" name="Value">Self.maxHealth / 3</param>
                                 </condition>
                             </conditions>
                             <actions />

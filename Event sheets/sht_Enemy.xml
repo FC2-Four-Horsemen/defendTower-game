@@ -34,6 +34,10 @@
                             <param id="0" name="Instance variable">suicideDamage</param>
                             <param id="1" name="Value">2 * (currentWave - 1)</param>
                         </action>
+                        <action id="-11" name="Add to" sid="689354789447433" type="enemyMinions">
+                            <param id="0" name="Instance variable">goldReward</param>
+                            <param id="1" name="Value">2 * (currentWave - 1)</param>
+                        </action>
                     </actions>
                 </event-block>
             </sub-events>
@@ -433,6 +437,10 @@
                                         <action id="-10" name="Add to" sid="829667729965642" type="System">
                                             <param id="0" name="Variable">currentGold</param>
                                             <param id="1" name="Value">enemyMinions.goldReward</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="961754021977954" type="System">
+                                            <param id="0" name="Variable">enemyKilled</param>
+                                            <param id="1" name="Value">1</param>
                                         </action>
                                     </actions>
                                 </event-block>
