@@ -1520,7 +1520,7 @@
                         <step>1</step>
                         <tooltip></tooltip>
                         <initial-visibility>Invisible</initial-visibility>
-                        <enabled>Yes</enabled>
+                        <enabled>No</enabled>
                         <id-optional></id-optional>
                     </properties>
                     <blend-mode>0</blend-mode>
@@ -1544,7 +1544,7 @@
                         <step>1</step>
                         <tooltip></tooltip>
                         <initial-visibility>Invisible</initial-visibility>
-                        <enabled>Yes</enabled>
+                        <enabled>No</enabled>
                         <id-optional></id-optional>
                     </properties>
                     <blend-mode>0</blend-mode>
