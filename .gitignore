@@ -1,5 +1,4 @@
-/Event sheets/*.uistate.xml
-
+Event sheets/*.uistate.xml
 *.capx.autosave
 *.capx.backup1
 *.uistate.xml
