@@ -376,9 +376,6 @@
                         <condition id="-11" name="For Each" sid="726293973769713" type="System">
                             <param id="0" name="Object">enemyMinions</param>
                         </condition>
-                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="256175666731631" type="enemyMinions">
-                            <param id="0" name="Instance variable">notActuallyEnemy</param>
-                        </condition>
                     </conditions>
                     <actions />
                     <sub-events>
@@ -393,7 +390,11 @@
                             <actions />
                             <sub-events>
                                 <event-block sid="442638965090652">
-                                    <conditions />
+                                    <conditions>
+                                        <condition id="-8" inverted="1" name="Is boolean instance variable set" sid="256175666731631" type="enemyMinions">
+                                            <param id="0" name="Instance variable">notActuallyEnemy</param>
+                                        </condition>
+                                    </conditions>
                                     <actions>
                                         <action id="-9" name="Destroy" sid="270345125914534" type="enemyMinions" />
                                         <action id="0" name="Spawn another object" sid="447858833716970" type="enemyMinions">
@@ -441,6 +442,29 @@
                                         <action id="-10" name="Add to" sid="961754021977954" type="System">
                                             <param id="0" name="Variable">enemyKilled</param>
                                             <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="121220677703358">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="906293179772652" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Destroy" sid="904984890283252" type="enemyMinions" />
+                                        <action id="0" name="Spawn another object" sid="841764163276052" type="enemyMinions">
+                                            <param id="0" name="Object">par_hitEffect</param>
+                                            <param id="1" name="Layer">&quot;Game&quot;</param>
+                                            <param id="2" name="Image point">0</param>
+                                        </action>
+                                        <action id="25" name="Play at object" sid="555033992582088" type="Audio">
+                                            <param id="0" name="Audio file">Cardboard Hit 12 Short Crush</param>
+                                            <param id="1" name="Loop">0</param>
+                                            <param id="2" name="Volume">sfxVolume</param>
+                                            <param id="3" name="Object">enemyMinions</param>
+                                            <param id="4" name="Inner angle">360</param>
+                                            <param id="5" name="Outer angle">360</param>
+                                            <param id="6" name="Outer gain">0</param>
+                                            <param id="7" name="Tag (optional)">&quot;&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>

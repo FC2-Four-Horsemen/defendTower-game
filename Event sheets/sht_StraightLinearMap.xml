@@ -350,6 +350,108 @@
         <include>sht_Player</include>
         <include>sht_Tower</include>
         <include>sht_Enemy</include>
+        <event-group description="" inactive="1" sid="906418127844321" title="Game Over">
+            <sub-events>
+                <event-block any="1" sid="808798540681872">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="421804249723126" type="playableTowers">
+                            <param id="0" name="Instance variable">curHealth</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="543592200125625" type="playableCharacters">
+                            <param id="0" name="Instance variable">curHealth</param>
+                            <param id="1" name="Comparison">3</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="143309478432864" type="System">
+                            <param id="0" name="Variable">isGameOver</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="537243455775782" type="System">
+                            <param id="0" name="Group name">&quot;Game Over Panel&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="584665929224137" type="System">
+                            <param id="0" name="Group name">&quot;Music Handler&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>Gameover sound</comment>
+                        <event-block sid="597080077258002">
+                            <conditions>
+                                <condition id="5" inverted="1" name="Is tag playing" sid="603031488619747" type="Audio">
+                                    <param id="0" name="Tag">&quot;Gameover&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="33" name="Stop all" sid="692632551659898" type="Audio" />
+                                <action id="0" name="Play" sid="117666073917194" type="Audio">
+                                    <param id="0" name="Audio file">anxiety</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">-10</param>
+                                    <param id="1" name="Tag (optional)">&quot;Gameover&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="802715335963446">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="538285089965699" type="System">
+                            <param id="0" name="Variable">isGameOver</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-12" name="Set group active" sid="687442604361412" type="System">
+                            <param id="0" name="Group name">&quot;Spawning System&quot;</param>
+                            <param id="1" name="State">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="Since its endless this is useless" inactive="1" sid="518982546951046" title="Victory">
+            <sub-events>
+                <event-block sid="282173645926126">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="545727797731285" type="System">
+                            <param id="0" name="Variable">isEndless</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="589592303717602" type="System">
+                            <param id="0" name="First value">currentWave</param>
+                            <param id="1" name="Comparison">5</param>
+                            <param id="2" name="Second value">maxWave</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="769336479068445" type="System">
+                            <param id="0" name="First value">Function.Call(&quot;enemiesStillPresent&quot;)</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="780618883310635" type="Function">
+                            <param id="0" name="Name">&quot;reachedMaxWave&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-12" name="Set group active" sid="862598093888049" type="System">
+                            <param id="0" name="Group name">&quot;Game Over Panel&quot;</param>
+                            <param id="1" name="State">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="326240762545029" type="ui_gameOverText">
+                            <param id="0" name="Text">&quot;Victory&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
         <event-group description="" inactive="1" sid="644021911339679" title="Spawning System">
             <sub-events>
                 <comment>Spawn Enemies</comment>
@@ -564,108 +666,6 @@
                 </event-block>
             </sub-events>
         </event-group>
-        <event-group description="" inactive="1" sid="906418127844321" title="Game Over">
-            <sub-events>
-                <event-block any="1" sid="808798540681872">
-                    <conditions>
-                        <condition id="-7" name="Compare instance variable" sid="421804249723126" type="playableTowers">
-                            <param id="0" name="Instance variable">curHealth</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                        <condition id="-7" name="Compare instance variable" sid="543592200125625" type="playableCharacters">
-                            <param id="0" name="Instance variable">curHealth</param>
-                            <param id="1" name="Comparison">3</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-9" name="Set value" sid="143309478432864" type="System">
-                            <param id="0" name="Variable">isGameOver</param>
-                            <param id="1" name="Value">1</param>
-                        </action>
-                        <action id="-12" name="Set group active" sid="537243455775782" type="System">
-                            <param id="0" name="Group name">&quot;Game Over Panel&quot;</param>
-                            <param id="1" name="State">1</param>
-                        </action>
-                        <action id="-12" name="Set group active" sid="584665929224137" type="System">
-                            <param id="0" name="Group name">&quot;Music Handler&quot;</param>
-                            <param id="1" name="State">0</param>
-                        </action>
-                    </actions>
-                    <sub-events>
-                        <comment>Gameover sound</comment>
-                        <event-block sid="597080077258002">
-                            <conditions>
-                                <condition id="5" inverted="1" name="Is tag playing" sid="603031488619747" type="Audio">
-                                    <param id="0" name="Tag">&quot;Gameover&quot;</param>
-                                </condition>
-                            </conditions>
-                            <actions>
-                                <action id="33" name="Stop all" sid="692632551659898" type="Audio" />
-                                <action id="0" name="Play" sid="117666073917194" type="Audio">
-                                    <param id="0" name="Audio file">anxiety</param>
-                                    <param id="2" name="Loop">0</param>
-                                    <param id="3" name="Volume">-10</param>
-                                    <param id="1" name="Tag (optional)">&quot;Gameover&quot;</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                    </sub-events>
-                </event-block>
-                <event-block sid="802715335963446">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="538285089965699" type="System">
-                            <param id="0" name="Variable">isGameOver</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">1</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="-12" name="Set group active" sid="687442604361412" type="System">
-                            <param id="0" name="Group name">&quot;Spawning System&quot;</param>
-                            <param id="1" name="State">0</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-group>
-        <event-group description="Since its endless this is useless" inactive="1" sid="518982546951046" title="Victory">
-            <sub-events>
-                <event-block sid="282173645926126">
-                    <conditions>
-                        <condition id="-14" name="Compare variable" sid="545727797731285" type="System">
-                            <param id="0" name="Variable">isEndless</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">0</param>
-                        </condition>
-                        <condition id="-8" name="Compare two values" sid="589592303717602" type="System">
-                            <param id="0" name="First value">currentWave</param>
-                            <param id="1" name="Comparison">5</param>
-                            <param id="2" name="Second value">maxWave</param>
-                        </condition>
-                        <condition id="-8" name="Compare two values" sid="769336479068445" type="System">
-                            <param id="0" name="First value">Function.Call(&quot;enemiesStillPresent&quot;)</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Second value">0</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="0" name="Call function" sid="780618883310635" type="Function">
-                            <param id="0" name="Name">&quot;reachedMaxWave&quot;</param>
-                            <param id="1" name="Parameter {n}"></param>
-                        </action>
-                        <action id="-12" name="Set group active" sid="862598093888049" type="System">
-                            <param id="0" name="Group name">&quot;Game Over Panel&quot;</param>
-                            <param id="1" name="State">1</param>
-                        </action>
-                        <action id="0" name="Set text" sid="326240762545029" type="ui_gameOverText">
-                            <param id="0" name="Text">&quot;Victory&quot;</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-group>
         <event-group description="Shifts between 3 types of music based on Tower/Mage health and between waves." inactive="1" sid="222094800932858" title="Music Handler">
             <sub-events>
                 <comment>start sound</comment>
@@ -701,7 +701,12 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="33" name="Stop all" sid="570954998526103" type="Audio" />
+                                <action id="6" name="Stop" sid="690325695332667" type="Audio">
+                                    <param id="0" name="Tag">&quot;battleLoop&quot;</param>
+                                </action>
+                                <action id="6" name="Stop" sid="471360620915701" type="Audio">
+                                    <param id="0" name="Tag">&quot;dangerLoop&quot;</param>
+                                </action>
                                 <action id="0" name="Play" sid="541509909651212" type="Audio">
                                     <param id="0" name="Audio file">failing-defense-waiting</param>
                                     <param id="2" name="Loop">1</param>

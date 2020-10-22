@@ -50,10 +50,22 @@
                         </action>
                         <action id="-9" name="Destroy" sid="131467872514335" type="enemyMinions" />
                     </actions>
-                </event-block>
-                <event-block sid="885852514680297">
-                    <conditions />
-                    <actions />
+                    <sub-events>
+                        <event-block sid="885852514680297">
+                            <conditions>
+                                <condition id="-8" name="Is boolean instance variable set" sid="731678199883921" type="enemyMinions">
+                                    <param id="0" name="Instance variable">notActuallyEnemy</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="112434002943892" type="Function">
+                                    <param id="0" name="Name">&quot;restoreHealth&quot;</param>
+                                    <param id="1" name="Parameter {n}">5</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="521175835983598" type="enemyMinions" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-group>
@@ -230,7 +242,14 @@
                     <param id="0" name="Name">&quot;restoreShield&quot;</param>
                 </condition>
             </conditions>
-            <actions />
+            <actions>
+                <action id="0" name="Play" sid="179807936853058" type="Audio">
+                    <param id="0" name="Audio file">shieldRestored</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">sfxVolume - 5</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
             <sub-events>
                 <event-block sid="193455702568634">
                     <conditions>
@@ -282,16 +301,72 @@
                         </event-block>
                     </sub-events>
                 </event-block>
-                <event-block sid="692685411934294">
-                    <conditions />
+            </sub-events>
+        </event-block>
+        <event-block sid="561146505818625">
+            <conditions>
+                <condition id="0" name="On function" sid="678601748558467" type="Function">
+                    <param id="0" name="Name">&quot;restoreHealth&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="726901903643071" type="Audio">
+                    <param id="0" name="Audio file">shieldRestored</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">sfxVolume - 15</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="145907639118935">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="950600912068508" type="System">
+                            <param id="0" name="First value">Function.Param(0)</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
                     <actions>
-                        <action id="0" name="Play" sid="580185739342209" type="Audio">
-                            <param id="0" name="Audio file">shieldRestored</param>
-                            <param id="2" name="Loop">0</param>
-                            <param id="3" name="Volume">-15</param>
-                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        <action id="-10" name="Set value" sid="754529034701289" type="playableTowers">
+                            <param id="0" name="Instance variable">curHealth</param>
+                            <param id="1" name="Value">Self.maxHealth</param>
                         </action>
                     </actions>
+                </event-block>
+                <event-block sid="474775722246477">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="654874915583532" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>Add Param(0) to curHeath, check if it exceeds maxHealth</comment>
+                        <event-block sid="586703566094883">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="474209454803755" type="System">
+                                    <param id="0" name="First value">Function.Param(0) + playableTowers.curHealth</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">playableTowers.maxHealth</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-11" name="Add to" sid="340998509517427" type="playableTowers">
+                                    <param id="0" name="Instance variable">curHealth</param>
+                                    <param id="1" name="Value">Function.Param(0)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="552242270241050">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="474578951227878" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="746374562970725" type="playableTowers">
+                                    <param id="0" name="Instance variable">curHealth</param>
+                                    <param id="1" name="Value">Self.maxHealth</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
             </sub-events>
         </event-block>

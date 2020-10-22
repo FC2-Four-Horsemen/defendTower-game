@@ -2043,7 +2043,7 @@
                 </instance>
                 <instance type="text_gameVersion" uid="97">
                     <properties>
-                        <text>0.9</text>
+                        <text>0.9.5</text>
                         <initial-visibility>Visible</initial-visibility>
                         <font>Arial,-16</font>
                         <color>255,255,255</color>
